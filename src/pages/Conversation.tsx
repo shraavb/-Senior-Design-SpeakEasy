@@ -20,6 +20,28 @@ const Conversation = () => {
   const scenario = searchParams.get("scenario") || "General Conversation";
   const language = "Spanish"; // This would come from user settings
   
+  // Get contextually appropriate conversation partner based on scenario
+  const getConversationPartner = () => {
+    const scenarioMap: Record<string, string> = {
+      "Ordering at a Restaurant": "Waiter",
+      "Asking for Directions": "Friendly Local",
+      "Hotel Check-in": "Hotel Receptionist",
+      "Using Public Transportation": "Station Attendant",
+      "Making Local Friends": "New Friend",
+      "Casual Small Talk": "Conversation Partner",
+      "Sharing Opinions": "Friend",
+      "Discussing Feelings": "Close Friend",
+      "Cultural Discussions": "Cultural Guide",
+      "Professional Introductions": "Colleague",
+      "Discussing Emails": "Coworker",
+      "Team Meetings": "Team Member",
+      "Giving Presentations": "Manager",
+    };
+    return scenarioMap[scenario] || "Conversation Partner";
+  };
+  
+  const conversationPartner = getConversationPartner();
+  
   const [messages, setMessages] = useState<Message[]>([]);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -228,7 +250,7 @@ const Conversation = () => {
               }`}
             >
               <p className="text-sm font-medium mb-1">
-                {message.role === "user" ? "You" : "AI Teacher"}
+                {message.role === "user" ? "You" : conversationPartner}
               </p>
               {message.role === "assistant" ? (
                 <TranslatableText text={message.content} sourceLanguage={language} />
