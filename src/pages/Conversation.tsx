@@ -270,11 +270,11 @@ const Conversation = () => {
 
       {/* Messages */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto px-4 py-6 space-y-4">
+        <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`flex gap-3 items-start ${
+              className={`flex gap-4 items-start ${
                 message.role === "user" ? "flex-row-reverse" : "flex-row"
               }`}
             >
@@ -283,13 +283,13 @@ const Conversation = () => {
                 <img
                   src={getAvatar(message.role)}
                   alt={message.role === "user" ? "You" : conversationPartner}
-                  className="w-10 h-10 rounded-full object-cover border-2 border-border"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
                 />
               </div>
               
               {/* Message Card */}
               <Card
-                className={`p-4 max-w-[75%] ${
+                className={`p-4 max-w-[70%] ${
                   message.role === "user"
                     ? "bg-primary text-primary-foreground"
                     : "bg-card"
@@ -307,15 +307,15 @@ const Conversation = () => {
             </div>
           ))}
           {isProcessing && (
-            <div className="flex gap-3 items-start">
+            <div className="flex gap-4 items-start">
               <div className="flex-shrink-0">
                 <img
                   src={getAvatar("assistant")}
                   alt={conversationPartner}
-                  className="w-10 h-10 rounded-full object-cover border-2 border-border"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
                 />
               </div>
-              <Card className="bg-card max-w-[75%] p-4">
+              <Card className="bg-card max-w-[70%] p-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span className="text-sm">Thinking...</span>
