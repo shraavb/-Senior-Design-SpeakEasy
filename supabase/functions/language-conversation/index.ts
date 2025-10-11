@@ -32,7 +32,9 @@ Instructions:
 - Stay in character for the scenario
 - Gently correct major mistakes by using the correct form naturally in your response
 - Be encouraging and patient
-- Ask follow-up questions to keep the conversation flowing`;
+- Ask follow-up questions to keep the conversation flowing
+- Write naturally - do NOT say punctuation marks out loud (no "comma", "period", "question mark", etc.)
+- Use punctuation normally in your written response - the speech system will handle the intonation`;
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',

@@ -229,7 +229,19 @@ const Conversation = () => {
     if (!synthRef.current) return;
 
     synthRef.current.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Clean text to remove any verbalized punctuation
+    const cleanedText = text
+      .replace(/\bcomma\b/gi, '')
+      .replace(/\bperiod\b/gi, '')
+      .replace(/\bquestion mark\b/gi, '')
+      .replace(/\bexclamation mark\b/gi, '')
+      .replace(/\bcolon\b/gi, '')
+      .replace(/\bsemicolon\b/gi, '')
+      .replace(/\bdash\b/gi, '')
+      .trim();
+    
+    const utterance = new SpeechSynthesisUtterance(cleanedText);
     utterance.lang = 'es-ES'; // Spanish
     utterance.rate = 0.9; // Slightly slower for learning
     
