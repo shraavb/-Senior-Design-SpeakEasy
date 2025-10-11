@@ -4,6 +4,41 @@
 
 **URL**: https://lovable.dev/projects/41304ac3-1da0-4d5d-bb53-e0e95ca2bdb3
 
+## SpeakEasy - Language Learning Platform
+
+A conversational AI-powered language learning platform that helps users achieve fluency through natural speech-to-speech practice.
+
+### Features
+
+- 🎤 **Speech-to-Speech Conversations**: Practice real conversations with AI in your target language
+- 🌍 **Multiple Languages**: Spanish, French, German, Italian, Japanese, Mandarin
+- 📚 **Hover Translations**: Hover over any word to see instant English translations
+- 🎯 **Scenario-Based Learning**: Practice real-world situations (tourism, social, professional)
+- 📊 **Progress Tracking**: Monitor your fluency scores, streaks, and achievements
+- 🏆 **Leaderboard**: Compete with other learners and stay motivated
+
+### Tech Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend**: Lovable Cloud (Supabase)
+- **AI**: Lovable AI Gateway (Google Gemini)
+- **Speech**: Browser Web Speech API (default) or ElevenLabs (optional)
+
+### Optional: ElevenLabs Premium Voices
+
+To use ElevenLabs for higher-quality AI voices:
+
+1. Get your API key from [elevenlabs.io](https://elevenlabs.io)
+2. Add it as a secret in your backend:
+   - Go to Backend → Secrets
+   - Add new secret: `ELEVENLABS_API_KEY`
+   - Paste your API key
+3. Create a Conversational AI agent in your [ElevenLabs dashboard](https://elevenlabs.io/app/conversational-ai)
+4. Note your agent ID for use in conversations
+5. Update the edge function to use your agent ID when the ElevenLabs option is selected
+
+The app works perfectly with the default browser speech - ElevenLabs is entirely optional for premium voice quality.
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
