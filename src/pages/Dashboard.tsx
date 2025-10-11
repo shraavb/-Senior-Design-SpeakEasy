@@ -1,8 +1,24 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight } from "lucide-react";
+import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const languages = [
+  { name: "Spanish", flag: "🇪🇸" },
+  { name: "French", flag: "🇫🇷" },
+  { name: "German", flag: "🇩🇪" },
+  { name: "Italian", flag: "🇮🇹" },
+  { name: "Japanese", flag: "🇯🇵" },
+  { name: "Mandarin", flag: "🇨🇳" },
+];
 
 const modules = [
   {
@@ -33,6 +49,7 @@ const modules = [
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-tourism-light/50 to-background">
@@ -40,9 +57,27 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-social bg-clip-text text-transparent">SpeakEasy</h1>
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <span className="text-lg">🇪🇸</span> Learning Spanish
-            </p>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <span className="text-lg">{selectedLanguage.flag}</span>
+                  <span>Learning {selectedLanguage.name}</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="bg-card border shadow-lg z-50">
+                {languages.map((language) => (
+                  <DropdownMenuItem
+                    key={language.name}
+                    onClick={() => setSelectedLanguage(language)}
+                    className="flex items-center gap-3 cursor-pointer"
+                  >
+                    <span className="text-lg">{language.flag}</span>
+                    <span>{language.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           <Button variant="ghost" onClick={() => navigate("/leaderboard")} className="hover:bg-tourism-light">
             <Trophy className="w-5 h-5 mr-2 text-warning" />
