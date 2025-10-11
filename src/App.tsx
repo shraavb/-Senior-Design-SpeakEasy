@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import ModuleTourism from "./pages/ModuleTourism";
 import Progress from "./pages/Progress";
 import Leaderboard from "./pages/Leaderboard";
+import Conversation from "./pages/Conversation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/goal" element={<Goal />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/module/tourism" element={<ModuleTourism />} />
+          <Route path="/conversation" element={<Conversation />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

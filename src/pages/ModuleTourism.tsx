@@ -57,13 +57,8 @@ const ModuleTourism = () => {
       return;
     }
 
-    toast({
-      title: "Starting Conversation",
-      description: `Preparing ${scenarioTitle}...`,
-    });
-    
-    // TODO: Navigate to conversation page
-    // navigate(`/conversation/${scenarioTitle}`);
+    // Navigate to conversation page with scenario context
+    navigate(`/conversation?scenario=${encodeURIComponent(scenarioTitle)}`);
   };
 
   const getDifficultyColor = (difficulty: string) => {
