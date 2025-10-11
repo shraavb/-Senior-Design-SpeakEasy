@@ -3,13 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight, ChevronDown } from "lucide-react";
+import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight, ChevronDown, CheckCircle2, Circle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 const languages = [
   { name: "Spanish", flag: "🇪🇸" },
@@ -50,6 +55,13 @@ const modules = [
 const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [goalsExpanded, setGoalsExpanded] = useState(false);
+
+  const dailyGoals = [
+    { id: 1, title: "Complete 1 Tourism conversation", completed: true },
+    { id: 2, title: "Complete 1 Social conversation", completed: true },
+    { id: 3, title: "Complete 1 Professional conversation", completed: false },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-tourism-light/50 to-background">
@@ -116,16 +128,53 @@ const Dashboard = () => {
         </div>
 
         {/* Today's Goal */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-xl font-bold mb-1">Today's Goal</h2>
-              <p className="text-sm text-muted-foreground">2 of 3 conversations</p>
-            </div>
-            <span className="text-2xl font-bold text-primary">66%</span>
-          </div>
-          <Progress value={66} className="h-3" />
-        </Card>
+        <Collapsible open={goalsExpanded} onOpenChange={setGoalsExpanded}>
+          <Card className="p-6">
+            <CollapsibleTrigger className="w-full">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Trophy className="w-6 h-6 text-warning" />
+                  <div className="text-left">
+                    <h2 className="text-xl font-bold mb-1">Today's Goal</h2>
+                    <p className="text-sm text-muted-foreground">
+                      {dailyGoals.filter(g => g.completed).length} of {dailyGoals.length} conversations
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold text-primary">
+                    {Math.round((dailyGoals.filter(g => g.completed).length / dailyGoals.length) * 100)}%
+                  </span>
+                  <ChevronDown className={`w-5 h-5 transition-transform ${goalsExpanded ? "rotate-180" : ""}`} />
+                </div>
+              </div>
+            </CollapsibleTrigger>
+            <Progress 
+              value={(dailyGoals.filter(g => g.completed).length / dailyGoals.length) * 100} 
+              className="h-3 mb-4" 
+            />
+            
+            <CollapsibleContent>
+              <div className="space-y-2 pt-2 border-t">
+                {dailyGoals.map((goal) => (
+                  <div
+                    key={goal.id}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-muted/30"
+                  >
+                    {goal.completed ? (
+                      <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
+                    ) : (
+                      <Circle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                    )}
+                    <span className={goal.completed ? "text-muted-foreground line-through" : ""}>
+                      {goal.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Card>
+        </Collapsible>
 
         {/* Practice Modules */}
         <div>
