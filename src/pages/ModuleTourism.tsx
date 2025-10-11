@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 import { ChevronLeft, CheckCircle2, Lock, Clock } from "lucide-react";
 
 const scenarios = [
@@ -44,6 +45,26 @@ const scenarios = [
 
 const ModuleTourism = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleStartScenario = (scenarioTitle: string, isLocked: boolean) => {
+    if (isLocked) {
+      toast({
+        title: "Scenario Locked",
+        description: "Complete easier scenarios to unlock this one.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Starting Conversation",
+      description: `Preparing ${scenarioTitle}...`,
+    });
+    
+    // TODO: Navigate to conversation page
+    // navigate(`/conversation/${scenarioTitle}`);
+  };
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -90,7 +111,11 @@ const ModuleTourism = () => {
                   </span>
                 </div>
               </div>
-              <Button disabled={scenario.locked} className="flex-shrink-0">
+              <Button 
+                onClick={() => handleStartScenario(scenario.title, scenario.locked || false)}
+                disabled={scenario.locked} 
+                className="flex-shrink-0"
+              >
                 Start
               </Button>
             </div>
