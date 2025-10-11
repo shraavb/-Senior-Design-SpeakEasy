@@ -5,7 +5,16 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ChevronLeft, Mic, MicOff, Volume2, Loader2 } from "lucide-react";
+import { ChevronLeft, Mic, MicOff, Volume2, Loader2, Settings } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import SpeechSettings from "@/components/SpeechSettings";
 
 interface Message {
   role: "user" | "assistant";
@@ -24,6 +33,7 @@ const Conversation = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [speechProvider, setSpeechProvider] = useState<"browser" | "elevenlabs">("browser");
   
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -120,6 +130,15 @@ const Conversation = () => {
   }, []);
 
   const toggleListening = () => {
+    if (speechProvider === "elevenlabs") {
+      toast({
+        title: "ElevenLabs Not Configured",
+        description: "Please add your ElevenLabs API key in settings to use premium voices.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!recognitionRef.current) return;
 
     if (isListening) {
@@ -207,7 +226,31 @@ const Conversation = () => {
               <h1 className="text-xl font-bold">{scenario}</h1>
               <p className="text-sm text-muted-foreground">Learning {language}</p>
             </div>
-            <Badge variant="secondary">Intermediate</Badge>
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary">Intermediate</Badge>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <Settings className="w-4 h-4 mr-2" />
+                    Settings
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Conversation Settings</SheetTitle>
+                    <SheetDescription>
+                      Choose your preferred voice provider
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="mt-6">
+                    <SpeechSettings 
+                      provider={speechProvider} 
+                      onProviderChange={setSpeechProvider}
+                    />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </header>
