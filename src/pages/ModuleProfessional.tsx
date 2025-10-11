@@ -4,6 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronLeft, CheckCircle2, Lock, Clock } from "lucide-react";
+import introductionsImg from "@/assets/scenario-introductions.jpg";
+import emailsImg from "@/assets/scenario-emails.jpg";
+import meetingImg from "@/assets/scenario-meeting.jpg";
+import presentationImg from "@/assets/scenario-presentation.jpg";
 
 const scenarios = [
   {
@@ -12,6 +16,7 @@ const scenarios = [
     difficulty: "easy",
     duration: "2 min",
     completed: false,
+    image: introductionsImg,
   },
   {
     title: "Discussing Emails",
@@ -19,6 +24,7 @@ const scenarios = [
     difficulty: "medium",
     duration: "3 min",
     completed: false,
+    image: emailsImg,
   },
   {
     title: "Team Meetings",
@@ -26,6 +32,7 @@ const scenarios = [
     difficulty: "medium",
     duration: "3 min",
     completed: false,
+    image: meetingImg,
   },
   {
     title: "Giving Presentations",
@@ -33,6 +40,7 @@ const scenarios = [
     difficulty: "hard",
     duration: "4 min",
     locked: true,
+    image: presentationImg,
   },
 ];
 
@@ -82,30 +90,39 @@ const ModuleProfessional = () => {
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-4">
         {scenarios.map((scenario, index) => (
-          <Card key={index} className={`p-6 ${scenario.locked ? "opacity-60" : "hover:shadow-md transition-shadow"}`}>
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-xl font-semibold">{scenario.title}</h3>
-                  {scenario.completed && <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />}
-                  {scenario.locked && <Lock className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">{scenario.description}</p>
-                <div className="flex items-center gap-3">
-                  <Badge className={getDifficultyColor(scenario.difficulty)}>{scenario.difficulty}</Badge>
-                  <span className="text-sm text-muted-foreground flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {scenario.duration}
-                  </span>
-                </div>
+          <Card key={index} className={`overflow-hidden ${scenario.locked ? "opacity-60" : "hover:shadow-md transition-shadow"}`}>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-full md:w-48 h-32 md:h-auto flex-shrink-0">
+                <img 
+                  src={scenario.image} 
+                  alt={scenario.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <Button 
-                onClick={() => handleStartScenario(scenario.title, scenario.locked || false)}
-                disabled={scenario.locked} 
-                className="flex-shrink-0"
-              >
-                Start
-              </Button>
+              <div className="flex-1 p-4 md:p-6 flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl font-semibold">{scenario.title}</h3>
+                    {scenario.completed && <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />}
+                    {scenario.locked && <Lock className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">{scenario.description}</p>
+                  <div className="flex items-center gap-3">
+                    <Badge className={getDifficultyColor(scenario.difficulty)}>{scenario.difficulty}</Badge>
+                    <span className="text-sm text-muted-foreground flex items-center">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {scenario.duration}
+                    </span>
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => handleStartScenario(scenario.title, scenario.locked || false)}
+                  disabled={scenario.locked} 
+                  className="flex-shrink-0"
+                >
+                  Start
+                </Button>
+              </div>
             </div>
           </Card>
         ))}
