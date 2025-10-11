@@ -6,19 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Trophy, Medal, Award, Flame, ChevronDown } from "lucide-react";
 
 const topThree = [
-  { name: "Sarah Chen", points: 2847, streak: 28, rank: 1, initials: "SC" },
-  { name: "Miguel Rodriguez", points: 2634, streak: 21, rank: 2, initials: "MR" },
-  { name: "Emma Williams", points: 2521, streak: 19, rank: 3, initials: "EW" },
+  { name: "Sarah Chen", minutes: 847, streak: 28, rank: 1, initials: "SC" },
+  { name: "Miguel Rodriguez", minutes: 634, streak: 21, rank: 2, initials: "MR" },
+  { name: "Emma Williams", minutes: 521, streak: 19, rank: 3, initials: "EW" },
 ];
 
 const otherUsers = [
-  { name: "You", points: 1893, streak: 7, rank: 4, initials: "YO", isCurrentUser: true },
-  { name: "James Park", points: 1756, streak: 14, rank: 5, initials: "JP" },
-  { name: "Lisa Anderson", points: 1642, streak: 12, rank: 6, initials: "LA" },
-  { name: "David Kim", points: 1534, streak: 9, rank: 7, initials: "DK" },
-  { name: "Sophie Martin", points: 1421, streak: 11, rank: 8, initials: "SM" },
-  { name: "Alex Johnson", points: 1298, streak: 8, rank: 9, initials: "AJ" },
-  { name: "Maria Garcia", points: 1187, streak: 6, rank: 10, initials: "MG" },
+  { name: "You", minutes: 193, streak: 7, rank: 4, initials: "YO", isCurrentUser: true },
+  { name: "James Park", minutes: 456, streak: 14, rank: 5, initials: "JP" },
+  { name: "Lisa Anderson", minutes: 342, streak: 12, rank: 6, initials: "LA" },
+  { name: "David Kim", minutes: 234, streak: 9, rank: 7, initials: "DK" },
+  { name: "Sophie Martin", minutes: 421, streak: 11, rank: 8, initials: "SM" },
+  { name: "Alex Johnson", minutes: 198, streak: 8, rank: 9, initials: "AJ" },
+  { name: "Maria Garcia", minutes: 187, streak: 6, rank: 10, initials: "MG" },
 ];
 
 const Leaderboard = () => {
@@ -64,7 +64,10 @@ const Leaderboard = () => {
               {topThree[1].initials}
             </div>
             <p className="font-semibold text-center">{topThree[1].name.split(" ")[0]}</p>
-            <p className="text-2xl font-bold">{topThree[1].points}</p>
+            <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+              <Flame className="w-4 h-4 text-streak" /> {topThree[1].streak} days
+            </p>
+            <p className="text-2xl font-bold">{topThree[1].minutes} min</p>
           </div>
 
           {/* 1st Place */}
@@ -74,7 +77,10 @@ const Leaderboard = () => {
               {topThree[0].initials}
             </div>
             <p className="font-semibold text-center">{topThree[0].name.split(" ")[0]}</p>
-            <p className="text-3xl font-bold">{topThree[0].points}</p>
+            <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+              <Flame className="w-4 h-4 text-streak" /> {topThree[0].streak} days
+            </p>
+            <p className="text-3xl font-bold">{topThree[0].minutes} min</p>
           </div>
 
           {/* 3rd Place */}
@@ -84,7 +90,10 @@ const Leaderboard = () => {
               {topThree[2].initials}
             </div>
             <p className="font-semibold text-center">{topThree[2].name.split(" ")[0]}</p>
-            <p className="text-2xl font-bold">{topThree[2].points}</p>
+            <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+              <Flame className="w-4 h-4 text-streak" /> {topThree[2].streak} days
+            </p>
+            <p className="text-2xl font-bold">{topThree[2].minutes} min</p>
           </div>
         </div>
 
@@ -109,12 +118,12 @@ const Leaderboard = () => {
                     {user.name} {user.isCurrentUser && <Badge variant="secondary">You</Badge>}
                   </p>
                   <p className="text-sm text-muted-foreground flex items-center">
-                    {user.streak} day streak <Flame className="w-4 h-4 ml-1 text-streak" />
+                    <Flame className="w-4 h-4 mr-1 text-streak" /> {user.streak} day streak
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-bold">{user.points}</p>
-                  <p className="text-xs text-muted-foreground">points</p>
+                  <p className="text-xl font-bold">{user.minutes}</p>
+                  <p className="text-xs text-muted-foreground">minutes</p>
                 </div>
               </div>
             </Card>
@@ -133,14 +142,13 @@ const Leaderboard = () => {
           )}
         </div>
 
-        {/* How Points Work */}
+        {/* How Ranking Works */}
         <Card className="p-6 bg-muted/30">
-          <h3 className="font-semibold mb-3">How Points Work</h3>
+          <h3 className="font-semibold mb-3">How Ranking Works</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• Complete a conversation: +100 points</li>
-            <li>• Daily streak bonus: +50 points per day</li>
-            <li>• High fluency score (85+): +50 bonus points</li>
-            <li>• Complete a module: +200 points</li>
+            <li>• Rankings are based on total practice minutes this week</li>
+            <li>• Keep your daily streak alive for consistent progress</li>
+            <li>• The more you practice, the higher you climb!</li>
           </ul>
         </Card>
       </main>
