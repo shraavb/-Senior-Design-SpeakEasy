@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Trophy, Medal, Award, Flame } from "lucide-react";
+import { ChevronLeft, Trophy, Medal, Award, Flame, ChevronDown } from "lucide-react";
 
 const topThree = [
   { name: "Sarah Chen", points: 2847, streak: 28, rank: 1, initials: "SC" },
@@ -22,6 +23,10 @@ const otherUsers = [
 
 const Leaderboard = () => {
   const navigate = useNavigate();
+  const [showAll, setShowAll] = useState(false);
+  
+  // Show only first 2 entries by default (to make top 5 total with podium)
+  const displayedUsers = showAll ? otherUsers : otherUsers.slice(0, 2);
 
   const getRankIcon = (rank: number) => {
     switch (rank) {
@@ -85,7 +90,7 @@ const Leaderboard = () => {
 
         {/* Rest of Rankings */}
         <div className="space-y-2">
-          {otherUsers.map((user) => (
+          {displayedUsers.map((user) => (
             <Card
               key={user.rank}
               className={`p-4 ${user.isCurrentUser ? "border-2 border-primary bg-primary/5" : ""}`}
@@ -114,6 +119,18 @@ const Leaderboard = () => {
               </div>
             </Card>
           ))}
+          
+          {/* Show More Button */}
+          {otherUsers.length > 2 && (
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? "Show Less" : `Show ${otherUsers.length - 2} More`}
+              <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${showAll ? "rotate-180" : ""}`} />
+            </Button>
+          )}
         </div>
 
         {/* How Points Work */}
