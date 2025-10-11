@@ -12,6 +12,7 @@ import ModuleSocial from "./pages/ModuleSocial";
 import ModuleProfessional from "./pages/ModuleProfessional";
 import Progress from "./pages/Progress";
 import Leaderboard from "./pages/Leaderboard";
+import LearningMap from "./pages/LearningMap";
 import Conversation from "./pages/Conversation";
 import NotFound from "./pages/NotFound";
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/conversation" element={<Conversation />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/learning-map" element={<LearningMap />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
