@@ -35,15 +35,15 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b bg-card">
+    <div className="min-h-screen bg-gradient-to-br from-tourism-light/50 to-background">
+      <header className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">SpeakEasy</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-social bg-clip-text text-transparent">SpeakEasy</h1>
             <p className="text-sm text-muted-foreground">Learning Spanish</p>
           </div>
-          <Button variant="ghost" onClick={() => navigate("/leaderboard")}>
-            <Trophy className="w-5 h-5 mr-2" />
+          <Button variant="ghost" onClick={() => navigate("/leaderboard")} className="hover:bg-tourism-light">
+            <Trophy className="w-5 h-5 mr-2 text-warning" />
             Leaderboard
           </Button>
         </div>
@@ -52,24 +52,24 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="p-6">
+          <Card className="p-6 bg-gradient-to-br from-professional-light to-card hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-muted-foreground">Daily Streak</h3>
               <Flame className="w-5 h-5 text-streak" />
             </div>
-            <p className="text-3xl font-bold">7</p>
+            <p className="text-3xl font-bold text-professional">7</p>
             <p className="text-sm text-muted-foreground">days</p>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-6 bg-gradient-to-br from-tourism-light to-card hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-muted-foreground">Fluency Score</h3>
               <TrendingUp className="w-5 h-5 text-success" />
             </div>
-            <p className="text-3xl font-bold">82</p>
+            <p className="text-3xl font-bold text-tourism">82</p>
           </Card>
 
-          <Card className="p-6 cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate("/progress")}>
+          <Card className="p-6 bg-gradient-to-br from-social-light to-card cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate("/progress")}>
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-muted-foreground">View Progress</h3>
               <Trophy className="w-5 h-5 text-warning" />

@@ -24,11 +24,11 @@ const Welcome = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-muted/30 to-background p-4">
-      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-tourism-light via-accent to-professional-light p-4">
+      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8 shadow-xl">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center">
-            <Languages className="w-10 h-10 text-primary-foreground" />
+          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-social flex items-center justify-center shadow-lg">
+            <Languages className="w-10 h-10 text-white" />
           </div>
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome to SpeakEasy</h1>

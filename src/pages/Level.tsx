@@ -24,11 +24,11 @@ const Level = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-muted/30 to-background p-4">
-      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-tourism-light via-accent to-social-light p-4">
+      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8 shadow-xl">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="w-20 h-20 rounded-full border-4 border-primary flex items-center justify-center">
-            <CheckCircle2 className="w-10 h-10 text-primary" />
+          <div className="w-20 h-20 rounded-full border-4 border-success flex items-center justify-center bg-gradient-to-br from-success/10 to-tourism-light shadow-lg">
+            <CheckCircle2 className="w-10 h-10 text-success" />
           </div>
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">What's your current level?</h1>

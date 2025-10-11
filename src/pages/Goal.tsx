@@ -36,10 +36,10 @@ const Goal = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-muted/30 to-background p-4">
-      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-social-light via-accent to-professional-light p-4">
+      <Card className="w-full max-w-2xl p-8 md:p-12 space-y-8 shadow-xl">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="w-20 h-20 rounded-full border-4 border-primary flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full border-4 border-primary flex items-center justify-center bg-gradient-to-br from-primary/10 to-tourism-light shadow-lg">
             <Target className="w-10 h-10 text-primary" />
           </div>
           <div>
