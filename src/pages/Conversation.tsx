@@ -7,6 +7,15 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ChevronLeft, Mic, MicOff, Volume2, Loader2 } from "lucide-react";
 import TranslatableText from "@/components/TranslatableText";
+import avatarWaiter from "@/assets/avatar-waiter.jpg";
+import avatarLocal from "@/assets/avatar-local.jpg";
+import avatarReceptionist from "@/assets/avatar-receptionist.jpg";
+import avatarAttendant from "@/assets/avatar-attendant.jpg";
+import avatarFriend from "@/assets/avatar-friend.jpg";
+import avatarGuide from "@/assets/avatar-guide.jpg";
+import avatarColleague from "@/assets/avatar-colleague.jpg";
+import avatarManager from "@/assets/avatar-manager.jpg";
+import avatarUser from "@/assets/avatar-user.jpg";
 
 interface Message {
   role: "user" | "assistant";
@@ -41,6 +50,28 @@ const Conversation = () => {
   };
   
   const conversationPartner = getConversationPartner();
+  
+  // Get avatar image for conversation partner
+  const getAvatar = (role: "user" | "assistant") => {
+    if (role === "user") return avatarUser;
+    
+    const avatarMap: Record<string, string> = {
+      "Waiter": avatarWaiter,
+      "Friendly Local": avatarLocal,
+      "Hotel Receptionist": avatarReceptionist,
+      "Station Attendant": avatarAttendant,
+      "New Friend": avatarFriend,
+      "Conversation Partner": avatarFriend,
+      "Friend": avatarFriend,
+      "Close Friend": avatarFriend,
+      "Cultural Guide": avatarGuide,
+      "Colleague": avatarColleague,
+      "Coworker": avatarColleague,
+      "Team Member": avatarColleague,
+      "Manager": avatarManager,
+    };
+    return avatarMap[conversationPartner] || avatarFriend;
+  };
   
   const [messages, setMessages] = useState<Message[]>([]);
   const [isListening, setIsListening] = useState(false);
@@ -241,31 +272,56 @@ const Conversation = () => {
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 py-6 space-y-4">
           {messages.map((message, index) => (
-            <Card
+            <div
               key={index}
-              className={`p-4 ${
-                message.role === "user"
-                  ? "ml-auto bg-primary text-primary-foreground max-w-[80%]"
-                  : "mr-auto bg-card max-w-[80%]"
+              className={`flex gap-3 items-start ${
+                message.role === "user" ? "flex-row-reverse" : "flex-row"
               }`}
             >
-              <p className="text-sm font-medium mb-1">
-                {message.role === "user" ? "You" : conversationPartner}
-              </p>
-              {message.role === "assistant" ? (
-                <TranslatableText text={message.content} sourceLanguage={language} />
-              ) : (
-                <p>{message.content}</p>
-              )}
-            </Card>
+              {/* Avatar */}
+              <div className="flex-shrink-0">
+                <img
+                  src={getAvatar(message.role)}
+                  alt={message.role === "user" ? "You" : conversationPartner}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-border"
+                />
+              </div>
+              
+              {/* Message Card */}
+              <Card
+                className={`p-4 max-w-[75%] ${
+                  message.role === "user"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-card"
+                }`}
+              >
+                <p className="text-xs font-medium mb-2 opacity-70">
+                  {message.role === "user" ? "You" : conversationPartner}
+                </p>
+                {message.role === "assistant" ? (
+                  <TranslatableText text={message.content} sourceLanguage={language} />
+                ) : (
+                  <p>{message.content}</p>
+                )}
+              </Card>
+            </div>
           ))}
           {isProcessing && (
-            <Card className="mr-auto bg-card max-w-[80%] p-4">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span className="text-sm">Thinking...</span>
+            <div className="flex gap-3 items-start">
+              <div className="flex-shrink-0">
+                <img
+                  src={getAvatar("assistant")}
+                  alt={conversationPartner}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-border"
+                />
               </div>
-            </Card>
+              <Card className="bg-card max-w-[75%] p-4">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-sm">Thinking...</span>
+                </div>
+              </Card>
+            </div>
           )}
           <div ref={messagesEndRef} />
         </div>
