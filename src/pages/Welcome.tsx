@@ -5,12 +5,16 @@ import { Card } from "@/components/ui/card";
 import { Languages } from "lucide-react";
 
 const languages = [
+  "English",
   "Spanish",
   "French",
   "German",
   "Italian",
   "Japanese",
   "Mandarin",
+  "Portuguese",
+  "Korean",
+  "Arabic",
 ];
 
 const Welcome = () => {
