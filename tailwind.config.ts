@@ -47,6 +47,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        tourism: {
+          DEFAULT: "hsl(var(--tourism))",
+          light: "hsl(var(--tourism-light))",
+        },
+        social: {
+          DEFAULT: "hsl(var(--social))",
+          light: "hsl(var(--social-light))",
+        },
+        professional: {
+          DEFAULT: "hsl(var(--professional))",
+          light: "hsl(var(--professional-light))",
+        },
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        streak: "hsl(var(--streak))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
