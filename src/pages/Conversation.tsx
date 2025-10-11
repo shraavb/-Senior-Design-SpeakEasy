@@ -206,7 +206,9 @@ const Conversation = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold">{scenario}</h1>
-              <p className="text-sm text-muted-foreground">Learning {language}</p>
+              <p className="text-sm text-muted-foreground flex items-center gap-2">
+                <span className="text-base">🇪🇸</span> Learning {language}
+              </p>
             </div>
             <Badge variant="secondary">Intermediate</Badge>
           </div>

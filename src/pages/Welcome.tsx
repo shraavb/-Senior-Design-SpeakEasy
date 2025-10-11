@@ -5,12 +5,12 @@ import { Card } from "@/components/ui/card";
 import { Languages } from "lucide-react";
 
 const languages = [
-  "Spanish",
-  "French",
-  "German",
-  "Italian",
-  "Japanese",
-  "Mandarin",
+  { name: "Spanish", flag: "🇪🇸" },
+  { name: "French", flag: "🇫🇷" },
+  { name: "German", flag: "🇩🇪" },
+  { name: "Italian", flag: "🇮🇹" },
+  { name: "Japanese", flag: "🇯🇵" },
+  { name: "Mandarin", flag: "🇨🇳" },
 ];
 
 const Welcome = () => {
@@ -41,15 +41,18 @@ const Welcome = () => {
           <div className="space-y-2">
             {languages.map((language) => (
               <button
-                key={language}
-                onClick={() => setSelectedLanguage(language)}
+                key={language.name}
+                onClick={() => setSelectedLanguage(language.name)}
                 className={`w-full p-4 text-left rounded-xl border-2 transition-all ${
-                  selectedLanguage === language
+                  selectedLanguage === language.name
                     ? "border-primary bg-primary/5"
                     : "border-border hover:border-primary/50 bg-card"
                 }`}
               >
-                <span className="text-lg">{language}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">{language.flag}</span>
+                  <span className="text-lg">{language.name}</span>
+                </div>
               </button>
             ))}
           </div>
