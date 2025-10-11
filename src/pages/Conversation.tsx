@@ -15,6 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import SpeechSettings from "@/components/SpeechSettings";
+import TranslatableText from "@/components/TranslatableText";
 
 interface Message {
   role: "user" | "assistant";
@@ -270,7 +271,11 @@ const Conversation = () => {
               <p className="text-sm font-medium mb-1">
                 {message.role === "user" ? "You" : "AI Teacher"}
               </p>
-              <p>{message.content}</p>
+              {message.role === "assistant" ? (
+                <TranslatableText text={message.content} sourceLanguage={language} />
+              ) : (
+                <p>{message.content}</p>
+              )}
             </Card>
           ))}
           {isProcessing && (
