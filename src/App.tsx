@@ -8,6 +8,8 @@ import Level from "./pages/Level";
 import Goal from "./pages/Goal";
 import Dashboard from "./pages/Dashboard";
 import ModuleTourism from "./pages/ModuleTourism";
+import ModuleSocial from "./pages/ModuleSocial";
+import ModuleProfessional from "./pages/ModuleProfessional";
 import Progress from "./pages/Progress";
 import Leaderboard from "./pages/Leaderboard";
 import Conversation from "./pages/Conversation";
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/goal" element={<Goal />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/module/tourism" element={<ModuleTourism />} />
+          <Route path="/module/social" element={<ModuleSocial />} />
+          <Route path="/module/professional" element={<ModuleProfessional />} />
           <Route path="/conversation" element={<Conversation />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
