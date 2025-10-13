@@ -1,21 +1,21 @@
-# Welcome to your Lovable project
+# SpeakEasy
 
-## Project info
+> A conversational AI-powered language learning platform
 
-**URL**: https://lovable.dev/projects/41304ac3-1da0-4d5d-bb53-e0e95ca2bdb3
+**Project URL**: https://lovable.dev/projects/41304ac3-1da0-4d5d-bb53-e0e95ca2bdb3
 
-## SpeakEasy - Language Learning Platform
+## Overview
 
-A conversational AI-powered language learning platform that helps users achieve fluency through natural speech-to-speech practice.
+SpeakEasy helps users achieve language fluency through natural speech-to-speech practice with AI conversation partners. The platform provides immersive, scenario-based learning experiences across multiple languages.
 
-### Features
+## Features
 
-- 🎤 **Speech-to-Speech Conversations**: Practice real conversations with AI in your target language
-- 🌍 **Multiple Languages**: Spanish, French, German, Italian, Japanese, Mandarin
-- 📚 **Hover Translations**: Hover over any word to see instant English translations
-- 🎯 **Scenario-Based Learning**: Practice real-world situations (tourism, social, professional)
-- 📊 **Progress Tracking**: Monitor your fluency scores, streaks, and achievements
-- 🏆 **Leaderboard**: Compete with other learners and stay motivated
+- **Speech-to-Speech Conversations** - Practice real conversations with AI in your target language
+- **Multiple Languages** - Spanish, French, German, Italian, Japanese, Mandarin
+- **Hover Translations** - Instant English translations on any word
+- **Scenario-Based Learning** - Real-world situations (tourism, social, professional)
+- **Progress Tracking** - Monitor fluency scores, streaks, and achievements
+- **Leaderboard** - Compete with other learners and stay motivated
 
 ### Tech Stack
 
