@@ -19,7 +19,8 @@ const Welcome = () => {
 
   const handleContinue = () => {
     if (selectedLanguage) {
-      navigate("/level");
+      localStorage.setItem('selectedLanguage', selectedLanguage);
+      navigate(`/level?language=${selectedLanguage}`);
     }
   };
 

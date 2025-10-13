@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, ChevronLeft } from "lucide-react";
@@ -22,6 +22,8 @@ const levels = [
 const Level = () => {
   const [selectedLevel, setSelectedLevel] = useState<string>("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const language = searchParams.get("language") || "Spanish";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-tourism-light via-accent to-social-light p-4">
@@ -64,7 +66,7 @@ const Level = () => {
             Back
           </Button>
           <Button
-            onClick={() => navigate("/goal")}
+            onClick={() => navigate(`/goal?language=${language}`)}
             disabled={!selectedLevel}
             className="flex-1 py-6 text-lg"
             size="lg"

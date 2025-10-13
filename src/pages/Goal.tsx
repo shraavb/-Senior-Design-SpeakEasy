@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Target, ChevronLeft, Plane, Users, Briefcase } from "lucide-react";
@@ -28,6 +28,8 @@ const goals = [
 const Goal = () => {
   const [selectedGoal, setSelectedGoal] = useState<string>("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const language = searchParams.get("language") || "Spanish";
 
   const handleStartLearning = () => {
     if (selectedGoal) {
@@ -77,7 +79,7 @@ const Goal = () => {
 
         <div className="flex gap-4">
           <Button
-            onClick={() => navigate("/level")}
+            onClick={() => navigate(`/level?language=${language}`)}
             variant="outline"
             className="flex-1 py-6 text-lg"
             size="lg"

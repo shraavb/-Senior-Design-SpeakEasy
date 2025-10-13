@@ -27,7 +27,36 @@ const Conversation = () => {
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
   const scenario = searchParams.get("scenario") || "General Conversation";
-  const language = "Spanish"; // This would come from user settings
+  const language = searchParams.get("language") || localStorage.getItem('selectedLanguage') || "Spanish";
+  
+  // Map language names to language codes for speech recognition and TTS
+  const getLanguageCode = (lang: string) => {
+    const languageMap: Record<string, string> = {
+      "Spanish": "es-ES",
+      "French": "fr-FR",
+      "German": "de-DE",
+      "Italian": "it-IT",
+      "Japanese": "ja-JP",
+      "Mandarin": "zh-CN",
+    };
+    return languageMap[lang] || "es-ES";
+  };
+  
+  // Map language names to flag emojis
+  const getLanguageFlag = (lang: string) => {
+    const flagMap: Record<string, string> = {
+      "Spanish": "🇪🇸",
+      "French": "🇫🇷",
+      "German": "🇩🇪",
+      "Italian": "🇮🇹",
+      "Japanese": "🇯🇵",
+      "Mandarin": "🇨🇳",
+    };
+    return flagMap[lang] || "🇪🇸";
+  };
+  
+  const languageCode = getLanguageCode(language);
+  const languageFlag = getLanguageFlag(language);
   
   // Get contextually appropriate conversation partner based on scenario
   const getConversationPartner = () => {
@@ -90,7 +119,7 @@ const Conversation = () => {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'es-ES'; // Spanish
+      recognitionRef.current.lang = languageCode;
 
       recognitionRef.current.onresult = (event: any) => {
         const transcript = event.results[0][0].transcript;
@@ -242,7 +271,7 @@ const Conversation = () => {
       .trim();
     
     const utterance = new SpeechSynthesisUtterance(cleanedText);
-    utterance.lang = 'es-ES'; // Spanish
+    utterance.lang = languageCode;
     utterance.rate = 0.9; // Slightly slower for learning
     
     utterance.onstart = () => setIsSpeaking(true);
@@ -272,7 +301,7 @@ const Conversation = () => {
             <div>
               <h1 className="text-xl font-bold">{scenario}</h1>
               <p className="text-sm text-muted-foreground flex items-center gap-2">
-                <span className="text-base">🇪🇸</span> Learning {language}
+                <span className="text-base">{languageFlag}</span> Learning {language}
               </p>
             </div>
             <Badge variant="secondary">Intermediate</Badge>

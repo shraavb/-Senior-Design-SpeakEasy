@@ -58,8 +58,8 @@ const ModuleProfessional = () => {
       return;
     }
 
-    // Navigate to conversation page with scenario context
-    navigate(`/conversation?scenario=${encodeURIComponent(scenarioTitle)}`);
+    const language = localStorage.getItem('selectedLanguage') || 'Spanish';
+    navigate(`/conversation?scenario=${encodeURIComponent(scenarioTitle)}&language=${language}`);
   };
 
   const getDifficultyColor = (difficulty: string) => {
