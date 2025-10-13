@@ -54,8 +54,15 @@ const modules = [
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const storedLanguage = localStorage.getItem('selectedLanguage');
+  const initialLanguage = languages.find(lang => lang.name === storedLanguage) || languages[0];
+  const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage);
   const [goalsExpanded, setGoalsExpanded] = useState(false);
+
+  const handleLanguageChange = (language: typeof languages[0]) => {
+    setSelectedLanguage(language);
+    localStorage.setItem('selectedLanguage', language.name);
+  };
 
   const dailyGoals = [
     { id: 1, title: "Complete 1 Tourism conversation", completed: true },
@@ -81,7 +88,7 @@ const Dashboard = () => {
                 {languages.map((language) => (
                   <DropdownMenuItem
                     key={language.name}
-                    onClick={() => setSelectedLanguage(language)}
+                    onClick={() => handleLanguageChange(language)}
                     className="flex items-center gap-3 cursor-pointer"
                   >
                     <span className="text-lg">{language.flag}</span>
