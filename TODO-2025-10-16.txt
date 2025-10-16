@@ -1,0 +1,54 @@
+SpeakEasy – Post Llama‑2 Access TODOs (2025-10-16)
+
+When Hugging Face grants access to Llama‑2 and the fine‑tuned grammar model, complete these steps:
+
+1) Hugging Face access and token
+- Accept Meta Llama‑2 license (base model) and the repository terms for `sylviali/eracond_llama_2_grammar`.
+- Verify HF token works: curl -H "Authorization: Bearer $HF_TOKEN" https://huggingface.co/api/whoami-v2
+- In Supabase Edge Functions → Environment Variables, set/confirm:
+  - HUGGINGFACE_API_KEY = hf_... (Read scope)
+
+2) Inference Endpoint (recommended for reliability)
+- Create an HF Inference Endpoint for `sylviali/eracond_llama_2_grammar` (CPU small to start).
+- Copy endpoint URL and add to Supabase env:
+  - HF_ENDPOINT_URL = https://<your-endpoint>.endpoints.huggingface.cloud
+- (Optional) Set min replicas = 1 to avoid cold starts.
+
+3) Update Edge Function to Llama‑2
+- File: `supabase/functions/language-conversation/index.ts`
+- Switch grammar model URL to use HF_ENDPOINT_URL (preferred) or the public API model URL for `sylviali/eracond_llama_2_grammar`.
+- Keep assistant and empathy generation on HF instruct model (e.g., `HuggingFaceH4/zephyr-7b-beta`) or move them to your own endpoint if desired.
+- Retain strict system instruction: “Respond ONLY in <language>.”
+
+4) Redeploy and validate
+- Redeploy the Edge Function from the Supabase dashboard.
+- Smoke test with curl:
+  POST https://<project>.supabase.co/functions/v1/language-conversation
+  Headers: Authorization: Bearer <ANON_KEY>, Content-Type: application/json
+  Body: {"messages":[{"role":"user","content":"I am go to school"}],"language":"Spanish","scenario":"General Conversation","level":"Intermediate","enableGrammarCorrection":true}
+- Confirm response includes:
+  - hasCorrection = true (for error inputs)
+  - originalText / correctedText
+  - grammarFeedback in target language
+  - message in target language
+
+5) App verification
+- Run `npm run dev`, start a conversation, and say “I am go to school”.
+- Confirm Grammar Helper card shows original vs corrected and empathy.
+- Confirm assistant replies in the chosen language.
+
+6) Monitoring and fallback
+- Check Supabase function logs for HF status codes and latency; tune endpoint autoscaling if needed.
+- Keep fallback text in target language if HF calls fail.
+
+7) Cleanups
+- Remove temporary public grammar model references if any (e.g., FLAN‑T5) once Llama‑2 is active.
+- Update documentation notes (QUICK_SETUP.md / FINAL_DEPLOYMENT_GUIDE.md) to reflect Llama‑2 usage.
+
+8) Git workflow
+- Branch: `feature/hf-endpoint-grammar`
+- After verification, open PR → review → merge to `main`.
+
+Notes
+- Ensure `.env` uses the correct Supabase project (qhajylwvrwvxymeexixc) and that the app uses the same project URL and anon key.
+
