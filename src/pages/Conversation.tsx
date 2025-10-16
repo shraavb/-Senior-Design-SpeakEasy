@@ -20,6 +20,9 @@ import avatarUser from "@/assets/avatar-user.jpg";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  isGrammarFeedback?: boolean;
+  originalText?: string;
+  correctedText?: string;
 }
 
 const Conversation = () => {
@@ -224,6 +227,13 @@ const Conversation = () => {
     setMessages(prev => [...prev, userMessage]);
     setIsProcessing(true);
 
+    console.log('🔍 Sending message to language-conversation:', {
+      text,
+      language,
+      scenario,
+      enableGrammarCorrection: true
+    });
+
     try {
       const { data, error } = await supabase.functions.invoke('language-conversation', {
         body: {
@@ -231,10 +241,36 @@ const Conversation = () => {
           language,
           scenario,
           level: "Intermediate",
+          enableGrammarCorrection: true,
         },
       });
 
+      console.log('🔍 Function response:', { data, error });
+
       if (error) throw error;
+
+      // Add grammar feedback message if there was a correction
+      console.log('🔍 Checking for grammar correction:', {
+        hasCorrection: data.hasCorrection,
+        grammarFeedback: data.grammarFeedback,
+        originalText: data.originalText,
+        correctedText: data.correctedText
+      });
+
+      if (data.hasCorrection && data.grammarFeedback) {
+        console.log('✅ Adding grammar feedback message');
+        const feedbackMessage: Message = {
+          role: "assistant",
+          content: data.grammarFeedback,
+          isGrammarFeedback: true,
+          originalText: data.originalText,
+          correctedText: data.correctedText,
+        };
+        setMessages(prev => [...prev, feedbackMessage]);
+        speakText(data.grammarFeedback);
+      } else {
+        console.log('❌ No grammar correction detected');
+      }
 
       const aiMessage: Message = {
         role: "assistant",
@@ -333,13 +369,37 @@ const Conversation = () => {
                 className={`p-4 max-w-[70%] ${
                   message.role === "user"
                     ? "bg-primary text-primary-foreground"
-                    : "bg-card"
+                    : message.isGrammarFeedback 
+                      ? "bg-blue-50 border-blue-200 dark:bg-blue-950 dark:border-blue-800"
+                      : "bg-card"
                 }`}
               >
                 <p className="text-xs font-medium mb-2 opacity-70">
-                  {message.role === "user" ? "You" : conversationPartner}
+                  {message.role === "user" ? "You" : message.isGrammarFeedback ? "Grammar Helper" : conversationPartner}
                 </p>
-                {message.role === "assistant" ? (
+                
+                {message.isGrammarFeedback ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
+                      <span className="font-medium">💡 Grammar Tip:</span>
+                    </div>
+                    <TranslatableText text={message.content} sourceLanguage={language} />
+                    {message.originalText && message.correctedText && (
+                      <div className="mt-3 p-3 bg-muted rounded-lg text-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-red-500">✗</span>
+                          <span className="text-muted-foreground">Original:</span>
+                        </div>
+                        <p className="text-red-600 dark:text-red-400 mb-2">{message.originalText}</p>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-green-500">✓</span>
+                          <span className="text-muted-foreground">Corrected:</span>
+                        </div>
+                        <p className="text-green-600 dark:text-green-400">{message.correctedText}</p>
+                      </div>
+                    )}
+                  </div>
+                ) : message.role === "assistant" ? (
                   <TranslatableText text={message.content} sourceLanguage={language} />
                 ) : (
                   <p>{message.content}</p>
