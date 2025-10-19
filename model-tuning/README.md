@@ -3,6 +3,14 @@
 ## Overview
 This branch implements model tuning capabilities for the SpeakEasy conversation app, focusing on making conversations more natural and colloquial through fine-tuned language models.
 
+## Fine-Tuning Strategy
+
+We are fine-tuning Microsoft DialoGPT using LoRA on formal-to-colloquial text pairs for both English and Spanish. The training data focuses on language-specific colloquialisms, contractions, and informal vocabulary to transform formal AI responses into natural, engaging dialogue in both languages. We are using A/B testing to compare the colloquial models against base models, collecting user feedback to continuously improve the bilingual training dataset.
+
+### Why DialoGPT Instead of Llama?
+
+Llama models are much larger (7B+ parameters) and require significantly more computational resources. For colloquial conversation tuning, we need a model that's already conversation-focused and can be efficiently fine-tuned with smaller datasets - DialoGPT is specifically designed for dialogue and requires less data to achieve good colloquial results. Additionally, Llama's licensing restrictions and higher inference costs make DialoGPT a more practical choice for rapid iteration and deployment in a cost-sensitive MVP.
+
 ## 🎯 **Quick Start Guide**
 
 ### **No-Cost MVP (Current)**
