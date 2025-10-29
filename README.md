@@ -81,3 +81,5 @@ This project can be deployed to any static hosting service that supports React a
 - GitHub Pages
 - AWS Amplify
 - Your preferred hosting platform
+
+**Note about Lovable API Key:** The `LOVABLE_API_KEY` used in your edge functions only works within Lovable Cloud. If you need AI features after migrating, you'll need to replace those edge function calls with direct API calls to OpenAI, Google AI, or other providers using your own API keys.
