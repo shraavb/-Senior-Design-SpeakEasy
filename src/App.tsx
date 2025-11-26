@@ -14,6 +14,7 @@ import Progress from "./pages/Progress";
 import Leaderboard from "./pages/Leaderboard";
 import LearningMap from "./pages/LearningMap";
 import Conversation from "./pages/Conversation";
+import ConversationDemo from "./pages/ConversationDemo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/module/social" element={<ModuleSocial />} />
           <Route path="/module/professional" element={<ModuleProfessional />} />
           <Route path="/conversation" element={<Conversation />} />
+          <Route path="/conversation-demo" element={<ConversationDemo />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/learning-map" element={<LearningMap />} />

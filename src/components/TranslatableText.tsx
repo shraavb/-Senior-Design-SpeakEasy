@@ -20,9 +20,10 @@ const TranslatableText = ({ text, sourceLanguage }: TranslatableTextProps) => {
   const handleWordHover = async (word: string) => {
     // Skip if already translated or currently loading
     if (translations[word] || loading[word]) return;
-    
-    // Skip punctuation-only
-    if (!word.match(/[a-zA-ZáéíóúñÁÉÍÓÚÑ]/)) return;
+
+    // Skip punctuation-only and whitespace
+    // Support multiple character sets: Latin, accented characters, Chinese, Japanese, Korean, etc.
+    if (!word.match(/[\p{L}\p{N}]/u)) return;
 
     setLoading(prev => ({ ...prev, [word]: true }));
 
@@ -46,21 +47,32 @@ const TranslatableText = ({ text, sourceLanguage }: TranslatableTextProps) => {
   };
 
   // Split text into words and punctuation
-  const parts = text.split(/(\s+|[.,;:!?¿¡])/);
+  // For Chinese/Japanese/Korean: split by character
+  // For space-based languages: split by spaces and punctuation
+  const isCJK = /[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(text);
+
+  const parts = isCJK
+    ? text.split(/([.,;:!?¿¡\s]+)/).flatMap(p => {
+        // If it's punctuation or whitespace, keep as-is
+        if (/^[.,;:!?¿¡\s]+$/.test(p)) return [p];
+        // Otherwise split into individual characters for CJK
+        return p.split('');
+      })
+    : text.split(/(\s+|[.,;:!?¿¡])/);
 
   return (
     <TooltipProvider delayDuration={200}>
       <span>
         {parts.map((part, index) => {
           const cleanWord = part.trim();
-          
+
           // If it's whitespace or empty, render as-is
           if (!cleanWord || /^\s+$/.test(part)) {
             return <span key={index}>{part}</span>;
           }
 
           // If it's only punctuation, render as-is
-          if (!cleanWord.match(/[a-zA-ZáéíóúñÁÉÍÓÚÑ]/)) {
+          if (!cleanWord.match(/[\p{L}\p{N}]/u)) {
             return <span key={index}>{part}</span>;
           }
 

@@ -7,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ChevronLeft, Mic, MicOff, Volume2, Loader2 } from "lucide-react";
 import TranslatableText from "@/components/TranslatableText";
+import { FeedbackToggle } from "@/components/FeedbackToggle";
+import { FeedbackCard } from "@/components/FeedbackCard";
 import avatarWaiter from "@/assets/avatar-waiter.jpg";
 import avatarLocal from "@/assets/avatar-local.jpg";
 import avatarReceptionist from "@/assets/avatar-receptionist.jpg";
@@ -20,6 +22,9 @@ import avatarUser from "@/assets/avatar-user.jpg";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  userSaid?: string;
+  shouldSay?: string;
+  corrections?: Array<{ wrong: string; correct: string; explanation: string }>;
 }
 
 const Conversation = () => {
@@ -107,6 +112,7 @@ const Conversation = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [feedbackMode, setFeedbackMode] = useState<"on" | "off">("on");
   
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -150,6 +156,25 @@ const Conversation = () => {
 
     synthRef.current = window.speechSynthesis;
 
+    // Ensure voices are loaded
+    const loadVoices = () => {
+      if (synthRef.current) {
+        const voices = synthRef.current.getVoices();
+        console.log(`Loaded ${voices.length} voices`);
+        if (voices.length > 0) {
+          console.log('Sample voices:', voices.slice(0, 5).map(v => `${v.name} (${v.lang})`));
+        }
+      }
+    };
+
+    // Load voices immediately
+    loadVoices();
+
+    // Also listen for voiceschanged event (some browsers load voices asynchronously)
+    if (synthRef.current) {
+      synthRef.current.onvoiceschanged = loadVoices;
+    }
+
     return () => {
       if (recognitionRef.current) {
         recognitionRef.current.stop();
@@ -176,6 +201,7 @@ const Conversation = () => {
             language,
             scenario,
             level: "Intermediate",
+            feedbackMode,
           },
         });
 
@@ -202,6 +228,82 @@ const Conversation = () => {
     startConversation();
   }, []);
 
+  // TEMPORARY: Client-side correction generator (fallback until backend is deployed)
+  const generateClientSideCorrections = (text: string, lang: string) => {
+    const lowerText = text.toLowerCase();
+
+    // Spanish patterns
+    if (lang === "Spanish") {
+      if (lowerText.includes("yo quiero") || lowerText.includes("quiero")) {
+        return {
+          userSaid: text,
+          shouldSay: text.replace(/yo quiero|quiero/gi, "Me gustaría"),
+          corrections: [{
+            wrong: "Quiero",
+            correct: "Me gustaría",
+            explanation: "In polite contexts, 'Me gustaría' (I would like) is more polite than 'Quiero' (I want)"
+          }]
+        };
+      }
+      if (lowerText.includes("está bien")) {
+        return {
+          userSaid: text,
+          shouldSay: text.replace(/está bien/gi, "perfecto"),
+          corrections: [{
+            wrong: "Está bien",
+            correct: "Perfecto",
+            explanation: "Using 'Perfecto' (perfect) sounds more natural and enthusiastic"
+          }]
+        };
+      }
+    }
+
+    // Mandarin patterns
+    if (lang === "Mandarin") {
+      if (lowerText.includes("我要") || lowerText.includes("想要")) {
+        const wrongPhrase = lowerText.includes("我要") ? "我要" : "想要";
+        return {
+          userSaid: text,
+          shouldSay: text.replace("我要", "我想点").replace("想要", "想点"),
+          corrections: [{
+            wrong: wrongPhrase,
+            correct: "想点",
+            explanation: "In restaurant context, 点 (diǎn - to order) is more natural than 要 (yào - to want)"
+          }]
+        };
+      }
+      if (lowerText.includes("给我") && !lowerText.includes("请")) {
+        return {
+          userSaid: text,
+          shouldSay: "请" + text,
+          corrections: [{
+            wrong: "给我",
+            correct: "请给我",
+            explanation: "Adding 请 (qǐng - please) makes the request more polite"
+          }]
+        };
+      }
+    }
+
+    // French patterns
+    if (lang === "French") {
+      if (lowerText.includes("je veux")) {
+        return {
+          userSaid: text,
+          shouldSay: text.replace(/je veux/gi, "je voudrais"),
+          corrections: [{
+            wrong: "Je veux",
+            correct: "Je voudrais",
+            explanation: "Use 'je voudrais' (I would like) for politeness instead of 'je veux' (I want)"
+          }]
+        };
+      }
+    }
+
+    // If no specific patterns match, return null (no corrections needed)
+    return null;
+  };
+
   const toggleListening = () => {
     if (!recognitionRef.current) return;
 
@@ -224,17 +326,67 @@ const Conversation = () => {
     setMessages(prev => [...prev, userMessage]);
     setIsProcessing(true);
 
+    console.log('=== FEEDBACK DEBUG ===');
+    console.log('Feedback mode:', feedbackMode);
+    console.log('User said:', text);
+
+    const requestBody = {
+      messages: [...messages, userMessage],
+      language,
+      scenario,
+      level: "Intermediate",
+      feedbackMode,
+      provideFeedback: feedbackMode === "on",
+    };
+    console.log('Request body being sent to backend:', requestBody);
+
     try {
       const { data, error } = await supabase.functions.invoke('language-conversation', {
-        body: {
-          messages: [...messages, userMessage],
-          language,
-          scenario,
-          level: "Intermediate",
-        },
+        body: requestBody,
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Backend error:', error);
+        throw error;
+      }
+
+      console.log('Full backend response:', JSON.stringify(data, null, 2));
+      console.log('data.message:', data.message);
+      console.log('data.corrections:', data.corrections);
+      console.log('Type of data.corrections:', typeof data.corrections);
+
+      // TEMPORARY FALLBACK: Generate corrections client-side if backend doesn't provide them
+      let corrections = data.corrections;
+
+      if (feedbackMode === "on" && !corrections) {
+        console.log('⚠️ Backend did not provide corrections, generating client-side fallback...');
+        console.log('Calling generateClientSideCorrections with:', { text, language });
+        corrections = generateClientSideCorrections(text, language);
+        console.log('✅ Client-side corrections generated:', corrections);
+
+        if (!corrections) {
+          console.log('ℹ️ No client-side pattern matched. User message appears correct or unrecognized pattern.');
+        }
+      }
+
+      // If feedback mode is ON and corrections are available, update the user message
+      if (feedbackMode === "on" && corrections) {
+        console.log('Applying corrections to message');
+        setMessages(prev => {
+          const updatedMessages = [...prev];
+          const lastUserMessageIndex = updatedMessages.length - 1;
+          updatedMessages[lastUserMessageIndex] = {
+            ...updatedMessages[lastUserMessageIndex],
+            userSaid: corrections.userSaid || text,
+            shouldSay: corrections.shouldSay,
+            corrections: corrections.corrections,
+          };
+          console.log('Updated message:', updatedMessages[lastUserMessageIndex]);
+          return updatedMessages;
+        });
+      } else {
+        console.log('No corrections to apply');
+      }
 
       const aiMessage: Message = {
         role: "assistant",
@@ -255,10 +407,14 @@ const Conversation = () => {
   };
 
   const speakText = (text: string) => {
-    if (!synthRef.current) return;
+    if (!synthRef.current) {
+      console.error('Speech synthesis not available');
+      return;
+    }
 
+    // Cancel any ongoing speech
     synthRef.current.cancel();
-    
+
     // Clean text to remove any verbalized punctuation
     const cleanedText = text
       .replace(/\bcomma\b/gi, '')
@@ -269,16 +425,59 @@ const Conversation = () => {
       .replace(/\bsemicolon\b/gi, '')
       .replace(/\bdash\b/gi, '')
       .trim();
-    
+
+    console.log('Speaking text:', cleanedText);
+    console.log('Language code:', languageCode);
+
     const utterance = new SpeechSynthesisUtterance(cleanedText);
     utterance.lang = languageCode;
     utterance.rate = 0.9; // Slightly slower for learning
-    
-    utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
 
-    synthRef.current.speak(utterance);
+    // Try to find a voice that matches the language
+    const voices = synthRef.current.getVoices();
+    console.log('Available voices:', voices.length);
+
+    if (voices.length > 0) {
+      const matchingVoice = voices.find(voice =>
+        voice.lang.toLowerCase().startsWith(languageCode.toLowerCase().split('-')[0])
+      );
+
+      if (matchingVoice) {
+        console.log('Using voice:', matchingVoice.name, matchingVoice.lang);
+        utterance.voice = matchingVoice;
+      } else {
+        console.log('No matching voice found, using default');
+      }
+    }
+
+    utterance.onstart = () => {
+      console.log('Speech started');
+      setIsSpeaking(true);
+    };
+
+    utterance.onend = () => {
+      console.log('Speech ended');
+      setIsSpeaking(false);
+    };
+
+    utterance.onerror = (event) => {
+      console.error('Speech error:', event.error, event);
+      setIsSpeaking(false);
+
+      toast({
+        title: "Speech Error",
+        description: `Could not play audio: ${event.error}`,
+        variant: "destructive",
+      });
+    };
+
+    // Small delay to ensure cancellation completes
+    setTimeout(() => {
+      synthRef.current?.speak(utterance);
+      console.log('Speech queued');
+    }, 100);
   };
 
   const repeatLastMessage = () => {
@@ -309,42 +508,76 @@ const Conversation = () => {
         </div>
       </header>
 
+      {/* Feedback Toggle */}
+      <FeedbackToggle
+        feedbackMode={feedbackMode}
+        onToggle={(mode) => setFeedbackMode(mode)}
+      />
+
       {/* Messages */}
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
           {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex gap-4 items-start ${
-                message.role === "user" ? "flex-row-reverse" : "flex-row"
-              }`}
-            >
-              {/* Avatar */}
-              <div className="flex-shrink-0">
-                <img
-                  src={getAvatar(message.role)}
-                  alt={message.role === "user" ? "You" : conversationPartner}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
-                />
-              </div>
-              
-              {/* Message Card */}
-              <Card
-                className={`p-4 max-w-[70%] ${
-                  message.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card"
-                }`}
-              >
-                <p className="text-xs font-medium mb-2 opacity-70">
-                  {message.role === "user" ? "You" : conversationPartner}
-                </p>
-                {message.role === "assistant" ? (
-                  <TranslatableText text={message.content} sourceLanguage={language} />
-                ) : (
-                  <p>{message.content}</p>
-                )}
-              </Card>
+            <div key={index}>
+              {message.role === "assistant" ? (
+                <div className="flex gap-4 items-start">
+                  {/* Avatar */}
+                  <div className="flex-shrink-0">
+                    <img
+                      src={getAvatar(message.role)}
+                      alt={conversationPartner}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                    />
+                  </div>
+
+                  {/* Message Card */}
+                  <Card className="p-4 max-w-[70%] bg-card">
+                    <p className="text-xs font-medium mb-2 opacity-70">
+                      {conversationPartner}
+                    </p>
+                    <TranslatableText text={message.content} sourceLanguage={language} />
+                  </Card>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="flex gap-4 items-start flex-row-reverse">
+                    {/* Avatar */}
+                    <div className="flex-shrink-0">
+                      <img
+                        src={getAvatar(message.role)}
+                        alt="You"
+                        className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                      />
+                    </div>
+
+                    {/* Message Card */}
+                    <Card className="p-4 max-w-[70%] bg-primary text-primary-foreground">
+                      <p className="text-xs font-medium mb-2 opacity-70">You</p>
+                      <p>{message.content}</p>
+                    </Card>
+                  </div>
+
+                  {/* Feedback Card - Only show when feedback mode is ON */}
+                  {(() => {
+                    console.log('Checking feedback card for message:', {
+                      feedbackMode,
+                      userSaid: message.userSaid,
+                      shouldSay: message.shouldSay,
+                      corrections: message.corrections,
+                      shouldShow: feedbackMode === "on" && message.userSaid && message.shouldSay
+                    });
+                    return null;
+                  })()}
+                  {feedbackMode === "on" && message.userSaid && message.shouldSay && (
+                    <FeedbackCard
+                      userSaid={message.userSaid}
+                      shouldSay={message.shouldSay}
+                      corrections={message.corrections || []}
+                      onPlayAudio={speakText}
+                    />
+                  )}
+                </div>
+              )}
             </div>
           ))}
           {isProcessing && (
