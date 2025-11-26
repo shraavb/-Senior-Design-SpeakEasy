@@ -18,24 +18,27 @@ SpeakEasy helps users achieve language fluency through natural speech-to-speech 
 ### Tech Stack
 
 - **Frontend**: React, TypeScript, Tailwind CSS, shadcn/ui
-- **Backend**: Supabase
-- **AI**: Google Gemini via AI Gateway
-- **Speech**: Browser Web Speech API (default) or ElevenLabs (optional)
+- **Backend**: Express.js + Node.js
+- **AI**: Groq (Llama 3.3 70B) / Google Gemini
+- **Text-to-Speech**: ElevenLabs (multilingual natural voices)
+- **Speech Recognition**: Browser Web Speech API
 
-### Optional: ElevenLabs Premium Voices
+### Key Features in Detail
 
-To use ElevenLabs for higher-quality AI voices:
+#### Natural Voice Synthesis with ElevenLabs
+- Authentic native speaker voices for 7 languages
+- Dialect support (e.g., Latin American vs European Spanish)
+- Automatic audio playback for immersive learning
 
-1. Get your API key from [elevenlabs.io](https://elevenlabs.io)
-2. Add it as a secret in your backend:
-   - Go to Backend → Secrets
-   - Add new secret: `ELEVENLABS_API_KEY`
-   - Paste your API key
-3. Create a Conversational AI agent in your [ElevenLabs dashboard](https://elevenlabs.io/app/conversational-ai)
-4. Note your agent ID for use in conversations
-5. Update the edge function to use your agent ID when the ElevenLabs option is selected
+#### AI-Powered Corrections
+- Real-time grammar and usage feedback
+- Contextual explanations for mistakes
+- Toggle between direct feedback and soft corrections
 
-The app works perfectly with the default browser speech - ElevenLabs is entirely optional for premium voice quality.
+#### Hover-to-Translate
+- Instant word translations on hover
+- Supports CJK (Chinese, Japanese, Korean) character-by-character
+- Smart word segmentation for space-based languages
 
 ## Development Setup
 
@@ -48,18 +51,55 @@ The app works perfectly with the default browser speech - ElevenLabs is entirely
 Follow these steps:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: Clone the repository
+git clone https://github.com/shraavb/-Senior-Design-SpeakEasy.git
+cd -Senior-Design-SpeakEasy-3
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Install frontend dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install backend dependencies
+cd server
+npm install
+cd ..
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Set up environment variables
+
+# For backend (server/.env):
+cd server
+cp .env.example .env
+# Edit .env and add your API keys:
+# - GROQ_API_KEY
+# - ELEVENLABS_API_KEY
+# - GOOGLE_AI_API_KEY (optional)
+cd ..
+
+# For frontend (.env):
+cp .env.example .env
+# Use default: VITE_API_BASE_URL=http://localhost:3001
+
+# Step 5: Start the backend server (in one terminal)
+cd server
+npm start
+# Backend will run on http://localhost:3001
+
+# Step 6: Start the frontend dev server (in another terminal)
 npm run dev
+# Frontend will run on http://localhost:8080
 ```
+
+### API Keys Required
+
+1. **Groq API** (Free): Get your key at [console.groq.com](https://console.groq.com)
+   - Used for AI conversations with Llama 3.3 70B
+   - Free tier: 30 requests/minute
+
+2. **ElevenLabs API**: Get your key at [elevenlabs.io](https://elevenlabs.io)
+   - Used for natural multilingual voice synthesis
+   - Free tier: 10,000 characters/month
+
+3. **Google Gemini** (Optional): Get your key at [aistudio.google.com](https://aistudio.google.com)
+   - Fallback AI provider if Groq is unavailable
 
 
 ## What technologies are used for this project?

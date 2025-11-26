@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { invokeFunction } from "@/lib/api";
 import { ChevronLeft, Mic, MicOff, Volume2, Loader2 } from "lucide-react";
 import TranslatableText from "@/components/TranslatableText";
 import { FeedbackToggle } from "@/components/FeedbackToggle";
@@ -112,6 +112,8 @@ const Conversation = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [audioEnabled, setAudioEnabled] = useState(false);
+  const [pendingGreeting, setPendingGreeting] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState<"on" | "off">("on");
   
   const recognitionRef = useRef<any>(null);
@@ -190,29 +192,34 @@ const Conversation = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Enable audio on user interaction
+  const enableAudio = async () => {
+    setAudioEnabled(true);
+    if (pendingGreeting) {
+      await speakText(pendingGreeting);
+      setPendingGreeting(null);
+    }
+  };
+
   // Start conversation with AI greeting
   useEffect(() => {
     const startConversation = async () => {
       setIsProcessing(true);
       try {
-        const { data, error } = await supabase.functions.invoke('language-conversation', {
-          body: {
-            messages: [{ role: "user", content: "Hello! Let's start practicing." }],
-            language,
-            scenario,
-            level: "Intermediate",
-            feedbackMode,
-          },
+        const data = await invokeFunction('language-conversation', {
+          messages: [{ role: "user", content: "Hello! Let's start practicing." }],
+          language,
+          scenario,
+          level: "Intermediate",
+          feedbackMode,
         });
-
-        if (error) throw error;
 
         const aiMessage: Message = {
           role: "assistant",
           content: data.message,
         };
         setMessages([aiMessage]);
-        speakText(data.message);
+        setPendingGreeting(data.message);
       } catch (error) {
         console.error('Error starting conversation:', error);
         toast({
@@ -341,25 +348,23 @@ const Conversation = () => {
     console.log('Request body being sent to backend:', requestBody);
 
     try {
-      const { data, error } = await supabase.functions.invoke('language-conversation', {
-        body: requestBody,
-      });
-
-      if (error) {
-        console.error('Backend error:', error);
-        throw error;
-      }
+      const data = await invokeFunction('language-conversation', requestBody);
 
       console.log('Full backend response:', JSON.stringify(data, null, 2));
       console.log('data.message:', data.message);
       console.log('data.corrections:', data.corrections);
       console.log('Type of data.corrections:', typeof data.corrections);
+      console.log('data.corrections === null:', data.corrections === null);
+      console.log('data.corrections === undefined:', data.corrections === undefined);
+      console.log('Has corrections property:', 'corrections' in data);
+      console.log('All data keys:', Object.keys(data));
 
       // TEMPORARY FALLBACK: Generate corrections client-side if backend doesn't provide them
       let corrections = data.corrections;
 
       if (feedbackMode === "on" && !corrections) {
         console.log('⚠️ Backend did not provide corrections, generating client-side fallback...');
+        console.log('Corrections value that triggered fallback:', corrections);
         console.log('Calling generateClientSideCorrections with:', { text, language });
         corrections = generateClientSideCorrections(text, language);
         console.log('✅ Client-side corrections generated:', corrections);
@@ -393,6 +398,11 @@ const Conversation = () => {
         content: data.message,
       };
       setMessages(prev => [...prev, aiMessage]);
+
+      // Enable audio and play response (user interaction via mic enables autoplay)
+      if (!audioEnabled) {
+        setAudioEnabled(true);
+      }
       speakText(data.message);
     } catch (error: any) {
       console.error('Error getting AI response:', error);
@@ -406,78 +416,97 @@ const Conversation = () => {
     }
   };
 
-  const speakText = (text: string) => {
-    if (!synthRef.current) {
-      console.error('Speech synthesis not available');
-      return;
-    }
+  const speakText = async (text: string) => {
+    try {
+      console.log('Speaking text:', text);
+      console.log('Language:', language);
 
-    // Cancel any ongoing speech
-    synthRef.current.cancel();
-
-    // Clean text to remove any verbalized punctuation
-    const cleanedText = text
-      .replace(/\bcomma\b/gi, '')
-      .replace(/\bperiod\b/gi, '')
-      .replace(/\bquestion mark\b/gi, '')
-      .replace(/\bexclamation mark\b/gi, '')
-      .replace(/\bcolon\b/gi, '')
-      .replace(/\bsemicolon\b/gi, '')
-      .replace(/\bdash\b/gi, '')
-      .trim();
-
-    console.log('Speaking text:', cleanedText);
-    console.log('Language code:', languageCode);
-
-    const utterance = new SpeechSynthesisUtterance(cleanedText);
-    utterance.lang = languageCode;
-    utterance.rate = 0.9; // Slightly slower for learning
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-
-    // Try to find a voice that matches the language
-    const voices = synthRef.current.getVoices();
-    console.log('Available voices:', voices.length);
-
-    if (voices.length > 0) {
-      const matchingVoice = voices.find(voice =>
-        voice.lang.toLowerCase().startsWith(languageCode.toLowerCase().split('-')[0])
-      );
-
-      if (matchingVoice) {
-        console.log('Using voice:', matchingVoice.name, matchingVoice.lang);
-        utterance.voice = matchingVoice;
-      } else {
-        console.log('No matching voice found, using default');
-      }
-    }
-
-    utterance.onstart = () => {
-      console.log('Speech started');
       setIsSpeaking(true);
-    };
 
-    utterance.onend = () => {
-      console.log('Speech ended');
+      // Call backend text-to-speech endpoint
+      const response = await fetch('http://localhost:3001/text-to-speech', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text,
+          language,
+          dialect: null,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Text-to-speech failed');
+      }
+
+      const data = await response.json();
+
+      // Check if we should use browser TTS instead of ElevenLabs
+      if (data.useBrowserTTS) {
+        console.log('Using browser TTS');
+
+        // Use browser's SpeechSynthesis API
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = getLanguageCode(language);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+
+        utterance.onend = () => {
+          console.log('Browser TTS ended');
+          setIsSpeaking(false);
+        };
+
+        utterance.onerror = (event) => {
+          console.error('Browser TTS error:', event);
+          setIsSpeaking(false);
+        };
+
+        window.speechSynthesis.speak(utterance);
+        return;
+      }
+
+      // ElevenLabs audio response
+      const audioBlob = await response.blob();
+      console.log('ElevenLabs audio blob received:', audioBlob.size, 'bytes');
+
+      const typedBlob = new Blob([audioBlob], { type: 'audio/mpeg' });
+      const audioUrl = URL.createObjectURL(typedBlob);
+
+      const audio = new Audio(audioUrl);
+      audio.preload = 'auto';
+
+      const cleanup = () => {
+        setIsSpeaking(false);
+        URL.revokeObjectURL(audioUrl);
+      };
+
+      audio.onplay = () => console.log('ElevenLabs audio playing');
+      audio.onended = () => {
+        console.log('ElevenLabs audio ended');
+        cleanup();
+      };
+
+      audio.onerror = (event) => {
+        console.error('Audio error:', event);
+        cleanup();
+        toast({
+          title: "Speech Error",
+          description: 'Could not play audio',
+          variant: "destructive",
+        });
+      };
+
+      await audio.play();
+    } catch (error) {
+      console.error('Error in text-to-speech:', error);
       setIsSpeaking(false);
-    };
-
-    utterance.onerror = (event) => {
-      console.error('Speech error:', event.error, event);
-      setIsSpeaking(false);
-
       toast({
         title: "Speech Error",
-        description: `Could not play audio: ${event.error}`,
+        description: error instanceof Error ? error.message : 'Could not generate speech',
         variant: "destructive",
       });
-    };
-
-    // Small delay to ensure cancellation completes
-    setTimeout(() => {
-      synthRef.current?.speak(utterance);
-      console.log('Speech queued');
-    }, 100);
+    }
   };
 
   const repeatLastMessage = () => {
@@ -513,6 +542,25 @@ const Conversation = () => {
         feedbackMode={feedbackMode}
         onToggle={(mode) => setFeedbackMode(mode)}
       />
+
+      {/* Enable Audio Banner */}
+      {pendingGreeting && !audioEnabled && (
+        <div className="border-b bg-primary/10">
+          <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Volume2 className="w-5 h-5 text-primary" />
+              <div>
+                <p className="text-sm font-medium">Enable Audio to hear the conversation</p>
+                <p className="text-xs text-muted-foreground">Click to play the greeting and enable automatic audio responses</p>
+              </div>
+            </div>
+            <Button onClick={enableAudio} size="sm" className="shrink-0">
+              <Volume2 className="w-4 h-4 mr-2" />
+              Enable Audio
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Messages */}
       <main className="flex-1 overflow-y-auto">

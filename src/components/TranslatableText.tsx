@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { invokeFunction } from "@/lib/api";
 import {
   Tooltip,
   TooltipContent,
@@ -28,15 +28,11 @@ const TranslatableText = ({ text, sourceLanguage }: TranslatableTextProps) => {
     setLoading(prev => ({ ...prev, [word]: true }));
 
     try {
-      const { data, error } = await supabase.functions.invoke('translate-word', {
-        body: {
-          word,
-          sourceLanguage,
-          targetLanguage: 'English',
-        },
+      const data = await invokeFunction('translate-word', {
+        word,
+        sourceLanguage,
+        targetLanguage: 'English',
       });
-
-      if (error) throw error;
 
       setTranslations(prev => ({ ...prev, [word]: data.translation }));
     } catch (error) {

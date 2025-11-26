@@ -11,14 +11,6 @@ interface FeedbackToggleProps {
 export function FeedbackToggle({ feedbackMode, onToggle }: FeedbackToggleProps) {
   return (
     <div className="border-b bg-card px-4 py-3">
-      {feedbackMode === "on" && (
-        <div className="max-w-4xl mx-auto mb-3 p-2 bg-blue-50 dark:bg-blue-950 rounded text-xs">
-          <p className="font-semibold text-blue-900 dark:text-blue-100 mb-1">💡 Test feedback with these phrases:</p>
-          <p className="text-blue-800 dark:text-blue-200">
-            Spanish: "Quiero un café" | Mandarin: "我要咖啡" | French: "Je veux un café"
-          </p>
-        </div>
-      )}
       <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Label htmlFor="feedback-mode" className="text-sm font-medium">
