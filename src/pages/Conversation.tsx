@@ -441,13 +441,14 @@ const Conversation = () => {
         throw new Error('Text-to-speech failed');
       }
 
-      const data = await response.json();
+      // Check content type to determine if it's JSON (browser TTS) or audio (ElevenLabs)
+      const contentType = response.headers.get('content-type');
 
-      // Check if we should use browser TTS instead of ElevenLabs
-      if (data.useBrowserTTS) {
+      if (contentType?.includes('application/json')) {
+        // Browser TTS mode
+        const data = await response.json();
         console.log('Using browser TTS');
 
-        // Use browser's SpeechSynthesis API
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = getLanguageCode(language);
         utterance.rate = 0.9;
@@ -468,6 +469,7 @@ const Conversation = () => {
       }
 
       // ElevenLabs audio response
+      console.log('Using ElevenLabs TTS');
       const audioBlob = await response.blob();
       console.log('ElevenLabs audio blob received:', audioBlob.size, 'bytes');
 
