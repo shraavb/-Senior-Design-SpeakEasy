@@ -90,16 +90,11 @@ npm run dev
 
 ### API Keys Required
 
-1. **Groq API** (Free): Get your key at [console.groq.com](https://console.groq.com)
-   - Used for AI conversations with Llama 3.3 70B
-   - Free tier: 30 requests/minute
+1. **Groq API**
 
-2. **ElevenLabs API**: Get your key at [elevenlabs.io](https://elevenlabs.io)
-   - Used for natural multilingual voice synthesis
-   - Free tier: 10,000 characters/month
+2. **ElevenLabs API**
 
-3. **Google Gemini** (Optional): Get your key at [aistudio.google.com](https://aistudio.google.com)
-   - Fallback AI provider if Groq is unavailable
+3. **Google Gemini**
 
 
 ## What technologies are used for this project?
@@ -114,12 +109,4 @@ This project is built with:
 
 ## Deployment
 
-This project can be deployed to any static hosting service that supports React applications:
-
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS Amplify
-- Your preferred hosting platform
-
-**Note about Lovable API Key:** The `LOVABLE_API_KEY` used in your edge functions only works within Lovable Cloud. If you need AI features after migrating, you'll need to replace those edge function calls with direct API calls to OpenAI, Google AI, or other providers using your own API keys.
+- Render
