@@ -303,10 +303,16 @@ app.post('/text-to-speech', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
+  // Detect if running on Render (production) or locally
+  const isProduction = process.env.RENDER || process.env.NODE_ENV === 'production';
+  const baseUrl = isProduction
+    ? `https://senior-design-speakeasy-1.onrender.com`
+    : `http://localhost:${PORT}`;
+
+  console.log(`Backend server running on ${baseUrl}`);
   console.log(`Using: ${USE_GROQ ? 'Groq (Llama 3.3 70B)' : 'Google Gemini'}`);
   console.log('Endpoints:');
-  console.log(`  POST http://localhost:${PORT}/language-conversation`);
-  console.log(`  POST http://localhost:${PORT}/translate-word`);
-  console.log(`  POST http://localhost:${PORT}/text-to-speech`);
+  console.log(`  POST ${baseUrl}/language-conversation`);
+  console.log(`  POST ${baseUrl}/translate-word`);
+  console.log(`  POST ${baseUrl}/text-to-speech`);
 });
