@@ -1,3 +1,13 @@
+# Environment variables (IMPORTANT: Never commit API keys!)
+.env
+.env.local
+.env.production
+.env.development
+server/.env
+server/.env.local
+server/.env.production
+supabase/.env
+
 # Logs
 logs
 *.log
@@ -11,6 +21,9 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Supabase
+supabase/.temp/
 
 # Editor directories and files
 .vscode/*
