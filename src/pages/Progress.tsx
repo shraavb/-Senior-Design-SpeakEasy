@@ -1,134 +1,251 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Progress as ProgressBar } from "@/components/ui/progress";
-import { ChevronLeft, Trophy, Flame, TrendingUp, Target, Zap, Award } from "lucide-react";
+import { ChevronLeft, ArrowUp } from "lucide-react";
+import { QuickSummary } from "@/components/feedback-metrics/quick-summary";
+import { FluencyMetrics } from "@/components/feedback-metrics/fluency-metrics";
+import { GrammarFeedback } from "@/components/feedback-metrics/grammar-feedback";
+import { ErrorBreakdown } from "@/components/feedback-metrics/error-breakdown";
+import { VocabularyInsights } from "@/components/feedback-metrics/vocabulary-insights";
+import { SectionNav } from "@/components/feedback-metrics/section-nav";
 
 const Progress = () => {
   const navigate = useNavigate();
+  // Persist time filter to localStorage
+  const [timeFilter, setTimeFilter] = useState<"today" | "weekly" | "monthly">(() => {
+    const saved = localStorage.getItem("progressTimeFilter");
+    return (saved as "today" | "weekly" | "monthly") || "weekly";
+  });
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeSection, setActiveSection] = useState("fluency");
+
+  // Save time filter to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem("progressTimeFilter", timeFilter);
+  }, [timeFilter]);
+
+  // Handle scroll to top button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b bg-card">
-        <div className="max-w-5xl mx-auto px-4 py-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <header className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
+        <div className="max-w-[1600px] mx-auto px-8 py-4">
           <Button variant="ghost" onClick={() => navigate("/dashboard")}>
             <ChevronLeft className="w-5 h-5 mr-2" />
             Back to Dashboard
           </Button>
-          <h1 className="text-2xl font-bold mt-4">Your Progress</h1>
-          <p className="text-muted-foreground">Track your journey to fluency</p>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 py-8 space-y-6">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-6 text-center">
-            <Trophy className="w-8 h-8 text-warning mx-auto mb-2" />
-            <p className="text-3xl font-bold">12</p>
-            <p className="text-sm text-muted-foreground">Conversations</p>
-          </Card>
-          <Card className="p-6 text-center">
-            <Target className="w-8 h-8 text-tourism mx-auto mb-2" />
-            <p className="text-3xl font-bold">36</p>
-            <p className="text-sm text-muted-foreground">Minutes</p>
-          </Card>
-          <Card className="p-6 text-center">
-            <TrendingUp className="w-8 h-8 text-success mx-auto mb-2" />
-            <p className="text-3xl font-bold">78</p>
-            <p className="text-sm text-muted-foreground">Avg Score</p>
-          </Card>
-          <Card className="p-6 text-center">
-            <Flame className="w-8 h-8 text-streak mx-auto mb-2" />
-            <p className="text-3xl font-bold">7</p>
-            <p className="text-sm text-muted-foreground">Day Streak</p>
-          </Card>
+      <main className="max-w-[1600px] mx-auto px-8 py-8 space-y-8">
+        {/* Quick Summary */}
+        <QuickSummary timeFilter={timeFilter} />
+
+        {/* Section Navigation */}
+        <SectionNav 
+          activeSection={activeSection} 
+          onSectionChange={setActiveSection}
+          timeFilter={timeFilter}
+          onTimeFilterChange={setTimeFilter}
+        />
+
+        {/* Main Metrics Sections */}
+        <div className="space-y-16">
+          {/* Section 1: Fluency & Pronunciation */}
+          <section id="fluency" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Fluency & Pronunciation</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Track your speaking clarity, speed, and natural flow</p>
+            </div>
+            <FluencyMetrics timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 2: Grammar Feedback */}
+          <section id="grammar" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Grammar Feedback</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Monitor your grammatical accuracy and sentence structure</p>
+            </div>
+            <GrammarFeedback timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 3: Error Breakdown */}
+          <section id="errors" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-red-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Error Breakdown</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Understand the types of errors in your speech</p>
+            </div>
+            <ErrorBreakdown timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 4: Vocabulary Insights */}
+          <section id="vocabulary" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-emerald-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Vocabulary Insights</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Explore your word usage and vocabulary growth</p>
+            </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Most Common Words */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="mb-4">
+                <h3 className="text-gray-900 font-semibold">Most Common Words</h3>
+                <p className="text-gray-600 text-sm mt-1">Your frequently used vocabulary</p>
+              </div>
+
+              {(() => {
+                const commonWordsData = {
+                  today: [
+                    { word: "hablar", translation: "to speak", count: 8 },
+                    { word: "tener", translation: "to have", count: 6 },
+                    { word: "hacer", translation: "to do/make", count: 5 },
+                    { word: "estar", translation: "to be", count: 4 },
+                    { word: "poder", translation: "to be able", count: 3 },
+                  ],
+                  weekly: [
+                    { word: "hablar", translation: "to speak", count: 24 },
+                    { word: "tener", translation: "to have", count: 19 },
+                    { word: "hacer", translation: "to do/make", count: 16 },
+                    { word: "estar", translation: "to be", count: 15 },
+                    { word: "poder", translation: "to be able", count: 12 },
+                  ],
+                  monthly: [
+                    { word: "hablar", translation: "to speak", count: 98 },
+                    { word: "tener", translation: "to have", count: 76 },
+                    { word: "hacer", translation: "to do/make", count: 64 },
+                    { word: "estar", translation: "to be", count: 58 },
+                    { word: "poder", translation: "to be able", count: 45 },
+                  ],
+                };
+
+                const commonWords = commonWordsData[timeFilter];
+
+                if (commonWords.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <p className="text-gray-500 text-sm">No words tracked yet</p>
+                      <p className="text-gray-400 text-xs mt-1">Start conversations to see your most used words</p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="space-y-3">
+                    {commonWords.map((item) => (
+                      <div key={item.word} className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <p className="text-gray-900">{item.word}</p>
+                          <p className="text-gray-500 text-sm">{item.translation}</p>
+                        </div>
+                        <div className="w-12 h-8 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-700">
+                          {item.count}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* Vocabulary Usage Chart */}
+            <div className="lg:col-span-2">
+              <VocabularyInsights timeFilter={timeFilter} />
+            </div>
+          </div>
+
+          {/* New Words Used */}
+          <div className="mt-6">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="mb-4">
+                <h3 className="text-gray-900 font-semibold">New Words Used</h3>
+                <p className="text-gray-600 text-sm mt-1">Recently learned vocabulary</p>
+              </div>
+
+              {(() => {
+                const newWordsData = {
+                  today: [
+                    { word: "imprescindible", translation: "essential" },
+                    { word: "desenvolver", translation: "to develop" },
+                  ],
+                  weekly: [
+                    { word: "imprescindible", translation: "essential" },
+                    { word: "desenvolver", translation: "to develop" },
+                    { word: "cotidiano", translation: "daily" },
+                    { word: "sustancial", translation: "substantial" },
+                  ],
+                  monthly: [
+                    { word: "imprescindible", translation: "essential" },
+                    { word: "desenvolver", translation: "to develop" },
+                    { word: "cotidiano", translation: "daily" },
+                    { word: "sustancial", translation: "substantial" },
+                    { word: "persistente", translation: "persistent" },
+                    { word: "efímero", translation: "ephemeral" },
+                    { word: "próspero", translation: "prosperous" },
+                    { word: "versátil", translation: "versatile" },
+                  ],
+                };
+
+                const newWords = newWordsData[timeFilter];
+                
+                if (newWords.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <p className="text-gray-500 text-sm">No new words yet</p>
+                      <p className="text-gray-400 text-xs mt-1">Start practicing to see your new vocabulary here</p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {newWords.map((item) => (
+                      <div key={item.word} className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                        <p className="text-emerald-900 font-medium">{item.word}</p>
+                        <p className="text-emerald-700 text-sm mt-0.5">{item.translation}</p>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+          </section>
         </div>
-
-        {/* Module Progress */}
-        <Card className="p-6">
-          <h2 className="text-xl font-bold mb-4">Module Progress</h2>
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">Tourism & Travel</span>
-                <span className="text-sm text-muted-foreground">3/5 scenarios</span>
-              </div>
-              <ProgressBar value={60} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">Personal & Social</span>
-                <span className="text-sm text-muted-foreground">1/4 scenarios</span>
-              </div>
-              <ProgressBar value={25} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">Professional</span>
-                <span className="text-sm text-muted-foreground">0/4 scenarios</span>
-              </div>
-              <ProgressBar value={0} className="h-2" />
-            </div>
-          </div>
-        </Card>
-
-        {/* Achievements */}
-        <Card className="p-6">
-          <h2 className="text-xl font-bold mb-4">Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-lg bg-muted/30">
-              <Award className="w-8 h-8 mb-2" />
-              <h3 className="font-semibold mb-1">First Conversation</h3>
-              <p className="text-sm text-muted-foreground">Complete your first practice</p>
-            </div>
-            <div className="p-4 rounded-lg bg-muted/30">
-              <Flame className="w-8 h-8 mb-2 text-streak" />
-              <h3 className="font-semibold mb-1">7-Day Streak</h3>
-              <p className="text-sm text-muted-foreground">Practice for 7 days in a row</p>
-            </div>
-            <div className="p-4 rounded-lg border-2 border-dashed border-border">
-              <Zap className="w-8 h-8 mb-2 text-muted-foreground" />
-              <h3 className="font-semibold mb-1 text-muted-foreground">Speed Speaker</h3>
-              <p className="text-sm text-muted-foreground">Reach 90 WPM</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* Current Goals */}
-        <Card className="p-6">
-          <h2 className="text-xl font-bold mb-4">Current Goals</h2>
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <div>
-                  <p className="font-medium">Reach 30-day streak</p>
-                  <p className="text-sm text-muted-foreground">7 / 30 days</p>
-                </div>
-              </div>
-              <ProgressBar value={23} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <div>
-                  <p className="font-medium">Complete Tourism module</p>
-                  <p className="text-sm text-muted-foreground">3 / 5 scenarios</p>
-                </div>
-              </div>
-              <ProgressBar value={60} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <div>
-                  <p className="font-medium">Achieve 90+ average score</p>
-                  <p className="text-sm text-muted-foreground">Current: 78</p>
-                </div>
-              </div>
-              <ProgressBar value={87} className="h-2" />
-            </div>
-          </div>
-        </Card>
       </main>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 p-3 bg-indigo-500 text-white rounded-full shadow-lg hover:bg-indigo-600 transition-all hover:scale-110 z-50"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 };
