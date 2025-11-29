@@ -5,10 +5,11 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { invokeFunction } from "@/lib/api";
-import { ChevronLeft, Mic, MicOff, Volume2, Loader2 } from "lucide-react";
+import { ChevronLeft, Mic, MicOff, Volume2, Loader2, LogOut } from "lucide-react";
 import TranslatableText from "@/components/TranslatableText";
 import { FeedbackToggle } from "@/components/FeedbackToggle";
 import { FeedbackCard } from "@/components/FeedbackCard";
+import { SessionSummaryModal } from "@/components/SessionSummaryModal";
 import avatarWaiter from "@/assets/avatar-waiter.jpg";
 import avatarLocal from "@/assets/avatar-local.jpg";
 import avatarReceptionist from "@/assets/avatar-receptionist.jpg";
@@ -117,7 +118,14 @@ const Conversation = () => {
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [pendingGreeting, setPendingGreeting] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState<"on" | "off">("on");
-  
+
+  // Session tracking state
+  const [showSummary, setShowSummary] = useState(false);
+  const [sessionStartTime] = useState(Date.now());
+  const [errorBreakdown, setErrorBreakdown] = useState<Record<string, number>>({});
+  const [vocabularyUsed, setVocabularyUsed] = useState<Map<string, number>>(new Map());
+  const [newWordsLearned, setNewWordsLearned] = useState<Map<string, string>>(new Map()); // word -> translation
+
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -314,6 +322,87 @@ const Conversation = () => {
     return null;
   };
 
+  // Session tracking functions
+  const categorizeError = (explanation: string): string => {
+    const lowerExp = explanation.toLowerCase();
+    if (lowerExp.includes("tense") || lowerExp.includes("conjugat")) return "Verb Tense";
+    if (lowerExp.includes("agreement") || lowerExp.includes("gender") || lowerExp.includes("plural")) return "Agreement";
+    if (lowerExp.includes("word order") || lowerExp.includes("position")) return "Word Order";
+    if (lowerExp.includes("article") || lowerExp.includes("el") || lowerExp.includes("la") || lowerExp.includes("un")) return "Articles";
+    if (lowerExp.includes("polite") || lowerExp.includes("formal")) return "Politeness";
+    if (lowerExp.includes("preposition")) return "Prepositions";
+    return "Other";
+  };
+
+  const trackError = async (corrections: Array<{ wrong: string; correct: string; explanation: string }>) => {
+    corrections.forEach(correction => {
+      const category = categorizeError(correction.explanation);
+      setErrorBreakdown(prev => ({
+        ...prev,
+        [category]: (prev[category] || 0) + 1
+      }));
+    });
+
+    // Track new words/phrases learned from corrections with translations
+    for (const correction of corrections) {
+      const correctPhrase = correction.correct.trim();
+
+      // Try to translate the correct phrase to English
+      try {
+        const translation = await invokeFunction('translate-word', {
+          word: correctPhrase,
+          sourceLanguage: language,
+          targetLanguage: 'English'
+        });
+
+        setNewWordsLearned(prev => {
+          const newMap = new Map(prev);
+          newMap.set(correctPhrase, translation.translation || '');
+          return newMap;
+        });
+      } catch (error) {
+        console.error('Translation error for new word:', error);
+        // Store without translation if translation fails
+        setNewWordsLearned(prev => {
+          const newMap = new Map(prev);
+          newMap.set(correctPhrase, '');
+          return newMap;
+        });
+      }
+    }
+  };
+
+  const trackVocabulary = (text: string) => {
+    // Simple word extraction (split by spaces and common punctuation)
+    const words = text
+      .toLowerCase()
+      .replace(/[.,!?¿¡;:""'']/g, '')
+      .split(/\s+/)
+      .filter(word => word.length > 2); // Filter out very short words
+
+    setVocabularyUsed(prev => {
+      const newMap = new Map(prev);
+      words.forEach(word => {
+        newMap.set(word, (newMap.get(word) || 0) + 1);
+      });
+      return newMap;
+    });
+  };
+
+  const getSessionDuration = (): string => {
+    const durationMs = Date.now() - sessionStartTime;
+    const minutes = Math.floor(durationMs / 60000);
+    const seconds = Math.floor((durationMs % 60000) / 1000);
+    if (minutes > 0) {
+      return `${minutes}m ${seconds}s`;
+    }
+    return `${seconds}s`;
+  };
+
+  const endSession = () => {
+    setShowSummary(true);
+  };
+
   const toggleListening = () => {
     if (!recognitionRef.current) return;
 
@@ -384,6 +473,12 @@ const Conversation = () => {
       // If feedback mode is ON and corrections are available, update the user message
       if (feedbackMode === "on" && corrections) {
         console.log('Applying corrections to message');
+
+        // Track errors for session summary
+        if (corrections.corrections && corrections.corrections.length > 0) {
+          trackError(corrections.corrections);
+        }
+
         setMessages(prev => {
           const updatedMessages = [...prev];
           const lastUserMessageIndex = updatedMessages.length - 1;
@@ -399,6 +494,9 @@ const Conversation = () => {
       } else {
         console.log('No corrections to apply');
       }
+
+      // Track vocabulary usage
+      trackVocabulary(text);
 
       const aiMessage: Message = {
         id: crypto.randomUUID(),
@@ -565,7 +663,18 @@ const Conversation = () => {
                 <span className="text-base">{languageFlag}</span> Learning {language}
               </p>
             </div>
-            <Badge variant="secondary">Intermediate</Badge>
+            <div className="flex items-center gap-3">
+              <Badge variant="secondary">Intermediate</Badge>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={endSession}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                End Session
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -743,6 +852,23 @@ const Conversation = () => {
           </p>
         </div>
       </div>
+
+      {/* Session Summary Modal */}
+      <SessionSummaryModal
+        isOpen={showSummary}
+        onClose={() => setShowSummary(false)}
+        errorBreakdown={errorBreakdown}
+        mostCommonWords={Array.from(vocabularyUsed.entries())
+          .map(([word, count]) => ({ word, count }))
+          .sort((a, b) => b.count - a.count)}
+        newWordsUsed={Array.from(newWordsLearned.entries()).map(([word, translation]) => ({
+          word,
+          translation,
+          count: 1
+        }))}
+        totalCorrections={Object.values(errorBreakdown).reduce((sum, count) => sum + count, 0)}
+        sessionDuration={getSessionDuration()}
+      />
     </div>
   );
 };
