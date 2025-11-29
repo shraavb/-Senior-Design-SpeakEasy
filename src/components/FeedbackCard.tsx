@@ -13,9 +13,10 @@ interface FeedbackCardProps {
   shouldSay: string;
   corrections: Correction[];
   onPlayAudio: (text: string) => void;
+  onAcknowledge?: () => void;
 }
 
-export function FeedbackCard({ userSaid, shouldSay, corrections, onPlayAudio }: FeedbackCardProps) {
+export function FeedbackCard({ userSaid, shouldSay, corrections, onPlayAudio, onAcknowledge }: FeedbackCardProps) {
   return (
     <Card className="max-w-md ml-auto bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800 p-4">
       <div className="flex items-start gap-2 mb-3">
@@ -74,6 +75,19 @@ export function FeedbackCard({ userSaid, shouldSay, corrections, onPlayAudio }: 
               </p>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Acknowledge button */}
+      {onAcknowledge && (
+        <div className="mt-4 pt-3 border-t border-amber-200 dark:border-amber-800">
+          <Button
+            onClick={onAcknowledge}
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+            size="sm"
+          >
+            I've reviewed this feedback
+          </Button>
         </div>
       )}
     </Card>

@@ -15,6 +15,7 @@ interface Message {
   userSaid?: string;
   shouldSay?: string;
   corrections?: Array<{ wrong: string; correct: string; explanation: string }>;
+  feedbackAcknowledged?: boolean;
 }
 
 interface ConversationViewProps {
@@ -272,7 +273,14 @@ export function ConversationView({
         content: aiResponse,
       };
       setMessages(prev => [...prev, aiMessage]);
-      speakText(aiMessage.content);
+
+      // Only play TTS if there's no unacknowledged feedback
+      // If feedback exists and is not acknowledged, audio will play after acknowledgment
+      const hasFeedback = feedbackMode === "on" && correction;
+      if (!hasFeedback) {
+        speakText(aiMessage.content);
+      }
+
       setIsProcessing(false);
     }, 1500);
   };
@@ -307,6 +315,22 @@ export function ConversationView({
     }
   };
 
+  const handleFeedbackAcknowledgment = (messageId: string) => {
+    setMessages(prev => prev.map(msg =>
+      msg.id === messageId ? { ...msg, feedbackAcknowledged: true } : msg
+    ));
+
+    // Find the AI message that comes after this user message and play its audio
+    const messageIndex = messages.findIndex(msg => msg.id === messageId);
+    if (messageIndex !== -1 && messageIndex + 1 < messages.length) {
+      const nextMessage = messages[messageIndex + 1];
+      if (nextMessage.role === "assistant") {
+        // Play the AI's response audio now that feedback has been acknowledged
+        speakText(nextMessage.content);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
@@ -331,7 +355,23 @@ export function ConversationView({
       {/* Messages */}
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-          {messages.map((message) => (
+          {messages.map((message, index) => {
+            // Check if this is an AI message that should be hidden due to unacknowledged feedback
+            const previousMessage = index > 0 ? messages[index - 1] : null;
+            const shouldHideAIMessage =
+              message.role === "assistant" &&
+              previousMessage?.role === "user" &&
+              feedbackMode === "on" &&
+              previousMessage.userSaid &&
+              previousMessage.shouldSay &&
+              !previousMessage.feedbackAcknowledged;
+
+            // Skip rendering this message if it should be hidden
+            if (shouldHideAIMessage) {
+              return null;
+            }
+
+            return (
             <div key={message.id}>
               {message.role === "assistant" ? (
                 <div className="flex gap-4 items-start">
@@ -363,19 +403,21 @@ export function ConversationView({
                     </Card>
                   </div>
 
-                  {/* Feedback Card - Only show when feedback mode is ON */}
-                  {feedbackMode === "on" && message.userSaid && message.shouldSay && (
+                  {/* Feedback Card - Only show when feedback mode is ON and not acknowledged */}
+                  {feedbackMode === "on" && message.userSaid && message.shouldSay && !message.feedbackAcknowledged && (
                     <FeedbackCard
                       userSaid={message.userSaid}
                       shouldSay={message.shouldSay}
                       corrections={message.corrections || []}
                       onPlayAudio={speakText}
+                      onAcknowledge={() => handleFeedbackAcknowledgment(message.id)}
                     />
                   )}
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
           {isProcessing && (
             <div className="flex gap-4 items-start">
               <div className="flex-shrink-0">

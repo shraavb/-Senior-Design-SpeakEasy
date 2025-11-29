@@ -20,11 +20,13 @@ import avatarManager from "@/assets/avatar-manager.jpg";
 import avatarUser from "@/assets/avatar-user.jpg";
 
 interface Message {
+  id: string;
   role: "user" | "assistant";
   content: string;
   userSaid?: string;
   shouldSay?: string;
   corrections?: Array<{ wrong: string; correct: string; explanation: string }>;
+  feedbackAcknowledged?: boolean;
 }
 
 const Conversation = () => {
@@ -215,6 +217,7 @@ const Conversation = () => {
         });
 
         const aiMessage: Message = {
+          id: crypto.randomUUID(),
           role: "assistant",
           content: data.message,
         };
@@ -329,7 +332,11 @@ const Conversation = () => {
   };
 
   const handleUserMessage = async (text: string) => {
-    const userMessage: Message = { role: "user", content: text };
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: text
+    };
     setMessages(prev => [...prev, userMessage]);
     setIsProcessing(true);
 
@@ -394,6 +401,7 @@ const Conversation = () => {
       }
 
       const aiMessage: Message = {
+        id: crypto.randomUUID(),
         role: "assistant",
         content: data.message,
       };
@@ -403,7 +411,13 @@ const Conversation = () => {
       if (!audioEnabled) {
         setAudioEnabled(true);
       }
-      speakText(data.message);
+
+      // Only play TTS if there's no unacknowledged feedback
+      // If feedback exists and is not acknowledged, audio will play after acknowledgment
+      const hasFeedback = feedbackMode === "on" && corrections;
+      if (!hasFeedback) {
+        speakText(data.message);
+      }
     } catch (error: any) {
       console.error('Error getting AI response:', error);
       toast({
@@ -519,6 +533,22 @@ const Conversation = () => {
     }
   };
 
+  const handleFeedbackAcknowledgment = (messageId: string) => {
+    setMessages(prev => prev.map(msg =>
+      msg.id === messageId ? { ...msg, feedbackAcknowledged: true } : msg
+    ));
+
+    // Find the AI message that comes after this user message and play its audio
+    const messageIndex = messages.findIndex(msg => msg.id === messageId);
+    if (messageIndex !== -1 && messageIndex + 1 < messages.length) {
+      const nextMessage = messages[messageIndex + 1];
+      if (nextMessage.role === "assistant") {
+        // Play the AI's response audio now that feedback has been acknowledged
+        speakText(nextMessage.content);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
@@ -568,8 +598,24 @@ const Conversation = () => {
       {/* Messages */}
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-          {messages.map((message, index) => (
-            <div key={index}>
+          {messages.map((message, index) => {
+            // Check if this is an AI message that should be hidden due to unacknowledged feedback
+            const previousMessage = index > 0 ? messages[index - 1] : null;
+            const shouldHideAIMessage =
+              message.role === "assistant" &&
+              previousMessage?.role === "user" &&
+              feedbackMode === "on" &&
+              previousMessage.userSaid &&
+              previousMessage.shouldSay &&
+              !previousMessage.feedbackAcknowledged;
+
+            // Skip rendering this message if it should be hidden
+            if (shouldHideAIMessage) {
+              return null;
+            }
+
+            return (
+            <div key={message.id}>
               {message.role === "assistant" ? (
                 <div className="flex gap-4 items-start">
                   {/* Avatar */}
@@ -608,29 +654,21 @@ const Conversation = () => {
                     </Card>
                   </div>
 
-                  {/* Feedback Card - Only show when feedback mode is ON */}
-                  {(() => {
-                    console.log('Checking feedback card for message:', {
-                      feedbackMode,
-                      userSaid: message.userSaid,
-                      shouldSay: message.shouldSay,
-                      corrections: message.corrections,
-                      shouldShow: feedbackMode === "on" && message.userSaid && message.shouldSay
-                    });
-                    return null;
-                  })()}
-                  {feedbackMode === "on" && message.userSaid && message.shouldSay && (
+                  {/* Feedback Card - Only show when feedback mode is ON and not acknowledged */}
+                  {feedbackMode === "on" && message.userSaid && message.shouldSay && !message.feedbackAcknowledged && (
                     <FeedbackCard
                       userSaid={message.userSaid}
                       shouldSay={message.shouldSay}
                       corrections={message.corrections || []}
                       onPlayAudio={speakText}
+                      onAcknowledge={() => handleFeedbackAcknowledgment(message.id)}
                     />
                   )}
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
           {isProcessing && (
             <div className="flex gap-4 items-start">
               <div className="flex-shrink-0">
