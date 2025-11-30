@@ -120,48 +120,42 @@ ${feedbackInstruction}
       ...messages.map(m => ({ role: m.role, content: m.content }))
     ];
 
-    // Get AI response
-    const assistantMessage = await callAI(aiMessages, 0.9, 1024);
+    // Make API calls in parallel for faster response
+    const conversationPromise = callAI(aiMessages, 0.7, 200);
 
-    // Generate feedback corrections if requested
-    let corrections = null;
-
+    let feedbackPromise = null;
     if (provideFeedback && messages.length > 0) {
       const lastUser = messages[messages.length - 1];
 
       if (lastUser.role === "user") {
-        const feedbackPrompt = `You are a ${language} language teacher.
-Analyze this learner message: "${lastUser.content}"
+        const feedbackPrompt = `You are a ${language} teacher. Analyze: "${lastUser.content}"
 
-Return ONLY this JSON (no other text):
+Return ONLY JSON:
+{"userSaid":"...","shouldSay":"... or null","corrections":[{"wrong":"...","correct":"...","explanation":"..."}]}`;
 
-{
-  "userSaid": "...",
-  "shouldSay": "... or null",
-  "corrections": [
-    { "wrong": "...", "correct": "...", "explanation": "..." }
-  ]
-}`;
+        const feedbackMessages = [{ role: 'user', content: feedbackPrompt }];
+        feedbackPromise = callAI(feedbackMessages, 0.2, 256);
+      }
+    }
 
-        try {
-          const feedbackMessages = [{ role: 'user', content: feedbackPrompt }];
-          const raw = await callAI(feedbackMessages, 0.2, 512);
+    // Wait for both API calls to complete in parallel
+    const [assistantMessage, rawFeedback] = await Promise.all([
+      conversationPromise,
+      feedbackPromise || Promise.resolve(null)
+    ]);
 
-          console.log("Feedback AI response:", raw);
-
-          // Extract JSON
-          const match = raw.match(/\{[\s\S]*\}/);
-          if (match) {
-            try {
-              corrections = JSON.parse(match[0]);
-              console.log("Parsed corrections:", corrections);
-            } catch (e) {
-              console.error("Feedback parse failed:", e);
-            }
-          }
-        } catch (e) {
-          console.error("Error getting feedback:", e);
+    // Parse feedback if available
+    let corrections = null;
+    if (rawFeedback) {
+      try {
+        console.log("Feedback AI response:", rawFeedback);
+        const match = rawFeedback.match(/\{[\s\S]*\}/);
+        if (match) {
+          corrections = JSON.parse(match[0]);
+          console.log("Parsed corrections:", corrections);
         }
+      } catch (e) {
+        console.error("Feedback parse failed:", e);
       }
     }
 
@@ -214,7 +208,7 @@ ${sourceLanguage}: "${word}"
 ${targetLanguage}:`;
 
     const aiMessages = [{ role: 'user', content: prompt }];
-    let translation = await callAI(aiMessages, 0.3, 64);
+    let translation = await callAI(aiMessages, 0.3, 32);
 
     // Clean translation
     translation = translation
