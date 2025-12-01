@@ -16,6 +16,7 @@ interface VocabularyWord {
 interface SessionSummaryModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onEndSession: () => void;
   errorBreakdown: ErrorBreakdown;
   mostCommonWords: VocabularyWord[];
   newWordsUsed: VocabularyWord[];
@@ -26,6 +27,7 @@ interface SessionSummaryModalProps {
 export function SessionSummaryModal({
   isOpen,
   onClose,
+  onEndSession,
   errorBreakdown,
   mostCommonWords,
   newWordsUsed,
@@ -168,8 +170,8 @@ export function SessionSummaryModal({
         </div>
 
         <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" onClick={onClose}>
-            Close
+          <Button variant="outline" onClick={onEndSession}>
+            End Session
           </Button>
           <Button onClick={onClose}>Continue Practicing</Button>
         </div>

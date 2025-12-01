@@ -400,6 +400,22 @@ const Conversation = () => {
   };
 
   const endSession = () => {
+    // Stop speech recognition if it's running
+    if (recognitionRef.current && isListening) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+
+    // Cancel any ongoing speech synthesis
+    if (synthRef.current) {
+      synthRef.current.cancel();
+    }
+    setIsSpeaking(false);
+
+    // Stop processing state to prevent new API calls
+    setIsProcessing(false);
+
+    // Show the summary modal
     setShowSummary(true);
   };
 
@@ -857,6 +873,7 @@ const Conversation = () => {
       <SessionSummaryModal
         isOpen={showSummary}
         onClose={() => setShowSummary(false)}
+        onEndSession={() => navigate("/dashboard")}
         errorBreakdown={errorBreakdown}
         mostCommonWords={Array.from(vocabularyUsed.entries())
           .map(([word, count]) => ({ word, count }))
