@@ -187,11 +187,14 @@ export function SectionNav({
       <nav
         ref={navRef}
         className={cn(
-          "z-40 transition-all duration-300 ease-in-out",
+          "z-40",
           isSticky
             ? "fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b shadow-sm"
             : "relative bg-transparent"
         )}
+        style={{
+          transition: isSticky ? 'background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out' : 'none'
+        }}
       >
         <div className="max-w-[1600px] mx-auto px-8 py-4">
           <div className="flex items-center justify-between gap-4">

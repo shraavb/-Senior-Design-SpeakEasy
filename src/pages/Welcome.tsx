@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Languages } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const languages = [
   { name: "Spanish", flag: "🇪🇸" },
@@ -16,12 +17,30 @@ const languages = [
 const Welcome = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Allow logged-in users to select language (don't auto-redirect)
+  // This allows new signups to complete onboarding
 
   const handleContinue = () => {
     if (selectedLanguage) {
       localStorage.setItem('selectedLanguage', selectedLanguage);
-      navigate(`/level?language=${selectedLanguage}`);
+      // If user is logged in, go to dashboard to see modules
+      // If not logged in, go to level selection for onboarding
+      if (user) {
+        navigate("/dashboard");
+      } else {
+        navigate(`/level?language=${selectedLanguage}`);
+      }
     }
+  };
+
+  const handleGetStarted = () => {
+    navigate("/signup");
+  };
+
+  const handleSignIn = () => {
+    navigate("/login");
   };
 
   return (
@@ -59,14 +78,44 @@ const Welcome = () => {
           </div>
         </div>
 
-        <Button
-          onClick={handleContinue}
-          disabled={!selectedLanguage}
-          className="w-full py-6 text-lg"
-          size="lg"
-        >
-          Continue
-        </Button>
+        <div className="space-y-3">
+          <Button
+            onClick={handleContinue}
+            disabled={!selectedLanguage}
+            className="w-full py-6 text-lg"
+            size="lg"
+          >
+            Continue
+          </Button>
+          {!user && (
+            <>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">Or</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  onClick={handleGetStarted}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Get Started
+                </Button>
+                <Button
+                  onClick={handleSignIn}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Sign In
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
       </Card>
     </div>
   );

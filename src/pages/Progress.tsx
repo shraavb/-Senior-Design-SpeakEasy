@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ArrowUp } from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ChevronLeft, ArrowUp, LogOut } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 import { QuickSummary } from "@/components/feedback-metrics/quick-summary";
 import { FluencyMetrics } from "@/components/feedback-metrics/fluency-metrics";
 import { GrammarFeedback } from "@/components/feedback-metrics/grammar-feedback";
@@ -11,6 +21,8 @@ import { SectionNav } from "@/components/feedback-metrics/section-nav";
 
 const Progress = () => {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
   // Persist time filter to localStorage
   const [timeFilter, setTimeFilter] = useState<"today" | "weekly" | "monthly">(() => {
     const saved = localStorage.getItem("progressTimeFilter");
@@ -18,6 +30,20 @@ const Progress = () => {
   });
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState("fluency");
+
+  const handleSignOut = async () => {
+    await signOut();
+    toast({
+      title: "Signed out",
+      description: "You have been signed out successfully",
+    });
+    navigate("/");
+  };
+
+  const getUserInitials = () => {
+    if (!user?.email) return "U";
+    return user.email.charAt(0).toUpperCase();
+  };
 
   // Save time filter to localStorage when it changes
   useEffect(() => {
@@ -40,11 +66,34 @@ const Progress = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <header className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-[1600px] mx-auto px-8 py-4">
+        <div className="max-w-[1600px] mx-auto px-8 py-4 flex items-center justify-between">
           <Button variant="ghost" onClick={() => navigate("/dashboard")}>
             <ChevronLeft className="w-5 h-5 mr-2" />
             Back to Dashboard
           </Button>
+          {user && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-2 p-2 rounded-full hover:bg-muted transition-colors">
+                  <Avatar className="w-8 h-8">
+                    <AvatarFallback className="bg-primary text-primary-foreground">
+                      {getUserInitials()}
+                    </AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5">
+                  <p className="text-sm font-medium">{user?.email}</p>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </header>
 

@@ -3,7 +3,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Welcome from "./pages/Welcome";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import Level from "./pages/Level";
 import Goal from "./pages/Goal";
 import Dashboard from "./pages/Dashboard";
@@ -21,28 +25,82 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/level" element={<Level />} />
-          <Route path="/goal" element={<Goal />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/module/tourism" element={<ModuleTourism />} />
-          <Route path="/module/social" element={<ModuleSocial />} />
-          <Route path="/module/professional" element={<ModuleProfessional />} />
-          <Route path="/conversation" element={<Conversation />} />
-          <Route path="/conversation-demo" element={<ConversationDemo />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/learning-map" element={<LearningMap />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/level" element={<Level />} />
+            <Route path="/goal" element={<Goal />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/module/tourism"
+              element={
+                <ProtectedRoute>
+                  <ModuleTourism />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/module/social"
+              element={
+                <ProtectedRoute>
+                  <ModuleSocial />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/module/professional"
+              element={
+                <ProtectedRoute>
+                  <ModuleProfessional />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/conversation"
+              element={
+                <ProtectedRoute>
+                  <Conversation />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/conversation-demo" element={<ConversationDemo />} />
+            <Route
+              path="/progress"
+              element={
+                <ProtectedRoute>
+                  <Progress />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/leaderboard"
+              element={
+                <ProtectedRoute>
+                  <Leaderboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/learning-map"
+              element={
+                <ProtectedRoute>
+                  <LearningMap />
+                </ProtectedRoute>
+              }
+            />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

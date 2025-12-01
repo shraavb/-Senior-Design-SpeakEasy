@@ -33,15 +33,10 @@ const Goal = () => {
 
   const handleStartLearning = () => {
     if (selectedGoal) {
-      // Map goals to their respective module routes
-      const goalToModuleMap: Record<string, string> = {
-        "Tourism & Travel": "/module/tourism",
-        "Personal & Social": "/module/social",
-        "Professional & Career": "/module/professional",
-      };
-
-      const moduleRoute = goalToModuleMap[selectedGoal] || "/dashboard";
-      navigate(moduleRoute);
+      // Save the selected goal to localStorage for future reference
+      localStorage.setItem('selectedGoal', selectedGoal);
+      // Redirect to dashboard to see all modules and start learning
+      navigate("/dashboard");
     }
   };
 
