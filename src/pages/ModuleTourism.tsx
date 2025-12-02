@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronLeft, CheckCircle2, Lock, Clock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import restaurantImg from "@/assets/scenario-restaurant.jpg";
 import directionsImg from "@/assets/scenario-directions.jpg";
 import hotelImg from "@/assets/scenario-hotel.jpg";
@@ -56,6 +58,8 @@ const scenarios = [
 const ModuleTourism = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user } = useAuth();
+  const { profile } = useUserProfile();
 
   const handleStartScenario = (scenarioTitle: string, isLocked: boolean) => {
     if (isLocked) {
@@ -67,7 +71,10 @@ const ModuleTourism = () => {
       return;
     }
 
-    const language = localStorage.getItem('selectedLanguage') || 'Spanish';
+    // Use language from profile if available, otherwise localStorage, then default
+    const language = (user && profile?.selected_language) || 
+                     localStorage.getItem('selectedLanguage') || 
+                     'Spanish';
     navigate(`/conversation?scenario=${encodeURIComponent(scenarioTitle)}&language=${language}`);
   };
 

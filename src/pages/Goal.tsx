@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Target, ChevronLeft, Plane, Users, Briefcase } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { useToast } from "@/hooks/use-toast";
 
 const goals = [
   {
@@ -30,11 +33,35 @@ const Goal = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const language = searchParams.get("language") || "Spanish";
+  const { user } = useAuth();
+  const { profile, updateProfile } = useUserProfile();
+  const { toast } = useToast();
 
-  const handleStartLearning = () => {
+  // Load existing goal from profile if available
+  useEffect(() => {
+    if (profile?.goal) {
+      setSelectedGoal(profile.goal);
+    }
+  }, [profile?.goal]);
+
+  const handleStartLearning = async () => {
     if (selectedGoal) {
       // Save the selected goal to localStorage for future reference
       localStorage.setItem('selectedGoal', selectedGoal);
+      
+      // Save to user profile if logged in
+      if (user && updateProfile) {
+        const { error } = await updateProfile({ goal: selectedGoal });
+        if (error) {
+          console.error('Error saving goal:', error);
+          toast({
+            title: "Error",
+            description: "Failed to save goal preference",
+            variant: "destructive",
+          });
+        }
+      }
+      
       // Redirect to dashboard to see all modules and start learning
       navigate("/dashboard");
     }

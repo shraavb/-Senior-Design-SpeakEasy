@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronLeft, CheckCircle2, Lock, Clock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import introductionsImg from "@/assets/scenario-introductions.jpg";
 import emailsImg from "@/assets/scenario-emails.jpg";
 import meetingImg from "@/assets/scenario-meeting.jpg";
@@ -48,6 +50,9 @@ const ModuleProfessional = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const { user } = useAuth();
+  const { profile } = useUserProfile();
+
   const handleStartScenario = (scenarioTitle: string, isLocked: boolean) => {
     if (isLocked) {
       toast({
@@ -58,7 +63,10 @@ const ModuleProfessional = () => {
       return;
     }
 
-    const language = localStorage.getItem('selectedLanguage') || 'Spanish';
+    // Use language from profile if available, otherwise localStorage, then default
+    const language = (user && profile?.selected_language) || 
+                     localStorage.getItem('selectedLanguage') || 
+                     'Spanish';
     navigate(`/conversation?scenario=${encodeURIComponent(scenarioTitle)}&language=${language}`);
   };
 

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Languages } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { useToast } from "@/hooks/use-toast";
 
 const languages = [
   { name: "Spanish", flag: "🇪🇸" },
@@ -18,13 +20,36 @@ const Welcome = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { profile, updateProfile } = useUserProfile();
+  const { toast } = useToast();
+
+  // Load existing language from profile if available
+  useEffect(() => {
+    if (profile?.selected_language) {
+      setSelectedLanguage(profile.selected_language);
+    }
+  }, [profile?.selected_language]);
 
   // Allow logged-in users to select language (don't auto-redirect)
   // This allows new signups to complete onboarding
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (selectedLanguage) {
       localStorage.setItem('selectedLanguage', selectedLanguage);
+      
+      // Save to user profile if logged in
+      if (user && updateProfile) {
+        const { error } = await updateProfile({ selected_language: selectedLanguage });
+        if (error) {
+          console.error('Error saving language:', error);
+          toast({
+            title: "Error",
+            description: "Failed to save language preference",
+            variant: "destructive",
+          });
+        }
+      }
+      
       // If user is logged in, go to dashboard to see modules
       // If not logged in, go to level selection for onboarding
       if (user) {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { getTodayCompletedModules, type ModuleType } from "@/utils/dailyGoals";
 import {
   Collapsible,
   CollapsibleContent,
@@ -60,14 +62,46 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const { toast } = useToast();
-  const storedLanguage = localStorage.getItem('selectedLanguage');
-  const initialLanguage = languages.find(lang => lang.name === storedLanguage) || languages[0];
-  const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage);
+  const { profile, loading: profileLoading, updateProfile } = useUserProfile();
+  
+  // Get language from profile or fallback to localStorage or default
+  const getInitialLanguage = () => {
+    if (profile?.selected_language) {
+      return languages.find(lang => lang.name === profile.selected_language) || languages[0];
+    }
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    return languages.find(lang => lang.name === storedLanguage) || languages[0];
+  };
+  
+  const [selectedLanguage, setSelectedLanguage] = useState(getInitialLanguage());
   const [goalsExpanded, setGoalsExpanded] = useState(false);
 
-  const handleLanguageChange = (language: typeof languages[0]) => {
+  // Update selected language when profile loads
+  useEffect(() => {
+    if (profile?.selected_language) {
+      const lang = languages.find(l => l.name === profile.selected_language);
+      if (lang) {
+        setSelectedLanguage(lang);
+      }
+    }
+  }, [profile?.selected_language]);
+
+  const handleLanguageChange = async (language: typeof languages[0]) => {
     setSelectedLanguage(language);
     localStorage.setItem('selectedLanguage', language.name);
+    
+    // Update user profile if logged in
+    if (user && updateProfile) {
+      const { error } = await updateProfile({ selected_language: language.name });
+      if (error) {
+        console.error('Error updating language:', error);
+        toast({
+          title: "Error",
+          description: "Failed to save language preference",
+          variant: "destructive",
+        });
+      }
+    }
   };
 
   const handleSignOut = async () => {
@@ -84,11 +118,21 @@ const Dashboard = () => {
     return user.email.charAt(0).toUpperCase();
   };
 
-  const dailyGoals = [
-    { id: 1, title: "Complete 1 Tourism conversation", completed: true },
-    { id: 2, title: "Complete 1 Social conversation", completed: true },
-    { id: 3, title: "Complete 1 Professional conversation", completed: false },
+  // Define daily goals
+  const dailyGoalsConfig = [
+    { id: 1, title: "Complete 1 Tourism conversation", module: "tourism" as ModuleType },
+    { id: 2, title: "Complete 1 Social conversation", module: "social" as ModuleType },
+    { id: 3, title: "Complete 1 Professional conversation", module: "professional" as ModuleType },
   ];
+
+  // Get completed modules for today
+  const completedToday = user ? getTodayCompletedModules(user.id) : [];
+  
+  // Map goals with completion status
+  const dailyGoals = dailyGoalsConfig.map(goal => ({
+    ...goal,
+    completed: completedToday.includes(goal.module)
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-tourism-light/50 to-background">
@@ -172,7 +216,9 @@ const Dashboard = () => {
                   <h3 className="text-sm font-medium text-muted-foreground">Daily Streak</h3>
                   <Flame className="w-5 h-5 text-streak" />
                 </div>
-                <p className="text-3xl font-bold text-professional">7</p>
+                <p className="text-3xl font-bold text-professional">
+                  {profileLoading ? "..." : (profile?.daily_streak || 0)}
+                </p>
                 <p className="text-sm text-muted-foreground">days</p>
               </Card>
 
@@ -181,7 +227,9 @@ const Dashboard = () => {
                   <h3 className="text-sm font-medium text-muted-foreground">Fluency Score</h3>
                   <TrendingUp className="w-5 h-5 text-success" />
                 </div>
-                <p className="text-3xl font-bold text-tourism">82</p>
+                <p className="text-3xl font-bold text-tourism">
+                  {profileLoading ? "..." : (profile?.fluency_score || 0)}
+                </p>
               </Card>
 
               <Card className="p-6 bg-gradient-to-br from-social-light to-card cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate("/progress")}>
@@ -320,14 +368,17 @@ const Dashboard = () => {
         </div>
 
         {/* Recommended - Only show when logged in */}
-        {user && (
+        {user && profile?.goal && (
           <Card className="p-6 bg-muted/30">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-semibold mb-1">Recommended for You</h3>
-                <p className="text-sm text-muted-foreground">Continue with Tourism & Travel</p>
+                <p className="text-sm text-muted-foreground">Continue with {profile.goal}</p>
               </div>
-              <Button>Start Practicing</Button>
+              <Button onClick={() => {
+                const modulePath = modules.find(m => m.title === profile.goal)?.path || "/module/tourism";
+                navigate(modulePath);
+              }}>Start Practicing</Button>
             </div>
           </Card>
         )}

@@ -10,6 +10,9 @@ import TranslatableText from "@/components/TranslatableText";
 import { FeedbackToggle } from "@/components/FeedbackToggle";
 import { FeedbackCard } from "@/components/FeedbackCard";
 import { SessionSummaryModal } from "@/components/SessionSummaryModal";
+import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { markModuleCompleted, getModuleFromScenario } from "@/utils/dailyGoals";
 import avatarWaiter from "@/assets/avatar-waiter.jpg";
 import avatarLocal from "@/assets/avatar-local.jpg";
 import avatarReceptionist from "@/assets/avatar-receptionist.jpg";
@@ -34,8 +37,17 @@ const Conversation = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
+  const { user } = useAuth();
+  const { profile } = useUserProfile();
   const scenario = searchParams.get("scenario") || "General Conversation";
-  const language = searchParams.get("language") || localStorage.getItem('selectedLanguage') || "Spanish";
+  
+  // Track module type for this conversation
+  const moduleType = getModuleFromScenario(scenario);
+  // Use language from URL param, then profile, then localStorage, then default
+  const language = searchParams.get("language") || 
+                   (user && profile?.selected_language) || 
+                   localStorage.getItem('selectedLanguage') || 
+                   "Spanish";
   
   // Map language names to language codes for speech recognition and TTS
   const getLanguageCode = (lang: string) => {
@@ -414,6 +426,11 @@ const Conversation = () => {
 
     // Stop processing state to prevent new API calls
     setIsProcessing(false);
+
+    // Mark this module as completed for today if user is logged in
+    if (user && messages.length > 1) { // Only mark if there was actual conversation
+      markModuleCompleted(user.id, moduleType);
+    }
 
     // Show the summary modal
     setShowSummary(true);
