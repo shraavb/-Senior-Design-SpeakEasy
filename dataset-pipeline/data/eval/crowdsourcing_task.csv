@@ -1,0 +1,409 @@
+task_id,scenario,prompt,model_response,ground_truth_response,source_film,naturalness_rating,regional_authenticity_rating,scenario_appropriateness_rating,grammar_rating,evaluator_notes
+eval_0000,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Candelabro. Nunca te vería así. Vamos.",,Aquí es donde mi bisabuelo abuelo Leo,To Barcelona with Love,,,,,
+eval_0001,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Son los ángeles más bellos de la Creación, ¿recuerdas?",,"Sálvala, papá. Hazlo por ella.",Bird Box Barcelona,,,,,
+eval_0002,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Sería divertido, ¿qué dices? ¿Casarnos aquí? Sería genial cuéntales a nuestros hijos que nos casamos en España",,y los amigos de papá nos lo pondría fácil.,Vicky Cristina Barcelona,,,,,
+eval_0003,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Siempre quise un pájaro. Deberíamos conseguir uno al llegar a casa.",,Me encantaría tener un pájaro para la nueva casa.,Vicky Cristina Barcelona,,,,,
+eval_0004,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Es que no sé. Estuvo bien.",,"Cuenta. Mamá, ha pasado todo un año.",The Spanish Apartment,,,,,
+eval_0005,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Ni siquiera mencionó el terrible ejemplo de las hormigas. Mencionó como Monserrat se separaría para siempre.",,de su familia y amigos.,Barcelona,,,,,
+eval_0006,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Así que no es verdad. Siempre intentarás imitar lo que tuviste conmigo.",,"En esta casa, habla inglés. Es todo lo que pido.",Vicky Cristina Barcelona,,,,,
+eval_0007,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: ¿Estás bien, William? ¿Va bien?",,¡Me quiero ir a casa!,The Spanish Apartment,,,,,
+eval_0008,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Tienes que llamar a mi hombre para la instalación. Es un genio con computadoras y-- Ya entiendo. Me darás su tarjeta.",,Acabamos de construir nuestra casa en Greenwich. Tienen que verla.,Vicky Cristina Barcelona,,,,,
+eval_0009,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: ¿De dónde sacas eso? ¡Cállate ya, cabrón!",,"¿Porque te llevaba la comida a casa, Marqués?",Bird Box Barcelona,,,,,
+eval_0010,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Vaya, esto es hermoso. Sí, es la casa.",,"Espera, ¿vives en la casa con tu familia?",To Barcelona Forever,,,,,
+eval_0011,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Es ridículo. Dios, son hermosos. Siempre quise un pájaro.",,Deberíamos conseguir uno al llegar a casa.,Vicky Cristina Barcelona,,,,,
+eval_0012,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Te daré mas detalles mañana. Te amo muchísimo. Juan Antonio llevó a Cristina a una cata de vinos.",,"Luego, la llevó a su casa, un lugar bonito",Vicky Cristina Barcelona,,,,,
+eval_0013,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Padre.",,¿Te llevas a Anna a casa? Sí.,Bird Box Barcelona,,,,,
+eval_0014,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Martine vivía con animales, comían lo sembrado,",,"se hacían la ropa, la casa.",The Spanish Apartment,,,,,
+eval_0015,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: ¿Cómo? ¿Casarnos aquí? Sería genial contárselo a nuestros hijos",,y los amigos de papá nos lo facilitarían.,Vicky Cristina Barcelona,,,,,
+eval_0016,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Te oigo muy mal, Tom Tenemos que comprarles un pajaro a Mark y Judy No, es ridiculo",,"Siempre quise tener uno, me gustaria comprar uno cuando volvamos para la casa nueva",Vicky Cristina Barcelona,,,,,
+eval_0017,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: ocurrio algo imprevisible. Días después, Judy citó a Vicky para tomar café",,fuera de casa a solas,Vicky Cristina Barcelona,,,,,
+eval_0018,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Mamá me cogió en brazos y me tapó los ojos. Cuando los abrí, estaba dentro de una furgoneta.",,"Mamá había tapado todas las ventanas con papeles, cartones…",Bird Box Barcelona,,,,,
+eval_0019,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Esa mujer era la mejor. Aún tengo sueños eróticos con ella, a mi edad.",,"Sí, también te quería mucho a ti, papá.",Vicky Cristina Barcelona,,,,,
+eval_0020,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: estas bien, William? Va bien?",,Me quiero ir a casa!,The Spanish Apartment,,,,,
+eval_0021,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: ¿Por qué no? Es ridículo. Son hermosos. Siempre quise un pájaro.",,"Sabes, cuando tengamos casa, me gustaría tener un pájaro para la nueva casa.",Vicky Cristina Barcelona,,,,,
+eval_0022,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: pero es de coordinación. ¿Y tú Léa qué?",,Me dijo tu padre que estabas encerrada en casa por unos exámenes.,Tres dies amb la família,,,,,
+eval_0023,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: Todo está en su cabeza, demasiada tensión, de cara a los demás es despreocupado, nada importa. la vida es corta y sin ningún sentido. Pero todos sus miedos le van a la cabeza",,"¿Sabes que toca el piano? No, no lo sabía, ¿por eso tienes un piano en casa?",Vicky Cristina Barcelona,,,,,
+eval_0024,family,"Continue this family conversation in Catalan-accented Spanish.
+Context: esto era el típico embolado de mi madre. No hacerle caso nunca más. Pasar de sus locuras.",,"Gracias, mamá.",The Spanish Apartment,,,,,
+eval_0025,plans,"Make or respond to plans in regional Spanish.
+Context: Ni lo que tenía antes de venir. Eso lo sé. Pero sé que no podría vivir así para siempre.",,¿Qué es lo que quieres? Algo diferente.,Vicky Cristina Barcelona,,,,,
+eval_0026,plans,"Make or respond to plans in regional Spanish.
+Context: creo que es una buena idea. Creo que es genial. Es una idea genial. Sí, creo que será bueno.",,Te llamaré mañana. Sé que te desperté.,Vicky Cristina Barcelona,,,,,
+eval_0027,plans,"Make or respond to plans in regional Spanish.
+Context: sí, es así, es así, no nos gusta. Escúchame,",,"si quieres vamos este ?n de semana y recogemos tus cosas,",A Gun in Each Hand,,,,,
+eval_0028,plans,"Make or respond to plans in regional Spanish.
+Context: Esperaba a Aurora. La enfermera dijo que otra chica quería hablar conmigo. Recibiste mis mensajes.",,"Podemos salir, probablemente querrás estar a solas con él un poco.",Barcelona,,,,,
+eval_0029,plans,"Make or respond to plans in regional Spanish.
+Context: Te he dicho que esta vez pienso sacar un buena tajada. Además, no pienso discutir este asunto contigo.",,¿Y por qué no nos quedamos con todo,Barcelona sur,,,,,
+eval_0030,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Matarme por mirar? Ahora te veo con otra y estoy bien, soy educada.",,¿Qué más quieres?,Vicky Cristina Barcelona,,,,,
+eval_0031,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Hmm? Espera un segundo.",,¿Qué quieres decir con que crees.,To Barcelona Forever,,,,,
+eval_0032,plans,"Make or respond to plans in regional Spanish.
+Context: Wendy se pondrá muy contenta-- Por fin. ¡La puerta está abierta!",,"¿Quieres beber algo, Alistair?",The Spanish Apartment,,,,,
+eval_0033,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Sí? Quiere que hagamos un almuerzo de despedida mañana al mediodía.",,Perfecto. Voy a jugar al golf con Mark por la mañana.,Vicky Cristina Barcelona,,,,,
+eval_0034,plans,"Make or respond to plans in regional Spanish.
+Context: Estoy realmente sorprendido de que cohabites con ella. Pensaba que eso iba contra tu moral o algo parecido.",,"Realmente quieres que salga de aquí, ¿no es verdad?",Barcelona,,,,,
+eval_0035,plans,"Make or respond to plans in regional Spanish.
+Context: .podríamos almorzar, todos juntos. .y luego podemos ir a verlo juntos.",,"¿Mañana, para almorzar?",Vicky Cristina Barcelona,,,,,
+eval_0036,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Qué? No. No, no, no, no, no.",,Bueno ¿estás segura de que lo cargaste antes de salir?,To Barcelona Forever,,,,,
+eval_0037,plans,"Make or respond to plans in regional Spanish.
+Context: Sí, sí. Me encanta la guitarra. ¿Te gustaría venir a oír una guitarra maravillosa esta noche?",,¿Esta noche?,Vicky Cristina Barcelona,,,,,
+eval_0038,plans,"Make or respond to plans in regional Spanish.
+Context: ¡Tienes a Ali Farka Toure! ¿Tú también? Sí.",,¿Qué haces mañana?,The Spanish Apartment,,,,,
+eval_0039,plans,"Make or respond to plans in regional Spanish.
+Context: .estoy un poco temblorosa por el vino. Dijiste que podías controlar el alcohol.",,"Además, mañana nos vamos.",Vicky Cristina Barcelona,,,,,
+eval_0040,plans,"Make or respond to plans in regional Spanish.
+Context: Lo sentimos mucho, esto no es para nada un tribunal. Ha contestado mucha gente.",,Así que los vamos a ver a todos y decidiremos juntos.,The Spanish Apartment,,,,,
+eval_0041,plans,"Make or respond to plans in regional Spanish.
+Context: Seguro que sí. Ese tipo está aquí.",,¿Quieres irte?,Barcelona,,,,,
+eval_0042,plans,"Make or respond to plans in regional Spanish.
+Context: ¡Tú no! ¡No tiene que ver! ¿A dónde irás, Cristina?",,Tengo que salir de aquí unas semanas,Vicky Cristina Barcelona,,,,,
+eval_0043,plans,"Make or respond to plans in regional Spanish.
+Context: .también admiras la guitarra criolla, por lo que escuché. Sí, sí. Me encanta la guitarra.",,¿Te gustaría ir a escuchar alguna guitarra maravillosa esta noche?,Vicky Cristina Barcelona,,,,,
+eval_0044,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Está triste? Sí. Yo también estoy triste. Sí.",,¿Seguro que quieres irte?,The Spanish Apartment,,,,,
+eval_0045,plans,"Make or respond to plans in regional Spanish.
+Context: Gente muriendo. Voy a decirle la verdad ahora mismo.",,¿Quieres que vaya contigo?,To Barcelona Forever,,,,,
+eval_0046,plans,"Make or respond to plans in regional Spanish.
+Context: Es una pena, cada sexo en su rincón sin pensar en el otro. Si un hombre se interesara de verdad, sería el rey del mambo.",,"¿Cómo, qué quieres decir?",The Spanish Apartment,,,,,
+eval_0047,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Te gustaría volarlo? No, gracias. Es fácil. Es incluso más fácil que un auto. Inténtalo.",,"Temprano en la mañana, llegaron a su destino.",Vicky Cristina Barcelona,,,,,
+eval_0048,plans,"Make or respond to plans in regional Spanish.
+Context: ¿Esperar a qué? Pues coño, Pau, que yo soy así, tradicional.",,"Venga, mañana ya lo hablamos mañana desayunando ""pan tumaca"".",Spanish Affair 2,,,,,
+eval_0049,plans,"Make or respond to plans in regional Spanish.
+Context: ¡Mira cállate, eh! Rafa. Oriol. ¡Collons! ""Armanda"", tú lo que tienes que hacer es descansar",,"porque mañana tenéis todos los festejos y te veo muy nerviosa,",Spanish Affair 2,,,,,
+eval_0050,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Eres como el tono que añadido a una paleta hace precioso un color. ¿A Juan Antonio y a ti no os tienta hacer el amor?",,Me parece que. no sé.,Vicky Cristina Barcelona,,,,,
+eval_0051,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: La situación es bastante delicada. ¿Realmente lo necesitas ahora? Realmente las necesito urgentemente.",,Me parece indiscreto que vuelvas tan pronto después de haber roto.,Barcelona,,,,,
+eval_0052,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Um. No.",,Yo. creo que Voy a llamarlo una noche.,The Split Barcelona Part 1,,,,,
+eval_0053,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: porque se había ido a otra isla. Estás exagerando, mamá. No fueron dos días.",,Creo que era Atenas. Fue Atenas.,The Split Barcelona Part 1,,,,,
+eval_0054,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: ¿Qué? ¿Está bien?",,"Sí, sí, creo que sí. No lo sé, tengo que ir.",Vicky Cristina Barcelona,,,,,
+eval_0055,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Y para serte muy franca, Juan Antonio. .si parecí el tipo de persona para juguetear.",,.no creo que eso diga las cartas.,Vicky Cristina Barcelona,,,,,
+eval_0056,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Conocí a otra persona y no voy a entrar en detalles. ¿Y ese tipo que conociste? Ese tipo está viviendo con mi mejor amiga.",,Sabes lo que te estoy contando.cuando lo oigo me parece una locura. Acabo de casarme con el hombre que quería,Vicky Cristina Barcelona,,,,,
+eval_0057,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Pero en realidad tengo otro ramo que entregar. ¿Alguna idea de para quién son?",,"Sí, creo que sí.",To Barcelona Forever,,,,,
+eval_0058,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: hasta que el último gramo de encanto. desaparece?",,Creo que tengo que decir.,Vicky Cristina Barcelona,,,,,
+eval_0059,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Sí. Todavía tengo que traducirlo al español, pero.",,creo que es bueno.,To Barcelona with Love,,,,,
+eval_0060,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: ¿Y? ¿Ya tiene un arma? Vamos al lago después de clase?",,No creo que vaya a clase. No me encuentro bien.,Animals,,,,,
+eval_0061,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Ese tío vive con mi mejor amiga. Pero, ¿qué estoy diciendo?",,"Cuando me oigo hablar, me parece una locura.",Vicky Cristina Barcelona,,,,,
+eval_0062,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Como había sucedido anteriormente, por acuerdo mutuo. .María Elena empacó sus cosas y se fue de la casa de Juan Antonio.",,Creo que él es dulce.,Vicky Cristina Barcelona,,,,,
+eval_0063,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: El problema no está dentro de nosotros, sino alrededor de nosotros.",,"Bueno, me parece.",Un Papillon sur lépaule,,,,,
+eval_0064,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Busca y encontrarás. Tío, qué poco te enrollas. Pues lo siento.",,Me parece muy mal. Es lo que hay.,Catalunya uber alles,,,,,
+eval_0065,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Escuchad. Ya sabéis que a mí no me gusta hacer discursos,",,pero creo que hoy es una ocasión especial,Tres dies amb la família,,,,,
+eval_0066,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: ¡Es que flipo en colores! Mamá leía esto cuando era pequeña.",,"A mí, me parece bonito.",The Spanish Apartment,,,,,
+eval_0067,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Me encantaría ir a Oviedo. ¿Qué? ¿Estás de broma?",,Creo que sería muy divertido. Me encantaría ir.,Vicky Cristina Barcelona,,,,,
+eval_0068,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: ¿En serio? Una de las cosas que aparecen. son obras, novelas, canciones, todas tienen un contexto.",,Lo que me parece tener un tipo de mensaje escondido.,Barcelona,,,,,
+eval_0069,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Encuentras su agresividad atractiva, pero yo no. Y, ciertamente, no es atractivo.",,Creo que es muy atractivo. Tiene una buena apariencia. Es muy sexy.,Vicky Cristina Barcelona,,,,,
+eval_0070,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Como escribes sobre comida tan bien. En el libro, describió la cocina de Barcelona a la perfección.",,Creo que deberías considerar hacer de eso una carrera.,To Barcelona with Love,,,,,
+eval_0071,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Creo que es una buena idea. Creo que es una idea genial.",,"Sí, sí, creo que será bueno.",Vicky Cristina Barcelona,,,,,
+eval_0072,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Si le importaría acompañarnos de alguna. .forma más reconocida socialmente, como un trago.",,".estaríamos de acuerdo, pero de otra forma, creo que debería intentar.",Vicky Cristina Barcelona,,,,,
+eval_0073,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Al hospital. ¿Puedo ir contigo?",,"No, no creo que sea una buena idea.",Vicky Cristina Barcelona,,,,,
+eval_0074,opinions,"Share your opinion in Catalan-accented Spanish.
+Context: Suena como una gran cobardía. ¡Vamos! Es que no tengo ropa civil en absoluto.",,Me parece que el azul.,Barcelona,,,,,
+eval_0075,farewells,"Say goodbye appropriately in regional Spanish.
+Context: .mañana al mediodía. Es perfecto. Voy a jugar golf con Mark por la mañana.",,.si te apetece. Claro.,Vicky Cristina Barcelona,,,,,
+eval_0076,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡Vaya! Apenas nos hemos visto. No.",,Hasta luego. ¡Adiós!,The Spanish Apartment,,,,,
+eval_0077,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ",,"Va, venga.",Bird Box Barcelona,,,,,
+eval_0078,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Entonces. ¿me das una propina? Tal vez.",,Ven aquí. Oh.,To Barcelona Forever,,,,,
+eval_0079,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¿No es estupenda? Sí. ¡No, no es estupenda! Es normal. ¿Qué?",,"Me voy a ""fac"". Adiós. ¡Disfruta!",The Spanish Apartment,,,,,
+eval_0080,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Bueno pero ¿por qué creen que soy tu prometida? Vayamos por aquí.",,Está bien. De acuerdo.,To Barcelona Forever,,,,,
+eval_0081,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡Aquí! Tengo cita con el Sr. Perrin. Hola.",,Vaya usted.,The Spanish Apartment,,,,,
+eval_0082,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Sí. De acuerdo. Escucha, me siento como un estúpido--",,Está bien. Basta.,The Spanish Apartment,,,,,
+eval_0083,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡Aquí! Tengo cita con el Sr. Perrin. Hola.",,Vaya usted.,The Spanish Apartment,,,,,
+eval_0084,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Podemos ir otro día a navegar con Mark y Judy. Vayamos con Cristina y Juan Antonio. Me apetece navegar.",,"Sí, será estupendo. Mañana, de acuerdo.",Vicky Cristina Barcelona,,,,,
+eval_0085,farewells,"Say goodbye appropriately in regional Spanish.
+Context: María Elena solía decir que sólo los amores imposibles podían ser románticos.",,De acuerdo. Bien.,Vicky Cristina Barcelona,,,,,
+eval_0086,farewells,"Say goodbye appropriately in regional Spanish.
+Context: De Santa Fe. ¿Va bien? Es mi hermana.",,¡Hasta luego chicos!,The Spanish Apartment,,,,,
+eval_0087,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Entendido. No hay problema. Gracias compañero",,Cuídate ese brazo,The Hidden,,,,,
+eval_0088,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡Bienvenido al club! Bernard. Señor.",,Atiéndalo. Sí.,The Spanish Apartment,,,,,
+eval_0089,farewells,"Say goodbye appropriately in regional Spanish.
+Context: María Elena siempre decía que sólo el amor inalcanzado puede ser romántico.",,Ya. De acuerdo.,Vicky Cristina Barcelona,,,,,
+eval_0090,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡Suéltela! ¡Quieto!",,Ocúltense tras algo.,The Hidden,,,,,
+eval_0091,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Y ahora tamiza la harina. Sí. Y reúno el resto de los ingredientes, ¿verdad?",,De acuerdo.,To Barcelona Forever,,,,,
+eval_0092,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¿El hipocampo? En la parte interna del lóbulo temporal. No se preocupe. Vamos a limpiarlo todo.",,"¡Vamos, chicos. ¡Joder!",The Spanish Apartment,,,,,
+eval_0093,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¿En ¿no? . Roma. No, ahora mismo no me acuerdo, no, ¿y qué tal?",,"Bien, muy bien.",A Gun in Each Hand,,,,,
+eval_0094,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Vale, gracias. De nada. Muy amable.",,Bueno. Buena suerte.,The Spanish Apartment,,,,,
+eval_0095,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¡No me lo habías dicho! Tengo que irme, yo.",,Ya nos veremos. Sí.,The Spanish Apartment,,,,,
+eval_0096,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Atiéndale. Sí. El informe del que hablamos. ¡Vaya!",,"Ahora no tengo tiempo, estoy muy ocupado. Luego nos vemos.",The Spanish Apartment,,,,,
+eval_0097,farewells,"Say goodbye appropriately in regional Spanish.
+Context: ¿Qué tipo de música? El curso había empezado y seguía sin piso.",,"¡Adiós, Anne-Sophie!",The Spanish Apartment,,,,,
+eval_0098,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Marcial, lo necesitamos. No me fío. ¿No creéis?",,Por favor.,Bird Box Barcelona,,,,,
+eval_0099,farewells,"Say goodbye appropriately in regional Spanish.
+Context: Oh, yo escribí eso. Sí. ¿Quieres que te lo firme?",,"Oh, gracias.",To Barcelona with Love,,,,,
+eval_0100,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Nico. Esto parece increíble.",,Anna. Hola.,To Barcelona with Love,,,,,
+eval_0101,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Mierda! Alistair! Que haces aqui? Acabo de llegar.",,Estupendo. Me alegro de verte.,The Spanish Apartment,,,,,
+eval_0102,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: sexta planta, despacho 6024. ¿Señor?",,"Buenos días, tengo una cita",The Spanish Apartment,,,,,
+eval_0103,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Tranquilo, vamos bien. En 15 minutos estamos en el aeropuerto.",,"Me alegro de verte un rato,",The Spanish Apartment,,,,,
+eval_0104,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: .aunque en Nueva York, no pasaban mucho tiempo juntos. ¿Cómo estás? Debes estar bromeando.",,Hola. Qué bueno verlos. Hola.,Vicky Cristina Barcelona,,,,,
+eval_0105,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Vicky. Hola.",,"¿Cómo estás? Dios mío, ¿qué haces aquí?",Vicky Cristina Barcelona,,,,,
+eval_0106,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Eddie, Anna, este es mi nuevo subgerente. Josep.",,Oh. Mucho gusto.,To Barcelona with Love,,,,,
+eval_0107,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Funciona. Muchas gracias.",,Hola. No lo sé.,On the Road,,,,,
+eval_0108,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ",,María. Hola. Hola.,A Gun in Each Hand,,,,,
+eval_0109,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Feliz Sant Jordi. Esto es para ti.",,"Muchas gracias,",To Barcelona with Love,,,,,
+eval_0110,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¿Qué pasa con tu escritura? Hola. Somos los padres de Javier. Oh. Hola.",,Carlos. Encantado. Rosa. - Erica.,To Barcelona Forever,,,,,
+eval_0111,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Es aquí. El 2038. Aquí está. El despacho.",,"¡Ya estás aquí! Sí, hola.",The Spanish Apartment,,,,,
+eval_0112,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Los fusibles. ¡Diablos!",,¡Hola! ¿Dónde están?,The Spanish Apartment,,,,,
+eval_0113,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Me gusta. Hola. Hola.",,Hola. ¿Quién es esta chica?,To Barcelona Forever,,,,,
+eval_0114,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¡Hola! ¿Sabine? ¿Xavier?",,Hola. Hola.,The Spanish Apartment,,,,,
+eval_0115,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ",,¿Hola? ¿Hay alguien ahí?,Bird Box Barcelona,,,,,
+eval_0116,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¡Mierda! ¡Alistair! ¿Qué haces aquí? Acabo de llegar.",,Estupendo. Me alegro de verte.,The Spanish Apartment,,,,,
+eval_0117,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Es calle Porta Ferissa. Vale, gracias.",,De nada. Muy amable.,The Spanish Apartment,,,,,
+eval_0118,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Visita para el Sr. Perrin. Buenos días.",,Hola. Tengo una cita con el Sr. Perrin.,The Spanish Apartment,,,,,
+eval_0119,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: Ricart, Albert. Albert, Ricart.",,Encantado. Encantado.,Barcelona Summer Night,,,,,
+eval_0120,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: No, no te levantes. Estabas hablando por teléfono, ¿no? No, no.",,Qué alegría verte.,A Gun in Each Hand,,,,,
+eval_0121,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: sexta planta, despacho 6024. ¿Señor?",,"Buenos días, tengo una cita",The Spanish Apartment,,,,,
+eval_0122,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¿Estás seguro de lo que haces? ¡Déjame en paz!",,"Señora, tenga. Gracias.",The Spanish Apartment,,,,,
+eval_0123,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¿Quién? ¡Tú!",,Buenos días a todos.,The Spanish Apartment,,,,,
+eval_0124,greetings,"Respond to a greeting in Catalan-accented Spanish.
+Context: ¿Quién? ¡Tú!",,Buenos días a todos.,The Spanish Apartment,,,,,
+eval_0125,emotions,"Express your feelings in regional Spanish.
+Context: Podría darnos clases el profesor de Paul. Vale, te llamo después. No te oigo.",,Te quiero.,Vicky Cristina Barcelona,,,,,
+eval_0126,emotions,"Express your feelings in regional Spanish.
+Context: Sé que no te molestaría. Del mismo modo que tengo este sentimiento cuando los escucho encerrados en la pasión cada noche.",,"Yo escucho, y soy feliz.",Vicky Cristina Barcelona,,,,,
+eval_0127,emotions,"Express your feelings in regional Spanish.
+Context: .no tengo talento, ¿sabes? Puedo apreciar el arte y me encanta la música, pero.",,".en realidad, es triste, porque siento que tengo mucho para expresar y.",Vicky Cristina Barcelona,,,,,
+eval_0128,emotions,"Express your feelings in regional Spanish.
+Context: Y Io vio, Io empezó a leer, compramos Ia miel, y estamos mucho mejor.",,Me alegro. Mi vajilla también.,A Gun in Each Hand,,,,,
+eval_0129,emotions,"Express your feelings in regional Spanish.
+Context: hasta que tú me pusiste el disco. Y ahora no paro de escucharla. ¿No?",,Pues eso me hace feliz.,Vicky Cristina Barcelona,,,,,
+eval_0130,emotions,"Express your feelings in regional Spanish.
+Context: Pero ir a pasear es lo que hicieron. Me siento muy apenado por lo de Cristina.",,Vamos. No pretendas parecer preocupado.,Vicky Cristina Barcelona,,,,,
+eval_0131,emotions,"Express your feelings in regional Spanish.
+Context: ¿Y si te hubiera pasado algo? ¿Qué? ¿Qué estás diciendo?",,Te amo demasiado.,Vicky Cristina Barcelona,,,,,
+eval_0132,emotions,"Express your feelings in regional Spanish.
+Context: Yo también. Tienes buen aspecto. Es estupendo volver a verte.",,Yo también me alegro.,The Spanish Apartment,,,,,
+eval_0133,emotions,"Express your feelings in regional Spanish.
+Context: Yo también te quiero. Vamos, ya hablaremos. Un beso.",,"Te quiero, mi amor.",The Spanish Apartment,,,,,
+eval_0134,emotions,"Express your feelings in regional Spanish.
+Context: Sí, está per. perdiendo la ver. vergüenza, un poco. ¿Estás bien, cariño? Un poco cansada.",,"""Te quiero, mi amor.""",The Spanish Apartment,,,,,
+eval_0135,emotions,"Express your feelings in regional Spanish.
+Context: ¿Es por ""Martine"".? Estoy triste porque te vas.",,Yo también estoy triste.,The Spanish Apartment,,,,,
+eval_0136,emotions,"Express your feelings in regional Spanish.
+Context: ¡Y con toda esa gente ahí! ¡Qué rollo!",,"¿Estás enfadado? No, lo entiendo.",The Spanish Apartment,,,,,
+eval_0137,emotions,"Express your feelings in regional Spanish.
+Context: ¿Es por ""Martine"". Estoy triste porque te vas.",,Yo también estoy triste.,The Spanish Apartment,,,,,
+eval_0138,emotions,"Express your feelings in regional Spanish.
+Context: ¿Qué? No, lo de siempre. Te llamo después.",,Yo también te amo.,Vicky Cristina Barcelona,,,,,
+eval_0139,emotions,"Express your feelings in regional Spanish.
+Context: Sí, yo también. ¡Pues claro! Sí, yo también te quiero.",,Yo también te quiero.,The Spanish Apartment,,,,,
+eval_0140,emotions,"Express your feelings in regional Spanish.
+Context: Prácticas. Aprenderás eso que todos deben saber. ¡Buenos días!",,"Me alegro de verle. Sí, yo también.",The Spanish Apartment,,,,,
+eval_0141,emotions,"Express your feelings in regional Spanish.
+Context: Sí, está per. perdiendo la ver. vergüenza, un poco. ¿Estás bien, cariño? Un poco cansada.",,"""Te quiero, mi amor.""",The Spanish Apartment,,,,,
+eval_0142,emotions,"Express your feelings in regional Spanish.
+Context: Hay certezas que nuestras mentes saben comprender. Cállate.",,No te quiero aquí.,On the Road,,,,,
+eval_0143,emotions,"Express your feelings in regional Spanish.
+Context: Prácticas. Aprenderás eso que todos deben saber. ¡Buenos días!",,"Me alegro de verle. Sí, yo también.",The Spanish Apartment,,,,,
+eval_0144,emotions,"Express your feelings in regional Spanish.
+Context: Y tengo una sensación ardiente cuando os oigo, entregados a vuestra pasión.",,¡Os oigo y estoy contenta!,Vicky Cristina Barcelona,,,,,
+eval_0145,emotions,"Express your feelings in regional Spanish.
+Context: me alegro pero también me da envidia. No es fácil estar lejos.",,Cuento los días. Quiero estar contigo. Te quiero.,The Spanish Apartment,,,,,
+eval_0146,emotions,"Express your feelings in regional Spanish.
+Context: de su propio destino quedó en espera. Cuando Cristina volvió de las Antillas, Vicky le contó toda la historia",,y Cristina pensó que era triste,Vicky Cristina Barcelona,,,,,
+eval_0147,emotions,"Express your feelings in regional Spanish.
+Context: Prácticas. Aprenderás eso que todos deben saber. ¡Buenos días!",,"Me alegro de verlo. Sí, yo también.",The Spanish Apartment,,,,,
+eval_0148,emotions,"Express your feelings in regional Spanish.
+Context: Esperaba que estuviera aquí. Recuerdo la primera vez que probaste uno.",,Estabas tan feliz.,To Barcelona with Love,,,,,
+eval_0149,emotions,"Express your feelings in regional Spanish.
+Context: a aquel bar a tomar un café, y no me hubiera encontrado con Mónica,",,y tú y yo seguiríamos juntos. ¿entiendes Io que te quiero decir?,A Gun in Each Hand,,,,,
+eval_0150,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Es la única manera. Anna…",,"Anna, no, por favor.",Bird Box Barcelona,,,,,
+eval_0151,requests,"Make a polite request in Catalan-accented Spanish.
+Context: ¿En serio? Qué extraño. ¿Realmente lo odias?",,"Mi norma sobre el Jazz es: Si no lo puedes bailar, no quieras tocarlo.",Barcelona,,,,,
+eval_0152,requests,"Make a polite request in Catalan-accented Spanish.
+Context: No, por favor. Por favor, no.",,"¡No, por favor! ¡Deténganse!",Animals,,,,,
+eval_0153,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Bien. Bueno, no quise molestarte.",,"Molestarme, no. ¿Cómo podrías molestarme?",Vicky Cristina Barcelona,,,,,
+eval_0154,requests,"Make a polite request in Catalan-accented Spanish.
+Context: ¿Y ella quién es? Es la mujer con la que vivo.",,Aquí tienes que hablar inglés. Por favor.,Vicky Cristina Barcelona,,,,,
+eval_0155,requests,"Make a polite request in Catalan-accented Spanish.
+Context: No lo sabía. ¿Es por eso que tienes un piano en la casa? Podría haber sido una concertista de piano.",,"Sí, podrías. Nadie toca Scarlatti como María Elena.",Vicky Cristina Barcelona,,,,,
+eval_0156,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Espera, espera, espera. Vamos a ver. Si tú has sido capaz de montar todo el tinglado este,",,"puedes desmontar una cosa que tú has montado, ¿no?",Spanish Affair 2,,,,,
+eval_0157,requests,"Make a polite request in Catalan-accented Spanish.
+Context: La verdadera autora es. Erica Olsen. Erica, por favor ven aquí.",,"Anna. Anna, por favor. ¡Anna, espera!",To Barcelona with Love,,,,,
+eval_0158,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Bueno, no realmente. Ambas. Tú hiciste la comida.",,¿Podrías parar con la comida?,To Barcelona with Love,,,,,
+eval_0159,requests,"Make a polite request in Catalan-accented Spanish.
+Context: ¿Sal? Vivo con ella y.",,.debes hablar en inglés cuando estés cerca de ella. Por favor.,Vicky Cristina Barcelona,,,,,
+eval_0160,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Tonterías. Debes quedarte el fin de semana.",,Puedes usar la habitación de invitados.,To Barcelona Forever,,,,,
+eval_0161,requests,"Make a polite request in Catalan-accented Spanish.
+Context: No. Antes de ti ya nos causábamos los dos mucho daño, mucho sufrimiento.",,"Sin ti, todo esto no sería posible. ¿Sabes por qué?",Vicky Cristina Barcelona,,,,,
+eval_0162,requests,"Make a polite request in Catalan-accented Spanish.
+Context: No lo sabía. ¿Por eso tienes un piano en tu casa? Bueno, pude haber sido una concertista de piano.",,Podrías haberlo sido.,Vicky Cristina Barcelona,,,,,
+eval_0163,requests,"Make a polite request in Catalan-accented Spanish.
+Context: aunque en Nueva York no pasaran mucho tiempo juntos. Debes estar bromeando.",,"Cualquier programa de la TV, obviamente en vivo, puedes verlo en tu computador.",Vicky Cristina Barcelona,,,,,
+eval_0164,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Ya vamos. ¿Te he hecho daño? No es nada.",,"No, por favor. Estoy bien.",The Spanish Apartment,,,,,
+eval_0165,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Tú, tranquilo. Sé lo que es. A mí, me pasó lo mismo. Entre galos, hay que ayudarse.",,Puedes dormir en el sofá.,The Spanish Apartment,,,,,
+eval_0166,requests,"Make a polite request in Catalan-accented Spanish.
+Context: esta oferta no es nada poco menos que un insulto, y hasta que esto se rectifique, mi cliente no firmará.",,Necesito orinar.,The Split Barcelona Part 1,,,,,
+eval_0167,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Aquí tienes que hablar en inglés. Por favor. Estoy avergonzada.",,"No. Por favor, no te avergüences.",Vicky Cristina Barcelona,,,,,
+eval_0168,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Si haces una tesis que trate más o menos sobre temas económicos españoles,",,podrías conseguir un puesto.,The Spanish Apartment,,,,,
+eval_0169,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Al menos de momento. ¿A qué has venido? Necesito dinero.",,Si puedes me lo prestas. Con poco me basta.,Barcelona sur,,,,,
+eval_0170,requests,"Make a polite request in Catalan-accented Spanish.
+Context: ¿Qué? Sí. ¡Sorpresa, sorpresa! ¡Tienes que aprender!",,¡No puedes comportarte así!,The Spanish Apartment,,,,,
+eval_0171,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Aquí tienes que hablar en inglés. Por favor. Estoy avergonzada.",,"No. Por favor, no te avergüences.",Vicky Cristina Barcelona,,,,,
+eval_0172,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Sí, viene. Ahora la recogemos. Ponte el cinturón, Léa.",,"Podéis subir la música, ¿por favor?",Tres dies amb la família,,,,,
+eval_0173,requests,"Make a polite request in Catalan-accented Spanish.
+Context: No lo entiendes. No puedo hacer nada ahora. No digo que la idea no haya cruzado por mi mente pero.",,"Vicky, por favor. No podemos entrar en esta conversación otra vez",Vicky Cristina Barcelona,,,,,
+eval_0174,requests,"Make a polite request in Catalan-accented Spanish.
+Context: Si haces una tesis que trate más o menos sobre temas económicos españoles,",,podrías conseguir un puesto.,The Spanish Apartment,,,,,
+eval_0175,apologies,"Apologize appropriately in regional Spanish.
+Context: No. Sí lo hice, fue un error. Mi intención era tocar a Cristina. De acuerdo, lo siento. Me disculpo por mi error.",,"Lo siento, fue mi error, pero escucha.",Vicky Cristina Barcelona,,,,,
+eval_0176,apologies,"Apologize appropriately in regional Spanish.
+Context: Va bien? Es mi hermana. Hasta luego chicos!",,Lo siento.,The Spanish Apartment,,,,,
+eval_0177,apologies,"Apologize appropriately in regional Spanish.
+Context: Sí, muy bien, pasta con aceite de oliva. ¡Marchando! Marchando.",,"Perdona, despertarte era inevitable.",The Spanish Apartment,,,,,
+eval_0178,apologies,"Apologize appropriately in regional Spanish.
+Context: este cuarto es tétrico. ¡Mira qué papel mural!",,"No, perdona, pero así no puedo.",The Spanish Apartment,,,,,
+eval_0179,apologies,"Apologize appropriately in regional Spanish.
+Context: También yo. Dulce Anna.",,"Disculpa, querida.",To Barcelona Forever,,,,,
+eval_0180,apologies,"Apologize appropriately in regional Spanish.
+Context: Estaba en una estantería, al lado de una foto mía. Eso no está en el ejercicio.",,"Si te vas a reír, me voy a enfadar. No era mi intención.",A Gun in Each Hand,,,,,
+eval_0181,apologies,"Apologize appropriately in regional Spanish.
+Context: Siento mucho haberme ido así. No sabía qué más hacer.",,"No, yo. lo siento.",To Barcelona Forever,,,,,
+eval_0182,apologies,"Apologize appropriately in regional Spanish.
+Context: ¿Qué? Por favor, créeme, es mejor que nadie te vea aquí.",,Lo siento.,To Barcelona Forever,,,,,
+eval_0183,apologies,"Apologize appropriately in regional Spanish.
+Context: Hasta luego. Chao. ¡Ay!",,"Perdón, perdón.",A Gun in Each Hand,,,,,
+eval_0184,apologies,"Apologize appropriately in regional Spanish.
+Context: I. Quería que el mundo entero te amara tanto como yo. Así no es como muestras amor, Anna.",,Lo siento.,To Barcelona Forever,,,,,
+eval_0185,apologies,"Apologize appropriately in regional Spanish.
+Context: Hola, cariño. ¿Te he despertado? No, ahora iba a dormir.",,"Perdona, es tarde. He salido del despacho",Vicky Cristina Barcelona,,,,,
+eval_0186,apologies,"Apologize appropriately in regional Spanish.
+Context: se desmorona por completo. Anna. Lo siento mucho.",,Siento haberme ido así.,To Barcelona Forever,,,,,
+eval_0187,apologies,"Apologize appropriately in regional Spanish.
+Context: Ningún problema. ¿Vale, de acuerdo? Vale.",,"Sí, sí. perdona.",The Spanish Apartment,,,,,
+eval_0188,apologies,"Apologize appropriately in regional Spanish.
+Context: ¿Va bien? Es mi hermana. ¡Hasta luego chicos!",,Lo siento.,The Spanish Apartment,,,,,
+eval_0189,apologies,"Apologize appropriately in regional Spanish.
+Context: No lo hice. Cuando te estaba observando. No. Sí lo hice, fue un error. Mi intención era tocar a Cristina.",,"De acuerdo, lo siento. Me disculpo por mi error.",Vicky Cristina Barcelona,,,,,
+eval_0190,apologies,"Apologize appropriately in regional Spanish.
+Context: Y no lo quieren. Primera vez para todo.",,Disculpa. ¿Javier?,To Barcelona Forever,,,,,
+eval_0191,apologies,"Apologize appropriately in regional Spanish.
+Context: no es para tanto. ¿Es por Martine--?",,Me da pena que te vayas.,The Spanish Apartment,,,,,
+eval_0192,apologies,"Apologize appropriately in regional Spanish.
+Context: Si pudiera volver atrás lo haría. Monserrat se ha ido a París al programa de verano del instituto.",,Lo siento.,Barcelona,,,,,
+eval_0193,apologies,"Apologize appropriately in regional Spanish.
+Context: De acuerdo. Lo siento. Perdóname por mi equivocación.",,"Yo lo siento, fue mi error. Pero, mira.",Vicky Cristina Barcelona,,,,,
+eval_0194,apologies,"Apologize appropriately in regional Spanish.
+Context: No sé cómo, me topé con Erasmo. ¿Erasmo? Sí.",,"Perdona, no sé qué me pasa.",The Spanish Apartment,,,,,
+eval_0195,apologies,"Apologize appropriately in regional Spanish.
+Context: Hola, cariño. ¿Te he despertado? No, ahora iba a dormir.",,"Perdona, es tarde. He salido del despacho",Vicky Cristina Barcelona,,,,,
+eval_0196,apologies,"Apologize appropriately in regional Spanish.
+Context: Ella y mi pequeña niña. Fueron asesinadas por el hombre que asesinó a mi compañero",,Lo siento mucho,The Hidden,,,,,
+eval_0197,apologies,"Apologize appropriately in regional Spanish.
+Context: No sé cómo, me topé con Erasmo. ¿Erasmo? Sí.",,"Perdona, no sé qué me pasa.",The Spanish Apartment,,,,,
+eval_0198,apologies,"Apologize appropriately in regional Spanish.
+Context: ¿Qué hacemos? Espera. Vámonos. Joder.",,Lo siento.,Bird Box Barcelona,,,,,
+eval_0199,apologies,"Apologize appropriately in regional Spanish.
+Context: Pero no soy responsable. ¿Erasmo?",,¿Sí? Perdona.,The Spanish Apartment,,,,,
+eval_0200,small_talk,"Continue this casual conversation in Catalan-accented Spanish.
+Context: ¿En la biblioteca? Vamos, come.",,Hace calor.,Animals,,,,,
+eval_0201,small_talk,"Continue this casual conversation in Catalan-accented Spanish.
+Context: Allá vamos. Oh. Hola, toma.",,Gracias. ¿Cómo va todo?,To Barcelona Forever,,,,,
+eval_0202,small_talk,"Continue this casual conversation in Catalan-accented Spanish.
+Context: Allá vamos. Oh. Hola, aquí.",,Gracias. ¿Cómo va todo?,To Barcelona Forever,,,,,
+eval_0203,small_talk,"Continue this casual conversation in Catalan-accented Spanish.
+Context: Y ahora ya sabes, el grupo de baile está completo. Quizá pueda darle algo a tu hermana cuando cambiemos de espectáculo.",,¿Pero qué tiempo calculas?,Barcelona sur,,,,,

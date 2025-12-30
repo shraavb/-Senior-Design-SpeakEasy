@@ -1,0 +1,910 @@
+[
+  {
+    "scenario": "greetings",
+    "sample_prompts": [
+      "You meet a friend on the street. Greet them.",
+      "You arrive at a job interview. Introduce yourself.",
+      "You're at a party and someone introduces themselves to you."
+    ],
+    "rubric": {
+      "scenario": "greetings",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "hola",
+          "buenos días",
+          "buenas tardes",
+          "buenas noches"
+        ],
+        "intermediate_words": [
+          "qué tal",
+          "cómo estás",
+          "encantado",
+          "mucho gusto"
+        ],
+        "advanced_words": [
+          "qué hay",
+          "cómo va",
+          "un placer",
+          "igualmente"
+        ],
+        "regional_markers": [
+          "ei",
+          "apa",
+          "home",
+          "buenas"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "farewells",
+    "sample_prompts": [
+      "You're leaving a friend's house after dinner.",
+      "You're ending a phone call with a colleague.",
+      "You're saying goodbye at the airport."
+    ],
+    "rubric": {
+      "scenario": "farewells",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "adiós",
+          "hasta luego",
+          "chao"
+        ],
+        "intermediate_words": [
+          "nos vemos",
+          "hasta pronto",
+          "hasta mañana"
+        ],
+        "advanced_words": [
+          "cuídate",
+          "que te vaya bien",
+          "ya nos veremos"
+        ],
+        "regional_markers": [
+          "apa",
+          "adéu",
+          "a reveure"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "family",
+    "sample_prompts": [
+      "Describe your family to a new friend.",
+      "Tell someone about your weekend plans with family.",
+      "Ask about someone's family."
+    ],
+    "rubric": {
+      "scenario": "family",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "mamá",
+          "papá",
+          "hermano",
+          "hermana"
+        ],
+        "intermediate_words": [
+          "familia",
+          "padres",
+          "hijos",
+          "abuelos"
+        ],
+        "advanced_words": [
+          "parientes",
+          "suegros",
+          "cuñado",
+          "sobrino"
+        ],
+        "regional_markers": [
+          "nena",
+          "nen",
+          "avi",
+          "iaia"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "emotions",
+    "sample_prompts": [
+      "You just got great news. Express your happiness.",
+      "You're worried about an exam. Express your concern.",
+      "You're frustrated with traffic. Express your frustration."
+    ],
+    "rubric": {
+      "scenario": "emotions",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "feliz",
+          "triste",
+          "bien",
+          "mal"
+        ],
+        "intermediate_words": [
+          "contento",
+          "preocupado",
+          "enfadado",
+          "nervioso"
+        ],
+        "advanced_words": [
+          "emocionado",
+          "agotado",
+          "aliviado",
+          "frustrado"
+        ],
+        "regional_markers": [
+          "flipar",
+          "molar",
+          "estar rallat"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "opinions",
+    "sample_prompts": [
+      "Share your opinion about a movie you watched.",
+      "Agree or disagree with a friend's restaurant choice.",
+      "Express your view on a current topic."
+    ],
+    "rubric": {
+      "scenario": "opinions",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "sí",
+          "no",
+          "me gusta",
+          "no me gusta"
+        ],
+        "intermediate_words": [
+          "creo que",
+          "pienso que",
+          "me parece"
+        ],
+        "advanced_words": [
+          "estoy de acuerdo",
+          "no estoy de acuerdo",
+          "en mi opinión"
+        ],
+        "regional_markers": [
+          "home",
+          "ostras",
+          "collons"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "plans",
+    "sample_prompts": [
+      "Invite a friend to dinner this weekend.",
+      "Suggest plans for a Saturday afternoon.",
+      "Respond to an invitation to go hiking."
+    ],
+    "rubric": {
+      "scenario": "plans",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "quiero",
+          "vamos",
+          "mañana"
+        ],
+        "intermediate_words": [
+          "quedamos",
+          "te apetece",
+          "este fin de semana"
+        ],
+        "advanced_words": [
+          "sería posible",
+          "qué te parece si",
+          "tengo previsto"
+        ],
+        "regional_markers": [
+          "apa va",
+          "va",
+          "fem"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "requests",
+    "sample_prompts": [
+      "Ask a stranger for directions.",
+      "Ask a colleague to help with a project.",
+      "Request a table at a restaurant."
+    ],
+    "rubric": {
+      "scenario": "requests",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "por favor",
+          "gracias",
+          "ayuda"
+        ],
+        "intermediate_words": [
+          "puedes",
+          "podrías",
+          "necesito"
+        ],
+        "advanced_words": [
+          "te importaría",
+          "sería posible",
+          "me harías el favor"
+        ],
+        "regional_markers": [
+          "si us plau",
+          "home",
+          "escolta"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "apologies",
+    "sample_prompts": [
+      "You're late to a meeting. Apologize.",
+      "You accidentally bumped into someone.",
+      "You forgot a friend's birthday."
+    ],
+    "rubric": {
+      "scenario": "apologies",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "perdón",
+          "lo siento"
+        ],
+        "intermediate_words": [
+          "perdona",
+          "disculpa",
+          "fue mi culpa"
+        ],
+        "advanced_words": [
+          "no era mi intención",
+          "lamento mucho",
+          "te pido disculpas"
+        ],
+        "regional_markers": [
+          "home, perdona",
+          "ostras, perdona"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  },
+  {
+    "scenario": "small_talk",
+    "sample_prompts": [
+      "Comment on the weather to a neighbor.",
+      "Ask a colleague about their weekend.",
+      "Make conversation while waiting in line."
+    ],
+    "rubric": {
+      "scenario": "small_talk",
+      "vocabulary_checklist": {
+        "beginner_words": [
+          "qué tiempo",
+          "hace calor",
+          "hace frío"
+        ],
+        "intermediate_words": [
+          "qué tal el trabajo",
+          "cómo va todo"
+        ],
+        "advanced_words": [
+          "qué hay de nuevo",
+          "cómo te va la vida"
+        ],
+        "regional_markers": [
+          "nen",
+          "nena",
+          "home"
+        ]
+      },
+      "scoring": {
+        "beginner_word": 1,
+        "intermediate_word": 2,
+        "advanced_word": 3,
+        "regional_marker": 4
+      },
+      "grammar_criteria": [
+        "Subject-verb agreement",
+        "Correct verb tense",
+        "Proper gender/number agreement",
+        "Appropriate formality level (tú/usted)"
+      ],
+      "fluency_criteria": [
+        "Natural word order",
+        "Appropriate response length",
+        "Contextually relevant",
+        "Conversation flow maintained"
+      ],
+      "cefr_mapping": {
+        "A1": {
+          "description": "Can use basic greetings and simple phrases",
+          "criteria": [
+            "Uses basic vocabulary correctly",
+            "Responds appropriately to simple prompts",
+            "May have frequent grammatical errors"
+          ],
+          "min_vocabulary_score": 1,
+          "max_vocabulary_score": 3
+        },
+        "A2": {
+          "description": "Can handle simple social exchanges",
+          "criteria": [
+            "Uses intermediate vocabulary",
+            "Maintains basic conversation flow",
+            "Grammar errors don't impede understanding"
+          ],
+          "min_vocabulary_score": 3,
+          "max_vocabulary_score": 6
+        },
+        "B1": {
+          "description": "Can deal with most social situations",
+          "criteria": [
+            "Uses varied vocabulary appropriately",
+            "Can express opinions and feelings",
+            "Generally good grammar with occasional errors"
+          ],
+          "min_vocabulary_score": 6,
+          "max_vocabulary_score": 10
+        },
+        "B2": {
+          "description": "Can interact fluently with native speakers",
+          "criteria": [
+            "Uses advanced and regional vocabulary",
+            "Natural conversational flow",
+            "Few grammatical errors"
+          ],
+          "min_vocabulary_score": 10,
+          "max_vocabulary_score": 15
+        }
+      }
+    },
+    "scoring_guide": {
+      "0-3 points": "A1 - Basic",
+      "4-6 points": "A2 - Elementary",
+      "7-10 points": "B1 - Intermediate",
+      "11-15 points": "B2 - Upper Intermediate",
+      "16+ points": "C1 - Advanced (with regional markers)"
+    }
+  }
+]

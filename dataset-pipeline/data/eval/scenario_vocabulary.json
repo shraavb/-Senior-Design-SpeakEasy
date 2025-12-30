@@ -1,0 +1,208 @@
+{
+  "greetings": {
+    "beginner": [
+      "hola",
+      "buenos días",
+      "buenas tardes",
+      "buenas noches"
+    ],
+    "intermediate": [
+      "qué tal",
+      "cómo estás",
+      "encantado",
+      "mucho gusto"
+    ],
+    "advanced": [
+      "qué hay",
+      "cómo va",
+      "un placer",
+      "igualmente"
+    ],
+    "catalan_regional": [
+      "ei",
+      "apa",
+      "home",
+      "buenas"
+    ]
+  },
+  "farewells": {
+    "beginner": [
+      "adiós",
+      "hasta luego",
+      "chao"
+    ],
+    "intermediate": [
+      "nos vemos",
+      "hasta pronto",
+      "hasta mañana"
+    ],
+    "advanced": [
+      "cuídate",
+      "que te vaya bien",
+      "ya nos veremos"
+    ],
+    "catalan_regional": [
+      "apa",
+      "adéu",
+      "a reveure"
+    ]
+  },
+  "family": {
+    "beginner": [
+      "mamá",
+      "papá",
+      "hermano",
+      "hermana"
+    ],
+    "intermediate": [
+      "familia",
+      "padres",
+      "hijos",
+      "abuelos"
+    ],
+    "advanced": [
+      "parientes",
+      "suegros",
+      "cuñado",
+      "sobrino"
+    ],
+    "catalan_regional": [
+      "nena",
+      "nen",
+      "avi",
+      "iaia"
+    ]
+  },
+  "emotions": {
+    "beginner": [
+      "feliz",
+      "triste",
+      "bien",
+      "mal"
+    ],
+    "intermediate": [
+      "contento",
+      "preocupado",
+      "enfadado",
+      "nervioso"
+    ],
+    "advanced": [
+      "emocionado",
+      "agotado",
+      "aliviado",
+      "frustrado"
+    ],
+    "catalan_regional": [
+      "flipar",
+      "molar",
+      "estar rallat"
+    ]
+  },
+  "opinions": {
+    "beginner": [
+      "sí",
+      "no",
+      "me gusta",
+      "no me gusta"
+    ],
+    "intermediate": [
+      "creo que",
+      "pienso que",
+      "me parece"
+    ],
+    "advanced": [
+      "estoy de acuerdo",
+      "no estoy de acuerdo",
+      "en mi opinión"
+    ],
+    "catalan_regional": [
+      "home",
+      "ostras",
+      "collons"
+    ]
+  },
+  "plans": {
+    "beginner": [
+      "quiero",
+      "vamos",
+      "mañana"
+    ],
+    "intermediate": [
+      "quedamos",
+      "te apetece",
+      "este fin de semana"
+    ],
+    "advanced": [
+      "sería posible",
+      "qué te parece si",
+      "tengo previsto"
+    ],
+    "catalan_regional": [
+      "apa va",
+      "va",
+      "fem"
+    ]
+  },
+  "requests": {
+    "beginner": [
+      "por favor",
+      "gracias",
+      "ayuda"
+    ],
+    "intermediate": [
+      "puedes",
+      "podrías",
+      "necesito"
+    ],
+    "advanced": [
+      "te importaría",
+      "sería posible",
+      "me harías el favor"
+    ],
+    "catalan_regional": [
+      "si us plau",
+      "home",
+      "escolta"
+    ]
+  },
+  "apologies": {
+    "beginner": [
+      "perdón",
+      "lo siento"
+    ],
+    "intermediate": [
+      "perdona",
+      "disculpa",
+      "fue mi culpa"
+    ],
+    "advanced": [
+      "no era mi intención",
+      "lamento mucho",
+      "te pido disculpas"
+    ],
+    "catalan_regional": [
+      "home, perdona",
+      "ostras, perdona"
+    ]
+  },
+  "small_talk": {
+    "beginner": [
+      "qué tiempo",
+      "hace calor",
+      "hace frío"
+    ],
+    "intermediate": [
+      "qué tal el trabajo",
+      "cómo va todo"
+    ],
+    "advanced": [
+      "qué hay de nuevo",
+      "cómo te va la vida"
+    ],
+    "catalan_regional": [
+      "nen",
+      "nena",
+      "home"
+    ]
+  }
+}

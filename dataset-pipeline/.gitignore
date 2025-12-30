@@ -1,0 +1,55 @@
+# Models (too large for GitHub)
+models/
+*.safetensors
+*.pt
+*.bin
+*.ckpt
+
+# Data files (can be regenerated)
+data/raw/
+data/audio/
+data/catalan_corpus/
+
+# Keep processed data structure but ignore large files
+data/processed/*.json
+!data/processed/*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp

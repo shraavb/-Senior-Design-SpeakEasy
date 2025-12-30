@@ -1,0 +1,223 @@
+# Dataset Pipeline Configuration
+# For Catalan-accented Spanish dialect collection
+
+# OpenSubtitles API Configuration
+opensubtitles:
+  api_url: "https://api.opensubtitles.com/api/v1"
+  # Get your API key from: https://www.opensubtitles.com/en/consumers
+  # Set OPENSUBTITLES_API_KEY in .env file
+  rate_limit_per_second: 5
+  download_batch_size: 100
+
+# Language Settings
+language:
+  primary: "es"  # Spanish
+  subtitle_language: "spa"  # ISO 639-2 code
+  # Catalan region identifiers for filtering
+  catalan_regions:
+    - "Spain"
+    - "Catalonia"
+    - "Catalunya"
+    - "Barcelona"
+  # Keywords indicating Catalan-accented Spanish content
+  catalan_keywords:
+    - "catalan"
+    - "català"
+    - "barcelona"
+    - "catalunya"
+    - "valenciano"
+    - "balear"
+
+# Film/TV Search Filters
+search_filters:
+  # Types of content to search
+  content_types:
+    - "movie"
+    - "tvshow"
+  # Year range (newer content more likely to have quality subs)
+  year_range:
+    min: 2000
+    max: 2024
+  # Minimum rating to ensure quality content
+  min_rating: 5.0
+  # Genres likely to have personal/social dialog
+  preferred_genres:
+    - "Drama"
+    - "Comedy"
+    - "Romance"
+    - "Family"
+
+# Personal & Social Module Scenarios
+# These define what dialog types we're looking for
+personal_social_scenarios:
+  greetings:
+    keywords:
+      - "hola"
+      - "buenos días"
+      - "buenas tardes"
+      - "buenas noches"
+      - "qué tal"
+      - "cómo estás"
+      - "encantado"
+      - "mucho gusto"
+    description: "Greetings and introductions"
+
+  farewells:
+    keywords:
+      - "adiós"
+      - "hasta luego"
+      - "hasta mañana"
+      - "nos vemos"
+      - "cuídate"
+      - "que te vaya bien"
+    description: "Saying goodbye"
+
+  family:
+    keywords:
+      - "mamá"
+      - "papá"
+      - "hermano"
+      - "hermana"
+      - "abuelo"
+      - "abuela"
+      - "hijo"
+      - "hija"
+      - "familia"
+      - "casa"
+    description: "Family conversations"
+
+  emotions:
+    keywords:
+      - "feliz"
+      - "triste"
+      - "enfadado"
+      - "preocupado"
+      - "emocionado"
+      - "nervioso"
+      - "te quiero"
+      - "te amo"
+      - "lo siento"
+    description: "Expressing emotions"
+
+  opinions:
+    keywords:
+      - "creo que"
+      - "pienso que"
+      - "me parece"
+      - "en mi opinión"
+      - "estoy de acuerdo"
+      - "no estoy de acuerdo"
+      - "prefiero"
+    description: "Expressing opinions"
+
+  plans:
+    keywords:
+      - "quedamos"
+      - "vamos a"
+      - "quieres"
+      - "te apetece"
+      - "este fin de semana"
+      - "mañana"
+      - "esta noche"
+      - "salir"
+      - "cenar"
+    description: "Making plans with friends"
+
+  requests:
+    keywords:
+      - "puedes"
+      - "podrías"
+      - "me ayudas"
+      - "necesito"
+      - "por favor"
+      - "sería posible"
+      - "te importaría"
+    description: "Asking for help/favors"
+
+  apologies:
+    keywords:
+      - "perdona"
+      - "perdóname"
+      - "lo siento"
+      - "disculpa"
+      - "fue mi culpa"
+      - "no era mi intención"
+    description: "Apologies and complaints"
+
+  small_talk:
+    keywords:
+      - "qué tiempo"
+      - "hace calor"
+      - "hace frío"
+      - "qué tal el trabajo"
+      - "qué hay de nuevo"
+      - "cómo va todo"
+    description: "Small talk and casual conversation"
+
+# Catalan-specific markers in Spanish
+# These indicate Catalan influence on Spanish
+catalan_markers:
+  phonetic_indicators:
+    # Words often pronounced differently by Catalan speakers
+    - "pues"  # often "pos"
+    - "muy"   # often "moi"
+  lexical_borrowings:
+    # Catalan words used in regional Spanish
+    - "nen"       # kid (Catalan: nen/nena)
+    - "nena"
+    - "home"      # man (used as interjection)
+    - "ostras"    # exclamation
+    - "apa"       # let's go
+    - "apa va"
+    - "che"       # interjection (Valencian)
+  syntactic_patterns:
+    # Unique constructions
+    - "hacer broma"  # instead of "gastar broma"
+    - "hacer el payés"
+
+# Processing Settings
+processing:
+  # Minimum dialog length (characters) to include
+  min_dialog_length: 10
+  # Maximum dialog length
+  max_dialog_length: 500
+  # Minimum confidence score for scenario classification
+  min_classification_confidence: 0.6
+  # Context window (seconds before/after for timestamp extraction)
+  context_window_seconds: 5
+  # Number of surrounding lines to include for context
+  context_lines: 2
+
+# Output Settings
+output:
+  # JSONL format for fine-tuning
+  jsonl:
+    enabled: true
+    filename: "catalan_spanish_dialogs.jsonl"
+    include_metadata: true
+  # CSV format with timestamps
+  csv:
+    enabled: true
+    filename: "catalan_spanish_dialogs.csv"
+    columns:
+      - "id"
+      - "text"
+      - "scenario"
+      - "confidence"
+      - "source_film"
+      - "start_timestamp"
+      - "end_timestamp"
+      - "context_before"
+      - "context_after"
+      - "catalan_markers"
+
+# Eval Set Configuration
+eval_set:
+  # Percentage of data to reserve for evaluation
+  eval_percentage: 0.15
+  # Ensure balanced representation across scenarios
+  balanced_scenarios: true
+  # Minimum samples per scenario in eval set
+  min_samples_per_scenario: 50
+  # Seed for reproducibility
+  random_seed: 42

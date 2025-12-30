@@ -1,0 +1,42 @@
+{
+  "A1": {
+    "description": "Can use basic greetings and simple phrases",
+    "criteria": [
+      "Uses basic vocabulary correctly",
+      "Responds appropriately to simple prompts",
+      "May have frequent grammatical errors"
+    ],
+    "min_vocabulary_score": 1,
+    "max_vocabulary_score": 3
+  },
+  "A2": {
+    "description": "Can handle simple social exchanges",
+    "criteria": [
+      "Uses intermediate vocabulary",
+      "Maintains basic conversation flow",
+      "Grammar errors don't impede understanding"
+    ],
+    "min_vocabulary_score": 3,
+    "max_vocabulary_score": 6
+  },
+  "B1": {
+    "description": "Can deal with most social situations",
+    "criteria": [
+      "Uses varied vocabulary appropriately",
+      "Can express opinions and feelings",
+      "Generally good grammar with occasional errors"
+    ],
+    "min_vocabulary_score": 6,
+    "max_vocabulary_score": 10
+  },
+  "B2": {
+    "description": "Can interact fluently with native speakers",
+    "criteria": [
+      "Uses advanced and regional vocabulary",
+      "Natural conversational flow",
+      "Few grammatical errors"
+    ],
+    "min_vocabulary_score": 10,
+    "max_vocabulary_score": 15
+  }
+}
