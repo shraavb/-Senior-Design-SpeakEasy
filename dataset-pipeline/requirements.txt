@@ -20,6 +20,17 @@ transformers>=4.36.0
 torch>=2.1.0
 sentence-transformers>=2.2.0
 
+# Fine-tuning
+peft>=0.7.0
+datasets>=2.16.0
+accelerate>=0.25.0
+bitsandbytes>=0.42.0  # For 4-bit quantization (CUDA only)
+
+# High-Performance Inference (optional)
+# Uncomment based on your hardware:
+# vllm>=0.3.0          # For NVIDIA GPUs - high-throughput inference
+# sglang>=0.1.0        # For structured generation and batching
+
 # Progress & CLI
 tqdm>=4.66.0
 click>=8.1.0

@@ -21,12 +21,40 @@ language:
     - "Barcelona"
   # Keywords indicating Catalan-accented Spanish content
   catalan_keywords:
+    # Catalan regions
     - "catalan"
     - "català"
     - "barcelona"
     - "catalunya"
+    - "catalonia"
+    # Valencia region
     - "valenciano"
+    - "valencia"
+    - "valencian"
+    # Balearic Islands
     - "balear"
+    - "balearic"
+    - "mallorca"
+    - "majorca"
+    - "menorca"
+    - "ibiza"
+    - "formentera"
+    # Andorra
+    - "andorra"
+    # Aragon (La Franja)
+    - "aragon"
+    - "franja"
+    - "lleida"
+    - "tarragona"
+    # Other Catalan areas
+    - "girona"
+    - "gerona"
+    - "pyrenees"
+    - "pirineos"
+    # General Spanish
+    - "spanish"
+    - "spain"
+    - "españa"
 
 # Film/TV Search Filters
 search_filters:
@@ -36,16 +64,22 @@ search_filters:
     - "tvshow"
   # Year range (newer content more likely to have quality subs)
   year_range:
-    min: 2000
-    max: 2024
+    min: 1990
+    max: 2025
   # Minimum rating to ensure quality content
-  min_rating: 5.0
-  # Genres likely to have personal/social dialog
+  min_rating: 4.0
+  # Genres likely to have personal/social dialog (expanded)
   preferred_genres:
     - "Drama"
     - "Comedy"
     - "Romance"
     - "Family"
+    - "Thriller"
+    - "Crime"
+    - "Mystery"
+    - "Adventure"
+    - "Biography"
+    - "History"
 
 # Personal & Social Module Scenarios
 # These define what dialog types we're looking for

@@ -195,6 +195,36 @@ dataset = load_dataset('json', data_files={
 })
 ```
 
+## Cloud GPU Deployment
+
+For training on cloud A100 GPUs, see the [RunPod Deployment Guide](deploy/README.md).
+
+Quick start:
+```bash
+# Upload to RunPod
+runpodctl send deploy/runpod_upload.zip
+
+# On RunPod terminal
+bash setup_and_train.sh
+python runpod_train.py --quick  # 1 epoch, ~30 min
+```
+
+## High-Performance Inference
+
+For production inference, we support:
+
+- **vLLM**: High-throughput inference with PagedAttention (`src/inference_vllm.py`)
+- **SGLang**: Structured generation with RadixAttention (`src/inference_sglang.py`)
+- **Modal**: Serverless GPU deployment (`deploy/modal_deploy.py`)
+
+```bash
+# vLLM server
+python src/inference_vllm.py serve --port 8000
+
+# SGLang batch inference
+python src/inference_sglang.py batch --input prompts.json
+```
+
 ## Catalan Markers Detection
 
 The pipeline identifies Catalan influence in Spanish through:
