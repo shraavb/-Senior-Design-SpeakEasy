@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "description": "Examples of poor user responses for training and evaluation contrast",
+    "purpose": "DPO training (rejected responses), user feedback examples, rubric calibration",
+    "collection_date": "2024-12-30",
+    "version": "1.0",
+    "note": "These examples show common mistakes to help learners understand what to avoid"
+  },
+  "issue_categories": {
+    "formality_mismatch": "Using wrong formality level (tú vs usted)",
+    "no_regional_markers": "Response lacks any Catalan/Barcelona regional influence",
+    "grammar_errors": "Grammatical mistakes",
+    "off_topic": "Response doesn't fit the conversation context",
+    "too_formal": "Overly formal for casual situation",
+    "too_informal": "Too casual for formal situation",
+    "unnatural_phrasing": "Sounds like textbook Spanish, not natural speech",
+    "missing_warmth": "Lacks appropriate emotional tone",
+    "wrong_vocabulary": "Uses incorrect or inappropriate words"
+  },
+  "examples": [
+    {
+      "id": "bad_greetings_001",
+      "scenario": "greetings",
+      "prompt": "Say hello to a friend you haven't seen in a while",
+      "context": "Casual street encounter in Barcelona",
+      "response": {
+        "text": "Hola. ¿Cómo está usted?",
+        "why_bad": [
+          "Too formal 'usted' for friends",
+          "No regional markers",
+          "Lacks warmth and enthusiasm",
+          "Generic textbook Spanish",
+          "Missing follow-up or genuine interest"
+        ],
+        "issues": ["formality_mismatch", "no_regional_markers", "missing_warmth", "unnatural_phrasing"],
+        "what_to_improve": "Use tú form, add regional expressions like 'nen/tío', show more enthusiasm"
+      }
+    },
+    {
+      "id": "bad_greetings_002",
+      "scenario": "greetings",
+      "prompt": "Greet your boss at work",
+      "context": "Formal office setting",
+      "response": {
+        "text": "¡Eh, tío! ¿Qué pasa, macho?",
+        "why_bad": [
+          "Too informal for boss",
+          "'Tío' and 'macho' inappropriate for workplace",
+          "Missing respectful greeting",
+          "Could be seen as disrespectful"
+        ],
+        "issues": ["too_informal", "formality_mismatch"],
+        "what_to_improve": "Use 'Buenos días', formal address, more professional tone"
+      }
+    },
+    {
+      "id": "bad_farewells_001",
+      "scenario": "farewells",
+      "prompt": "Say goodbye to friends after a night out",
+      "context": "Leaving a bar in Barcelona",
+      "response": {
+        "text": "Adiós.",
+        "why_bad": [
+          "Too abrupt and cold",
+          "No warmth or friendliness",
+          "Missing any slang or regional flavor",
+          "Sounds dismissive",
+          "No mention of seeing them again"
+        ],
+        "issues": ["missing_warmth", "no_regional_markers", "unnatural_phrasing"],
+        "what_to_improve": "Add 'vinga', 'apa', express enjoyment, mention future plans"
+      }
+    },
+    {
+      "id": "bad_farewells_002",
+      "scenario": "farewells",
+      "prompt": "End a phone call with a family member",
+      "context": "Casual family conversation",
+      "response": {
+        "text": "Me despido cordialmente. Atentamente, yo.",
+        "why_bad": [
+          "Sounds like a formal letter, not speech",
+          "Completely unnatural for phone call",
+          "'Atentamente' is for written correspondence",
+          "Bizarre phrasing"
+        ],
+        "issues": ["unnatural_phrasing", "formality_mismatch", "wrong_vocabulary"],
+        "what_to_improve": "Use natural closers like 'Bueno, te dejo', 'Un beso', 'Cuídate'"
+      }
+    },
+    {
+      "id": "bad_emotions_001",
+      "scenario": "emotions",
+      "prompt": "Express excitement about good news",
+      "context": "Friend tells you they got a new job",
+      "response": {
+        "text": "Bien.",
+        "why_bad": [
+          "Extremely underwhelming response",
+          "Shows no real excitement",
+          "Could seem dismissive or uninterested",
+          "Missing any emotional expression"
+        ],
+        "issues": ["missing_warmth", "unnatural_phrasing"],
+        "what_to_improve": "Show genuine excitement with '¡Qué guay!', '¡Flipo!', 'Me alegro mucho'"
+      }
+    },
+    {
+      "id": "bad_emotions_002",
+      "scenario": "emotions",
+      "prompt": "Express tiredness after a long day",
+      "context": "Coming home from work",
+      "response": {
+        "text": "Yo estoy experimentando un nivel elevado de fatiga física y mental.",
+        "why_bad": [
+          "Overly formal and academic",
+          "No one talks like this",
+          "Sounds robotic",
+          "Missing any colloquial language"
+        ],
+        "issues": ["unnatural_phrasing", "no_regional_markers", "wrong_vocabulary"],
+        "what_to_improve": "Use natural expressions like 'Estoy muerto', 'Estic mort', 'Estoy reventado'"
+      }
+    },
+    {
+      "id": "bad_plans_001",
+      "scenario": "plans",
+      "prompt": "Suggest going out this weekend",
+      "context": "Texting with friends",
+      "response": {
+        "text": "¿Desearía usted acompañarme a un establecimiento de ocio nocturno este fin de semana?",
+        "why_bad": [
+          "Absurdly formal 'usted' for friends",
+          "'Establecimiento de ocio nocturno' instead of 'bar/disco'",
+          "Sounds like a butler, not a friend",
+          "Completely unnatural"
+        ],
+        "issues": ["formality_mismatch", "unnatural_phrasing", "wrong_vocabulary"],
+        "what_to_improve": "Say '¿Quedamos?', '¿Salimos de fiesta?', use casual language"
+      }
+    },
+    {
+      "id": "bad_plans_002",
+      "scenario": "plans",
+      "prompt": "Accept an invitation to meet",
+      "context": "Friend invites you for coffee",
+      "response": {
+        "text": "OK",
+        "why_bad": [
+          "Too minimal, almost rude",
+          "No confirmation of details",
+          "Uses English abbreviation",
+          "Shows no enthusiasm"
+        ],
+        "issues": ["missing_warmth", "unnatural_phrasing"],
+        "what_to_improve": "Show enthusiasm, confirm time, use 'Vale, guay!', '¡Perfecto!'"
+      }
+    },
+    {
+      "id": "bad_opinions_001",
+      "scenario": "opinions",
+      "prompt": "Express agreement with someone's idea",
+      "context": "Discussion about restaurant choice",
+      "response": {
+        "text": "Yo concuerdo con tu propuesta gastronómica.",
+        "why_bad": [
+          "Overly formal language",
+          "'Propuesta gastronómica' is ridiculous for casual talk",
+          "No natural agreement expressions",
+          "Sounds pretentious"
+        ],
+        "issues": ["unnatural_phrasing", "wrong_vocabulary", "no_regional_markers"],
+        "what_to_improve": "Use '¡Vale!', 'Tal cual', 'Mola', 'Me parece bien'"
+      }
+    },
+    {
+      "id": "bad_opinions_002",
+      "scenario": "opinions",
+      "prompt": "Disagree politely with a suggestion",
+      "context": "Friend suggests a movie you don't like",
+      "response": {
+        "text": "No. Esa película es mala.",
+        "why_bad": [
+          "Too blunt and harsh",
+          "Doesn't soften the disagreement",
+          "Could hurt feelings",
+          "No alternative suggestion"
+        ],
+        "issues": ["missing_warmth", "unnatural_phrasing"],
+        "what_to_improve": "Soften with 'No sé...', offer alternative, explain preference"
+      }
+    },
+    {
+      "id": "bad_reactions_001",
+      "scenario": "reactions_exclamations",
+      "prompt": "React to surprising news",
+      "context": "Friend tells you unexpected story",
+      "response": {
+        "text": "Interesante.",
+        "why_bad": [
+          "Completely flat reaction",
+          "Shows no real surprise or interest",
+          "Could seem sarcastic or dismissive",
+          "Missing any emotional engagement"
+        ],
+        "issues": ["missing_warmth", "no_regional_markers"],
+        "what_to_improve": "Use '¡No me digas!', '¿En serio?', '¡Flipo!', '¡Qué fuerte!'"
+      }
+    },
+    {
+      "id": "bad_requests_001",
+      "scenario": "requests",
+      "prompt": "Ask a friend for a favor",
+      "context": "Need help moving furniture",
+      "response": {
+        "text": "Necesito que me ayudes el sábado. Ven a las 9.",
+        "why_bad": [
+          "Sounds demanding, not asking",
+          "No 'por favor' or politeness",
+          "Commands rather than requests",
+          "No explanation or gratitude"
+        ],
+        "issues": ["missing_warmth", "unnatural_phrasing"],
+        "what_to_improve": "Add 'por favor', phrase as question, explain context, show appreciation"
+      }
+    },
+    {
+      "id": "bad_apologies_001",
+      "scenario": "apologies",
+      "prompt": "Apologize for being late",
+      "context": "Arriving late to meet friends",
+      "response": {
+        "text": "El transporte público experimentó retrasos.",
+        "why_bad": [
+          "No actual apology ('perdona', 'lo siento')",
+          "Passive voice avoids responsibility",
+          "Sounds like a corporate announcement",
+          "No warmth or personal accountability"
+        ],
+        "issues": ["unnatural_phrasing", "no_regional_markers", "wrong_vocabulary"],
+        "what_to_improve": "Say 'Perdona', take responsibility, be genuine"
+      }
+    },
+    {
+      "id": "bad_apologies_002",
+      "scenario": "apologies",
+      "prompt": "Apologize for forgetting someone's birthday",
+      "context": "Realizing you forgot a friend's birthday",
+      "response": {
+        "text": "No es mi culpa, tenía muchas cosas que hacer.",
+        "why_bad": [
+          "Defensive instead of apologetic",
+          "Makes excuses",
+          "No actual apology",
+          "Could damage the friendship"
+        ],
+        "issues": ["missing_warmth", "wrong_vocabulary"],
+        "what_to_improve": "Take responsibility, apologize sincerely, make it up to them"
+      }
+    },
+    {
+      "id": "bad_money_001",
+      "scenario": "money_work",
+      "prompt": "Explain you can't afford something",
+      "context": "Friends inviting you to expensive dinner",
+      "response": {
+        "text": "Mis recursos financieros son insuficientes para dicha actividad.",
+        "why_bad": [
+          "Absurdly formal for friends",
+          "No natural money slang",
+          "Sounds like a bank statement",
+          "Missing casual alternative suggestion"
+        ],
+        "issues": ["unnatural_phrasing", "wrong_vocabulary", "no_regional_markers"],
+        "what_to_improve": "Use 'No tengo pasta', 'Estoy pelado', suggest cheaper alternative"
+      }
+    },
+    {
+      "id": "bad_party_001",
+      "scenario": "party_nightlife",
+      "prompt": "Describe last night's party",
+      "context": "Telling a friend about going out",
+      "response": {
+        "text": "Asistí a un evento social nocturno. Fue satisfactorio.",
+        "why_bad": [
+          "'Evento social nocturno' - no one says this",
+          "'Satisfactorio' is clinical, not fun",
+          "No party vocabulary",
+          "Sounds like a corporate report"
+        ],
+        "issues": ["unnatural_phrasing", "wrong_vocabulary", "no_regional_markers", "missing_warmth"],
+        "what_to_improve": "Use 'La fiesta molaba', 'Lo pasamos genial', natural party slang"
+      }
+    }
+  ]
+}

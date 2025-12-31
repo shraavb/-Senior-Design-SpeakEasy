@@ -1,0 +1,828 @@
+{
+  "metadata": {
+    "description": "Audio recording prompts for user evaluation data collection",
+    "purpose": "Collect reference audio samples across Social, Travel, and Business categories",
+    "created_date": "2024-12-30",
+    "speakers": {
+      "good_speakers": 2,
+      "newbies": 4
+    },
+    "recording_instructions": {
+      "good_speakers": "Record natural, native-like responses with appropriate slang and regional markers. These serve as gold standard references.",
+      "newbies": "Record at your current level - mistakes are valuable data! Try to use vocabulary you know."
+    },
+    "audio_specs": {
+      "format": "WAV or MP3",
+      "sample_rate": "44.1kHz recommended",
+      "naming_convention": "{speaker_id}_{category}_{scenario}_{prompt_id}.wav"
+    }
+  },
+  "categories": {
+    "social": {
+      "description": "Personal interactions - friends, family, nightlife, emotions",
+      "scenarios": ["greetings", "farewells", "emotions", "opinions", "plans", "party_nightlife", "apologies", "reactions"],
+      "slang_focus": "Casual slang, Catalan expressions, friend terms (tío, nen, colega)"
+    },
+    "travel": {
+      "description": "Navigation, transportation, tourism, asking for directions",
+      "scenarios": ["directions", "transportation", "accommodation", "restaurants", "emergencies"],
+      "slang_focus": "Polite requests, common tourist situations, practical vocabulary"
+    },
+    "business": {
+      "description": "Professional settings - work, meetings, money, formal communication",
+      "scenarios": ["work_talk", "meetings", "money", "professional_requests", "formal_introductions"],
+      "slang_focus": "Work slang (curro, plego), money slang (pasta, calés), professional register"
+    }
+  },
+  "prompts": {
+    "social": {
+      "beginner": [
+        {
+          "id": "soc_beg_001",
+          "scenario": "greetings",
+          "situation": "You see a friend at a cafe",
+          "prompt_text": "Say hello and ask how they are",
+          "example_response": "¡Hola! ¿Qué tal? ¿Cómo estás?",
+          "target_vocabulary": ["hola", "qué tal", "cómo estás"],
+          "notes": "Basic friendly greeting"
+        },
+        {
+          "id": "soc_beg_002",
+          "scenario": "farewells",
+          "situation": "You're leaving a friend's house",
+          "prompt_text": "Say goodbye and that you'll see them soon",
+          "example_response": "Adiós. Hasta pronto. Nos vemos.",
+          "target_vocabulary": ["adiós", "hasta pronto", "nos vemos"],
+          "notes": "Simple farewell"
+        },
+        {
+          "id": "soc_beg_003",
+          "scenario": "emotions",
+          "situation": "Someone asks how you're feeling today",
+          "prompt_text": "Say you're happy and doing well",
+          "example_response": "Estoy bien. Estoy muy contento hoy.",
+          "target_vocabulary": ["bien", "contento", "feliz"],
+          "notes": "Basic positive emotions"
+        },
+        {
+          "id": "soc_beg_004",
+          "scenario": "plans",
+          "situation": "A friend asks what you want to do",
+          "prompt_text": "Say you want to go to a restaurant",
+          "example_response": "Quiero ir a un restaurante. ¿Vamos?",
+          "target_vocabulary": ["quiero", "vamos", "ir a"],
+          "notes": "Simple plan suggestion"
+        },
+        {
+          "id": "soc_beg_005",
+          "scenario": "opinions",
+          "situation": "Someone asks if you like the food",
+          "prompt_text": "Say yes, you like it very much",
+          "example_response": "Sí, me gusta mucho. Es muy bueno.",
+          "target_vocabulary": ["me gusta", "muy bueno"],
+          "notes": "Basic positive opinion"
+        },
+        {
+          "id": "soc_beg_006",
+          "scenario": "apologies",
+          "situation": "You accidentally bump into someone",
+          "prompt_text": "Apologize",
+          "example_response": "Perdón. Lo siento mucho.",
+          "target_vocabulary": ["perdón", "lo siento"],
+          "notes": "Simple apology"
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "soc_int_001",
+          "scenario": "greetings",
+          "situation": "You run into a friend you haven't seen in a while on the street",
+          "prompt_text": "Greet them warmly and ask how things are going",
+          "example_response": "¡Hola, tío! ¿Qué tal todo? Hace tiempo que no te veo, ¿cómo va?",
+          "target_vocabulary": ["tío", "qué tal todo", "cómo va"],
+          "slang_to_include": ["tío/tía", "qué tal"],
+          "notes": "Use casual address terms"
+        },
+        {
+          "id": "soc_int_002",
+          "scenario": "farewells",
+          "situation": "Leaving a bar after drinks with friends",
+          "prompt_text": "Say goodbye warmly, mention you had a great time",
+          "example_response": "Venga, tío, nos vemos. Ha molado mucho. Luego hablamos, ¿vale?",
+          "target_vocabulary": ["venga", "molado", "luego", "vale"],
+          "slang_to_include": ["venga", "molar", "vale"],
+          "notes": "Casual farewell with slang"
+        },
+        {
+          "id": "soc_int_003",
+          "scenario": "emotions",
+          "situation": "Your friend tells you they got a new job",
+          "prompt_text": "Express excitement and happiness for them",
+          "example_response": "¡Qué guay! Me alegro mucho por ti. ¡Eso mola un montón!",
+          "target_vocabulary": ["qué guay", "me alegro", "mola"],
+          "slang_to_include": ["guay", "mola"],
+          "notes": "Enthusiastic reaction with slang"
+        },
+        {
+          "id": "soc_int_004",
+          "scenario": "plans",
+          "situation": "You want to invite friends out this weekend",
+          "prompt_text": "Suggest going out Saturday night",
+          "example_response": "¿Quedamos el sábado? Podemos ir de cañas y luego salir de fiesta.",
+          "target_vocabulary": ["quedamos", "ir de cañas", "salir de fiesta"],
+          "slang_to_include": ["quedamos", "cañas"],
+          "notes": "Common social plans"
+        },
+        {
+          "id": "soc_int_005",
+          "scenario": "opinions",
+          "situation": "Friend recommends a restaurant, you agree",
+          "prompt_text": "Express agreement and add why you like it",
+          "example_response": "Tal cual, ese sitio mola mucho. La comida está genial y no es caro.",
+          "target_vocabulary": ["tal cual", "mola", "genial"],
+          "slang_to_include": ["tal cual", "mola"],
+          "notes": "Agreement with slang"
+        },
+        {
+          "id": "soc_int_006",
+          "scenario": "reactions",
+          "situation": "Friend tells you surprising gossip",
+          "prompt_text": "React with surprise",
+          "example_response": "¡No me digas! ¿En serio? ¡Qué fuerte, tío! No me lo creo.",
+          "target_vocabulary": ["no me digas", "en serio", "qué fuerte"],
+          "slang_to_include": ["qué fuerte", "tío"],
+          "notes": "Surprise expressions"
+        },
+        {
+          "id": "soc_int_007",
+          "scenario": "party_nightlife",
+          "situation": "Friend asks about last night's party",
+          "prompt_text": "Describe that it was great but now you're hungover",
+          "example_response": "¡La fiesta estuvo genial! Pero hoy tengo una resaca brutal, tío.",
+          "target_vocabulary": ["genial", "resaca", "brutal"],
+          "slang_to_include": ["resaca", "brutal", "tío"],
+          "notes": "Party talk"
+        },
+        {
+          "id": "soc_int_008",
+          "scenario": "apologies",
+          "situation": "You arrive 15 minutes late to meet friends",
+          "prompt_text": "Apologize and briefly explain",
+          "example_response": "Perdona, tío, lo siento mucho. El metro iba fatal y me he retrasado.",
+          "target_vocabulary": ["perdona", "lo siento", "fatal"],
+          "slang_to_include": ["tío", "fatal"],
+          "notes": "Casual apology"
+        }
+      ],
+      "advanced": [
+        {
+          "id": "soc_adv_001",
+          "scenario": "greetings",
+          "situation": "You bump into an old friend from Barcelona on the street",
+          "prompt_text": "Greet them enthusiastically with regional expressions",
+          "example_response": "Ei, nen! Què tal? Fa temps que no et veig! Com va tot, home?",
+          "target_vocabulary": ["ei", "nen", "fa temps", "home"],
+          "slang_to_include": ["nen", "home"],
+          "catalan_markers": ["ei", "nen", "home", "què tal"],
+          "notes": "Full Catalan greeting"
+        },
+        {
+          "id": "soc_adv_002",
+          "scenario": "farewells",
+          "situation": "Saying goodbye after a great night out",
+          "prompt_text": "Say goodbye warmly with regional expressions",
+          "example_response": "Vinga, apa! Ha sigut genial. Ens veiem la setmana que ve. Cuida't!",
+          "target_vocabulary": ["vinga", "apa", "ens veiem", "cuida't"],
+          "slang_to_include": ["vinga", "apa"],
+          "catalan_markers": ["vinga", "apa", "ha sigut", "ens veiem"],
+          "notes": "Classic Catalan farewell"
+        },
+        {
+          "id": "soc_adv_003",
+          "scenario": "emotions",
+          "situation": "Your friend shares amazing news",
+          "prompt_text": "React with authentic Barcelona excitement",
+          "example_response": "Quina passada! He flipat! Me alegro mogollón por ti, tío. Brutal!",
+          "target_vocabulary": ["quina passada", "flipat", "mogollón", "brutal"],
+          "slang_to_include": ["quina passada", "flipat", "mogollón", "brutal"],
+          "catalan_markers": ["quina passada"],
+          "notes": "High excitement with Catalan"
+        },
+        {
+          "id": "soc_adv_004",
+          "scenario": "emotions",
+          "situation": "You're exhausted after a long week",
+          "prompt_text": "Express tiredness with regional expressions",
+          "example_response": "Estic mort, tío. Quina mandra de fer res avui. Necessito descansar.",
+          "target_vocabulary": ["estic mort", "quina mandra"],
+          "slang_to_include": ["estic mort", "quina mandra"],
+          "catalan_markers": ["estic mort", "quina mandra"],
+          "notes": "Catalan tiredness expressions"
+        },
+        {
+          "id": "soc_adv_005",
+          "scenario": "plans",
+          "situation": "Organizing weekend plans with friends",
+          "prompt_text": "Suggest the classic Barcelona plan",
+          "example_response": "Quedem dissabte? Podem anar a fer el vermut i després sortir de festa al Raval.",
+          "target_vocabulary": ["quedem", "fer el vermut", "sortir de festa"],
+          "slang_to_include": ["quedem", "fer el vermut", "sortir de festa"],
+          "catalan_markers": ["quedem", "podem", "fer el vermut"],
+          "notes": "Barcelona-specific social plan"
+        },
+        {
+          "id": "soc_adv_006",
+          "scenario": "plans",
+          "situation": "Friend asks if you want to party tonight",
+          "prompt_text": "Accept enthusiastically",
+          "example_response": "Vinga va, ens la fotem avui? Sí, home, estic molt per labor!",
+          "target_vocabulary": ["vinga va", "ens la fotem"],
+          "slang_to_include": ["vinga va", "ens la fotem"],
+          "catalan_markers": ["vinga va", "ens la fotem", "estic"],
+          "notes": "Catalan party slang"
+        },
+        {
+          "id": "soc_adv_007",
+          "scenario": "opinions",
+          "situation": "Someone says something you strongly disagree with",
+          "prompt_text": "Disagree emphatically but not rudely",
+          "example_response": "Ni de conya, tío! Això no és veritat. De debò penses això?",
+          "target_vocabulary": ["ni de conya", "de debò"],
+          "slang_to_include": ["ni de conya", "de debò"],
+          "catalan_markers": ["ni de conya", "això", "de debò"],
+          "notes": "Strong Catalan disagreement"
+        },
+        {
+          "id": "soc_adv_008",
+          "scenario": "reactions",
+          "situation": "Friend tells you unbelievable news",
+          "prompt_text": "React with authentic surprise",
+          "example_response": "Hòstia! De debò? Ni de conya, tía! Que fort això! He flipat!",
+          "target_vocabulary": ["hòstia", "de debò", "ni de conya", "que fort"],
+          "slang_to_include": ["hòstia", "de debò", "ni de conya", "que fort", "flipat"],
+          "catalan_markers": ["hòstia", "de debò", "ni de conya", "que fort"],
+          "notes": "Full Catalan surprise"
+        },
+        {
+          "id": "soc_adv_009",
+          "scenario": "party_nightlife",
+          "situation": "Describing last night's party to a friend",
+          "prompt_text": "Tell them about the great night",
+          "example_response": "Tío, la festa ho va petar! Vaig anar torrat a casa. Avui tinc una resaca brutal.",
+          "target_vocabulary": ["ho va petar", "torrat", "resaca"],
+          "slang_to_include": ["ho va petar", "torrat", "resaca", "brutal"],
+          "catalan_markers": ["ho va petar", "vaig anar torrat", "tinc"],
+          "notes": "Party storytelling"
+        },
+        {
+          "id": "soc_adv_010",
+          "scenario": "party_nightlife",
+          "situation": "Inviting someone to go out drinking",
+          "prompt_text": "Suggest going for aperitif drinks",
+          "example_response": "Escolta, anem a fer el vermut? Conec un bar genial al Born. Després podem anar de copes.",
+          "target_vocabulary": ["escolta", "fer el vermut", "anar de copes"],
+          "slang_to_include": ["fer el vermut", "anar de copes"],
+          "catalan_markers": ["escolta", "anem", "fer el vermut", "podem"],
+          "notes": "Barcelona drinking culture"
+        },
+        {
+          "id": "soc_adv_011",
+          "scenario": "apologies",
+          "situation": "You forgot a friend's birthday",
+          "prompt_text": "Apologize sincerely with regional expressions",
+          "example_response": "Hòstia, perdona! L'he cagat totalment. De debò ho sento molt.",
+          "target_vocabulary": ["hòstia", "l'he cagat", "de debò"],
+          "slang_to_include": ["hòstia", "l'he cagat", "de debò"],
+          "catalan_markers": ["hòstia", "l'he cagat", "de debò", "ho sento"],
+          "notes": "Sincere Catalan apology"
+        }
+      ]
+    },
+    "travel": {
+      "beginner": [
+        {
+          "id": "trv_beg_001",
+          "scenario": "directions",
+          "situation": "You're lost and need to find a street",
+          "prompt_text": "Ask someone where the street is",
+          "example_response": "Perdone, ¿dónde está la calle Mayor?",
+          "target_vocabulary": ["perdone", "dónde está", "calle"],
+          "notes": "Polite direction request"
+        },
+        {
+          "id": "trv_beg_002",
+          "scenario": "directions",
+          "situation": "You need to find the train station",
+          "prompt_text": "Ask how to get to the train station",
+          "example_response": "Por favor, ¿cómo llego a la estación de tren?",
+          "target_vocabulary": ["por favor", "cómo llego", "estación"],
+          "notes": "Basic navigation"
+        },
+        {
+          "id": "trv_beg_003",
+          "scenario": "transportation",
+          "situation": "You want to buy a metro ticket",
+          "prompt_text": "Ask for a metro ticket",
+          "example_response": "Un billete de metro, por favor. ¿Cuánto cuesta?",
+          "target_vocabulary": ["billete", "metro", "cuánto cuesta"],
+          "notes": "Buying tickets"
+        },
+        {
+          "id": "trv_beg_004",
+          "scenario": "transportation",
+          "situation": "You're on a bus and need to know where to get off",
+          "prompt_text": "Ask which stop is for the beach",
+          "example_response": "Perdone, ¿qué parada es para la playa?",
+          "target_vocabulary": ["parada", "playa"],
+          "notes": "Bus navigation"
+        },
+        {
+          "id": "trv_beg_005",
+          "scenario": "accommodation",
+          "situation": "You arrive at a hotel",
+          "prompt_text": "Say you have a reservation",
+          "example_response": "Hola, tengo una reserva. Mi nombre es...",
+          "target_vocabulary": ["reserva", "nombre", "habitación"],
+          "notes": "Hotel check-in"
+        },
+        {
+          "id": "trv_beg_006",
+          "scenario": "restaurants",
+          "situation": "At a restaurant, you want to order",
+          "prompt_text": "Order water and ask for the menu",
+          "example_response": "Agua, por favor. ¿Tiene el menú?",
+          "target_vocabulary": ["agua", "por favor", "menú"],
+          "notes": "Restaurant basics"
+        },
+        {
+          "id": "trv_beg_007",
+          "scenario": "restaurants",
+          "situation": "You want to pay the bill",
+          "prompt_text": "Ask for the bill",
+          "example_response": "La cuenta, por favor.",
+          "target_vocabulary": ["la cuenta", "por favor"],
+          "notes": "Paying at restaurant"
+        },
+        {
+          "id": "trv_beg_008",
+          "scenario": "emergencies",
+          "situation": "You need help urgently",
+          "prompt_text": "Ask for help",
+          "example_response": "¡Ayuda, por favor! Necesito ayuda.",
+          "target_vocabulary": ["ayuda", "necesito"],
+          "notes": "Emergency basics"
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "trv_int_001",
+          "scenario": "directions",
+          "situation": "You're looking for a famous landmark in Barcelona",
+          "prompt_text": "Ask how to get to the Sagrada Familia",
+          "example_response": "Oye, perdona, ¿sabes cómo llego a la Sagrada Familia? ¿Está lejos de aquí?",
+          "target_vocabulary": ["oye", "sabes", "cómo llego", "lejos"],
+          "slang_to_include": ["oye"],
+          "notes": "Casual direction request"
+        },
+        {
+          "id": "trv_int_002",
+          "scenario": "directions",
+          "situation": "Someone gives you directions but you don't understand",
+          "prompt_text": "Ask them to repeat more slowly",
+          "example_response": "Perdona, no he pillado. ¿Puedes repetir más despacio?",
+          "target_vocabulary": ["pillado", "repetir", "despacio"],
+          "slang_to_include": ["pillar"],
+          "notes": "Asking for clarification"
+        },
+        {
+          "id": "trv_int_003",
+          "scenario": "transportation",
+          "situation": "Your train is delayed and you need information",
+          "prompt_text": "Ask when the next train leaves",
+          "example_response": "Perdone, ¿a qué hora sale el próximo tren? Es que el mío lleva retraso.",
+          "target_vocabulary": ["a qué hora", "próximo", "retraso"],
+          "notes": "Dealing with delays"
+        },
+        {
+          "id": "trv_int_004",
+          "scenario": "transportation",
+          "situation": "You need to take a taxi",
+          "prompt_text": "Tell the driver where you're going and ask how long it takes",
+          "example_response": "Hola, al aeropuerto, por favor. ¿Cuánto se tarda más o menos?",
+          "target_vocabulary": ["aeropuerto", "cuánto se tarda"],
+          "notes": "Taxi conversation"
+        },
+        {
+          "id": "trv_int_005",
+          "scenario": "accommodation",
+          "situation": "There's a problem with your hotel room",
+          "prompt_text": "Explain the AC doesn't work",
+          "example_response": "Perdone, hay un problema. El aire acondicionado no funciona. ¿Pueden arreglarlo?",
+          "target_vocabulary": ["problema", "no funciona", "arreglar"],
+          "notes": "Hotel complaints"
+        },
+        {
+          "id": "trv_int_006",
+          "scenario": "restaurants",
+          "situation": "Ordering food at a Barcelona restaurant",
+          "prompt_text": "Order a local dish and ask for a recommendation",
+          "example_response": "¿Qué me recomiendas? Me apetece algo típico de aquí. ¿Las tapas están buenas?",
+          "target_vocabulary": ["recomiendas", "me apetece", "típico", "tapas"],
+          "slang_to_include": ["me apetece"],
+          "notes": "Restaurant ordering"
+        },
+        {
+          "id": "trv_int_007",
+          "scenario": "restaurants",
+          "situation": "The food is taking too long",
+          "prompt_text": "Politely ask about your order",
+          "example_response": "Perdona, llevamos un rato esperando. ¿Sabes si falta mucho para la comida?",
+          "target_vocabulary": ["llevamos", "esperando", "falta mucho"],
+          "notes": "Polite complaint"
+        },
+        {
+          "id": "trv_int_008",
+          "scenario": "emergencies",
+          "situation": "You lost your wallet",
+          "prompt_text": "Report it and ask for help",
+          "example_response": "Oye, perdona, me han robado la cartera. ¿Dónde está la comisaría más cercana?",
+          "target_vocabulary": ["robado", "cartera", "comisaría"],
+          "slang_to_include": ["oye"],
+          "notes": "Emergency situation"
+        }
+      ],
+      "advanced": [
+        {
+          "id": "trv_adv_001",
+          "scenario": "directions",
+          "situation": "You're in Barcelona and someone asks you for directions",
+          "prompt_text": "Give directions to Las Ramblas like a local",
+          "example_response": "Mira, vas tot recte fins al final i gires a l'esquerra. És molt fàcil, nen, no té pèrdua.",
+          "target_vocabulary": ["tot recte", "gires", "no té pèrdua"],
+          "slang_to_include": ["nen"],
+          "catalan_markers": ["vas", "tot recte", "gires", "pèrdua"],
+          "notes": "Giving directions in Catalan"
+        },
+        {
+          "id": "trv_adv_002",
+          "scenario": "directions",
+          "situation": "Friend asks for the best route somewhere",
+          "prompt_text": "Recommend a shortcut with local knowledge",
+          "example_response": "Home, no vagis per allà, hi ha molta penya. Agafa el carreró del costat, és més ràpid.",
+          "target_vocabulary": ["penya", "carreró", "ràpid"],
+          "slang_to_include": ["home", "penya"],
+          "catalan_markers": ["no vagis", "hi ha", "agafa", "carreró"],
+          "notes": "Local shortcuts"
+        },
+        {
+          "id": "trv_adv_003",
+          "scenario": "transportation",
+          "situation": "Complaining about Barcelona public transport",
+          "prompt_text": "Tell a friend about your commute problems",
+          "example_response": "Tío, el metro anava fatal avui. Vaig trigar una hora en arribar. Quina ràbia!",
+          "target_vocabulary": ["anava fatal", "trigar", "quina ràbia"],
+          "slang_to_include": ["tío", "fatal", "quina ràbia"],
+          "catalan_markers": ["anava", "vaig trigar", "arribar", "quina ràbia"],
+          "notes": "Transport complaints"
+        },
+        {
+          "id": "trv_adv_004",
+          "scenario": "transportation",
+          "situation": "Negotiating with a taxi driver",
+          "prompt_text": "Ask for a fixed price and negotiate",
+          "example_response": "Escolta, ¿cuánto me cobras hasta el aeropuerto? Es que con el taxímetro sale carísimo.",
+          "target_vocabulary": ["escolta", "cobras", "taxímetro", "carísimo"],
+          "slang_to_include": ["escolta"],
+          "catalan_markers": ["escolta"],
+          "notes": "Taxi negotiation"
+        },
+        {
+          "id": "trv_adv_005",
+          "scenario": "accommodation",
+          "situation": "Checking out of a hotel and giving feedback",
+          "prompt_text": "Say goodbye and comment on your stay",
+          "example_response": "Moltes gràcies per tot. L'estada ha estat genial. L'única pega és que el matalàs era una mica dur.",
+          "target_vocabulary": ["moltes gràcies", "estada", "pega", "matalàs"],
+          "catalan_markers": ["moltes gràcies", "l'estada", "ha estat", "pega", "matalàs"],
+          "notes": "Polite feedback in Catalan"
+        },
+        {
+          "id": "trv_adv_006",
+          "scenario": "restaurants",
+          "situation": "At a traditional Barcelona bar ordering vermut",
+          "prompt_text": "Order like a local at a vermouth bar",
+          "example_response": "Poseu-me un vermut amb olives i anxoves. Ah, i unes patates braves si en teniu.",
+          "target_vocabulary": ["vermut", "olives", "anxoves", "patates braves"],
+          "catalan_markers": ["poseu-me", "si en teniu"],
+          "notes": "Classic Barcelona order"
+        },
+        {
+          "id": "trv_adv_007",
+          "scenario": "restaurants",
+          "situation": "Recommending a restaurant to a tourist",
+          "prompt_text": "Give a local recommendation",
+          "example_response": "Home, no vagis als llocs turístics. Conec un bar genial al Poblenou. Les tapes ho peten!",
+          "target_vocabulary": ["llocs turístics", "ho peten"],
+          "slang_to_include": ["home", "ho peten"],
+          "catalan_markers": ["no vagis", "llocs", "ho peten"],
+          "notes": "Local food recommendations"
+        },
+        {
+          "id": "trv_adv_008",
+          "scenario": "emergencies",
+          "situation": "Your friend got hurt and you need to explain to a doctor",
+          "prompt_text": "Describe what happened",
+          "example_response": "Miri, el meu amic ha caigut i s'ha fet mal al peu. Li fa molt de mal i no pot caminar.",
+          "target_vocabulary": ["ha caigut", "s'ha fet mal", "fa mal", "caminar"],
+          "catalan_markers": ["miri", "el meu amic", "ha caigut", "s'ha fet mal", "li fa"],
+          "notes": "Medical emergency in Catalan"
+        }
+      ]
+    },
+    "business": {
+      "beginner": [
+        {
+          "id": "bus_beg_001",
+          "scenario": "formal_introductions",
+          "situation": "Meeting a colleague for the first time",
+          "prompt_text": "Introduce yourself formally",
+          "example_response": "Buenos días. Soy María. Encantada de conocerle.",
+          "target_vocabulary": ["buenos días", "encantado/a", "conocerle"],
+          "notes": "Formal introduction"
+        },
+        {
+          "id": "bus_beg_002",
+          "scenario": "formal_introductions",
+          "situation": "Entering an office for a meeting",
+          "prompt_text": "Greet and say you have a meeting",
+          "example_response": "Buenos días. Tengo una reunión con el señor García.",
+          "target_vocabulary": ["reunión", "señor/señora"],
+          "notes": "Office arrival"
+        },
+        {
+          "id": "bus_beg_003",
+          "scenario": "work_talk",
+          "situation": "Someone asks what you do for work",
+          "prompt_text": "Say your profession",
+          "example_response": "Trabajo en una empresa. Soy programador.",
+          "target_vocabulary": ["trabajo", "empresa", "soy"],
+          "notes": "Basic job description"
+        },
+        {
+          "id": "bus_beg_004",
+          "scenario": "work_talk",
+          "situation": "Your colleague asks how work is going",
+          "prompt_text": "Say you're busy",
+          "example_response": "Estoy muy ocupado hoy. Tengo mucho trabajo.",
+          "target_vocabulary": ["ocupado", "trabajo"],
+          "notes": "Work status"
+        },
+        {
+          "id": "bus_beg_005",
+          "scenario": "professional_requests",
+          "situation": "You need a document from a colleague",
+          "prompt_text": "Ask for it politely",
+          "example_response": "¿Puede enviarme el documento, por favor?",
+          "target_vocabulary": ["puede", "enviar", "documento"],
+          "notes": "Formal request"
+        },
+        {
+          "id": "bus_beg_006",
+          "scenario": "money",
+          "situation": "Asking about price in a shop",
+          "prompt_text": "Ask how much something costs",
+          "example_response": "¿Cuánto cuesta esto? ¿Aceptan tarjeta?",
+          "target_vocabulary": ["cuánto cuesta", "tarjeta"],
+          "notes": "Basic payment"
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "bus_int_001",
+          "scenario": "work_talk",
+          "situation": "Chatting with colleagues about the workday",
+          "prompt_text": "Talk about how busy work has been",
+          "example_response": "Menudo día llevo en el curro. No he parado ni un momento. Estoy hasta arriba.",
+          "target_vocabulary": ["curro", "no he parado", "hasta arriba"],
+          "slang_to_include": ["curro", "hasta arriba"],
+          "notes": "Casual work complaints"
+        },
+        {
+          "id": "bus_int_002",
+          "scenario": "work_talk",
+          "situation": "Telling a friend about your job",
+          "prompt_text": "Describe your work hours and commute",
+          "example_response": "Entro a las nueve y plego a las seis. El curro está lejos, tardo una hora en llegar.",
+          "target_vocabulary": ["plego", "curro", "tardo"],
+          "slang_to_include": ["plego", "curro"],
+          "notes": "Work schedule with Catalan 'plego'"
+        },
+        {
+          "id": "bus_int_003",
+          "scenario": "meetings",
+          "situation": "You can't attend a meeting",
+          "prompt_text": "Apologize and ask to reschedule",
+          "example_response": "Perdona, no puedo ir a la reunión mañana. Tengo un marrón con otro proyecto. ¿La podemos mover?",
+          "target_vocabulary": ["reunión", "marrón", "mover"],
+          "slang_to_include": ["marrón"],
+          "notes": "Rescheduling with slang"
+        },
+        {
+          "id": "bus_int_004",
+          "scenario": "meetings",
+          "situation": "Giving your opinion in a work meeting",
+          "prompt_text": "Politely disagree with a proposal",
+          "example_response": "En plan, entiendo lo que dices, pero no me acaba de convencer. ¿Y si probamos otra cosa?",
+          "target_vocabulary": ["en plan", "no me convence", "probamos"],
+          "slang_to_include": ["en plan"],
+          "notes": "Professional disagreement"
+        },
+        {
+          "id": "bus_int_005",
+          "scenario": "money",
+          "situation": "Discussing finances with a friend",
+          "prompt_text": "Say you're saving money for something",
+          "example_response": "Estoy ahorrando pasta para las vacaciones. Este mes voy justo de dinero.",
+          "target_vocabulary": ["pasta", "ahorrando", "justo"],
+          "slang_to_include": ["pasta", "ir justo"],
+          "notes": "Money talk with slang"
+        },
+        {
+          "id": "bus_int_006",
+          "scenario": "money",
+          "situation": "Colleague asks to borrow money",
+          "prompt_text": "Explain you're broke this month",
+          "example_response": "Lo siento, tío, estoy pelado hasta fin de mes. El alquiler me ha dejado tieso.",
+          "target_vocabulary": ["pelado", "tieso", "alquiler"],
+          "slang_to_include": ["pelado", "tieso", "tío"],
+          "notes": "Being broke"
+        },
+        {
+          "id": "bus_int_007",
+          "scenario": "professional_requests",
+          "situation": "Asking your boss for a day off",
+          "prompt_text": "Make the request politely",
+          "example_response": "Perdona, ¿podría cogerme el viernes libre? Es que tengo un tema personal.",
+          "target_vocabulary": ["podría", "cogerme", "día libre", "tema"],
+          "notes": "Time off request"
+        },
+        {
+          "id": "bus_int_008",
+          "scenario": "work_talk",
+          "situation": "It's Friday afternoon",
+          "prompt_text": "Say goodbye to colleagues for the weekend",
+          "example_response": "Venga, me piro que ya es viernes. Buen finde a todos. Luego nos vemos.",
+          "target_vocabulary": ["me piro", "finde", "venga"],
+          "slang_to_include": ["me piro", "finde", "venga"],
+          "notes": "Casual Friday goodbye"
+        }
+      ],
+      "advanced": [
+        {
+          "id": "bus_adv_001",
+          "scenario": "work_talk",
+          "situation": "Complaining about work stress to a friend",
+          "prompt_text": "Describe being overworked",
+          "example_response": "Tío, el curro m'està matant. Porto setmanes sense plegar abans de les vuit. Estic rebentat.",
+          "target_vocabulary": ["m'està matant", "porto setmanes", "plegar", "rebentat"],
+          "slang_to_include": ["curro", "plegar", "rebentat"],
+          "catalan_markers": ["m'està matant", "porto", "plegar"],
+          "notes": "Work complaints in Catalan"
+        },
+        {
+          "id": "bus_adv_002",
+          "scenario": "work_talk",
+          "situation": "Telling someone about quitting your job",
+          "prompt_text": "Explain why you left",
+          "example_response": "Vaig plegar perquè el cap era insuportable. A més, no em pagaven prou. Quina ràbia de feina!",
+          "target_vocabulary": ["vaig plegar", "cap", "insuportable", "quina ràbia"],
+          "slang_to_include": ["plegar", "quina ràbia"],
+          "catalan_markers": ["vaig plegar", "perquè", "em pagaven", "feina"],
+          "notes": "Job departure story"
+        },
+        {
+          "id": "bus_adv_003",
+          "scenario": "money",
+          "situation": "Discussing the cost of living in Barcelona",
+          "prompt_text": "Complain about expenses",
+          "example_response": "Home, Barcelona és caríssima. Els lloguers van pels núvols. No tinc calés ni per sortir.",
+          "target_vocabulary": ["caríssima", "lloguers", "van pels núvols", "calés"],
+          "slang_to_include": ["home", "calés"],
+          "catalan_markers": ["home", "caríssima", "lloguers", "van pels núvols", "no tinc"],
+          "notes": "Cost of living complaints"
+        },
+        {
+          "id": "bus_adv_004",
+          "scenario": "money",
+          "situation": "Friend asks if you can lend them money",
+          "prompt_text": "Explain your financial situation",
+          "example_response": "Escolta, ara mateix estic pelat. M'han arribat un munt de factures i estic molt just de pasta.",
+          "target_vocabulary": ["pelat", "factures", "just de pasta"],
+          "slang_to_include": ["escolta", "pelat", "pasta"],
+          "catalan_markers": ["escolta", "ara mateix", "estic", "m'han arribat", "munt"],
+          "notes": "Declining money request"
+        },
+        {
+          "id": "bus_adv_005",
+          "scenario": "meetings",
+          "situation": "A meeting is going badly",
+          "prompt_text": "Express frustration to a colleague afterward",
+          "example_response": "Quina reunió més inútil, tío. Hem perdut dues hores i no hem decidit res. Quina ràbia!",
+          "target_vocabulary": ["quina reunió", "inútil", "hem perdut", "quina ràbia"],
+          "slang_to_include": ["tío", "quina ràbia"],
+          "catalan_markers": ["quina reunió", "hem perdut", "hem decidit"],
+          "notes": "Meeting frustration"
+        },
+        {
+          "id": "bus_adv_006",
+          "scenario": "meetings",
+          "situation": "You have a good idea to share in a meeting",
+          "prompt_text": "Present your idea confidently",
+          "example_response": "Escolta, tinc una idea que pot funcionar. I si ho fem així? Crec que seria més eficient.",
+          "target_vocabulary": ["tinc una idea", "pot funcionar", "seria més eficient"],
+          "catalan_markers": ["escolta", "tinc", "pot", "ho fem", "crec", "seria"],
+          "notes": "Presenting ideas"
+        },
+        {
+          "id": "bus_adv_007",
+          "scenario": "professional_requests",
+          "situation": "Asking for a raise",
+          "prompt_text": "Make your case to your boss",
+          "example_response": "Miri, porto aquí tres anys i crec que em mereixo una pujada. La meva feina ha millorat molt.",
+          "target_vocabulary": ["porto", "em mereixo", "pujada", "feina"],
+          "catalan_markers": ["miri", "porto", "crec", "em mereixo", "la meva feina", "ha millorat"],
+          "notes": "Salary negotiation"
+        },
+        {
+          "id": "bus_adv_008",
+          "scenario": "formal_introductions",
+          "situation": "Networking at a professional event in Barcelona",
+          "prompt_text": "Introduce yourself and your company",
+          "example_response": "Hola, sóc el Marc, de l'empresa TechBarcelona. Encantat. Què tal? Vosaltres a què us dediqueu?",
+          "target_vocabulary": ["sóc", "empresa", "encantat", "us dediqueu"],
+          "catalan_markers": ["sóc", "de l'empresa", "vosaltres", "us dediqueu"],
+          "notes": "Professional networking in Catalan"
+        }
+      ]
+    }
+  },
+  "recording_sessions": {
+    "session_1_newbies_all_beginner": {
+      "description": "All newbies record beginner prompts across all 3 categories",
+      "target_speakers": "All 4 newbies",
+      "prompts": {
+        "social": ["soc_beg_001", "soc_beg_002", "soc_beg_003", "soc_beg_004", "soc_beg_005", "soc_beg_006"],
+        "travel": ["trv_beg_001", "trv_beg_002", "trv_beg_003", "trv_beg_004", "trv_beg_005", "trv_beg_006", "trv_beg_007", "trv_beg_008"],
+        "business": ["bus_beg_001", "bus_beg_002", "bus_beg_003", "bus_beg_004", "bus_beg_005", "bus_beg_006"]
+      },
+      "estimated_time": "20-25 minutes per speaker",
+      "instructions": "Focus on clear pronunciation. Mistakes are okay and valuable data!"
+    },
+    "session_2_newbies_intermediate": {
+      "description": "Newbies attempt intermediate prompts (as many as comfortable)",
+      "target_speakers": "All 4 newbies",
+      "prompts": {
+        "social": ["soc_int_001", "soc_int_002", "soc_int_003", "soc_int_004"],
+        "travel": ["trv_int_001", "trv_int_002", "trv_int_005", "trv_int_006"],
+        "business": ["bus_int_001", "bus_int_002", "bus_int_005", "bus_int_008"]
+      },
+      "estimated_time": "15-20 minutes per speaker",
+      "instructions": "Try to incorporate slang words. Don't worry if it feels unnatural."
+    },
+    "session_3_good_speakers": {
+      "description": "Good speakers record ALL prompts as gold standard",
+      "target_speakers": "Both good speakers",
+      "prompts": "ALL prompts from all 3 categories and all levels",
+      "estimated_time": "45-60 minutes per speaker",
+      "instructions": "Record naturally with all slang and regional markers. These are the reference recordings."
+    }
+  },
+  "file_naming": {
+    "format": "{speaker_id}_{category}_{level}_{prompt_id}.wav",
+    "examples": [
+      "newbie01_social_beg_soc_beg_001.wav",
+      "newbie02_travel_int_trv_int_003.wav",
+      "goodspeaker01_business_adv_bus_adv_005.wav"
+    ],
+    "speaker_ids": {
+      "newbies": ["newbie01", "newbie02", "newbie03", "newbie04"],
+      "good_speakers": ["goodspeaker01", "goodspeaker02"]
+    }
+  },
+  "evaluation_notes": {
+    "comparison_strategy": "Compare newbie recordings to good speaker recordings for same prompts",
+    "metrics": [
+      "Pronunciation accuracy",
+      "Vocabulary appropriateness",
+      "Slang usage correctness",
+      "Natural intonation",
+      "Register appropriateness (formal vs casual)",
+      "Regional marker presence (Catalan expressions)"
+    ],
+    "category_specific_focus": {
+      "social": "Natural slang usage, emotional expression, casual register",
+      "travel": "Clear communication, polite requests, practical vocabulary",
+      "business": "Professional register, work slang (curro, plego), money vocabulary"
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "total_entries": 13565,
+  "catalan_slang": {
+    "entries": 170,
+    "percentage": 1.25,
+    "top_terms": [
+      [
+        "hostia",
+        95
+      ],
+      [
+        "nena",
+        50
+      ],
+      [
+        "adeu",
+        10
+      ],
+      [
+        "vinga",
+        9
+      ],
+      [
+        "nen",
+        8
+      ],
+      [
+        "molt bé",
+        4
+      ],
+      [
+        "gracies",
+        3
+      ],
+      [
+        "bona nit",
+        3
+      ],
+      [
+        "si us plau",
+        3
+      ],
+      [
+        "collons",
+        1
+      ],
+      [
+        "molt be",
+        1
+      ],
+      [
+        "gràcies",
+        1
+      ],
+      [
+        "hòstia",
+        1
+      ],
+      [
+        "fill de puta",
+        1
+      ],
+      [
+        "escolta",
+        1
+      ],
+      [
+        "macu",
+        1
+      ],
+      [
+        "ostras",
+        1
+      ]
+    ]
+  },
+  "spanish_slang": {
+    "entries": 2090,
+    "percentage": 15.41,
+    "top_terms": [
+      [
+        "vale",
+        598
+      ],
+      [
+        "genial",
+        327
+      ],
+      [
+        "mierda",
+        219
+      ],
+      [
+        "joder",
+        160
+      ],
+      [
+        "increíble",
+        137
+      ],
+      [
+        "en serio",
+        131
+      ],
+      [
+        "tío",
+        128
+      ],
+      [
+        "puta",
+        125
+      ],
+      [
+        "hostia",
+        95
+      ],
+      [
+        "culo",
+        59
+      ],
+      [
+        "coño",
+        57
+      ],
+      [
+        "fiesta",
+        46
+      ],
+      [
+        "tía",
+        45
+      ],
+      [
+        "lío",
+        43
+      ],
+      [
+        "que va",
+        42
+      ],
+      [
+        "cabrón",
+        40
+      ],
+      [
+        "quedar",
+        38
+      ],
+      [
+        "pasta",
+        38
+      ],
+      [
+        "chaval",
+        32
+      ],
+      [
+        "rollo",
+        30
+      ],
+      [
+        "gilipollas",
+        27
+      ],
+      [
+        "qué va",
+        24
+      ],
+      [
+        "quedamos",
+        23
+      ],
+      [
+        "marcha",
+        23
+      ],
+      [
+        "guay",
+        19
+      ],
+      [
+        "imbécil",
+        19
+      ],
+      [
+        "pasada",
+        15
+      ],
+      [
+        "en plan",
+        11
+      ],
+      [
+        "capullo",
+        9
+      ],
+      [
+        "colega",
+        8
+      ]
+    ]
+  },
+  "combined": {
+    "entries": 2164,
+    "percentage": 15.95
+  }
+}

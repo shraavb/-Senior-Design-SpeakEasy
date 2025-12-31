@@ -1,0 +1,281 @@
+{
+  "metadata": {
+    "description": "Curated examples of good user responses for training and evaluation",
+    "purpose": "DPO training, user feedback examples, rubric calibration",
+    "collection_date": "2024-12-30",
+    "version": "1.0"
+  },
+  "examples": [
+    {
+      "id": "good_greetings_001",
+      "scenario": "greetings",
+      "prompt": "Say hello to a friend you haven't seen in a while",
+      "context": "Casual street encounter in Barcelona",
+      "response": {
+        "text": "¡Ei, nen! Què tal? Fa temps que no et veig! Com va tot?",
+        "why_good": [
+          "Uses Catalan greeting 'Ei'",
+          "Regional address term 'nen'",
+          "Natural follow-up questions",
+          "Appropriate informality for friends",
+          "Shows genuine interest"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["nen", "què tal"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_greetings_002",
+      "scenario": "greetings",
+      "prompt": "Greet a colleague at work",
+      "context": "Office in Barcelona, semi-formal",
+      "response": {
+        "text": "¡Hola! Buenos días. ¿Qué tal el finde? ¿Todo bien?",
+        "why_good": [
+          "Appropriate formality level",
+          "Uses 'finde' (casual but not too informal)",
+          "Friendly follow-up",
+          "Natural conversation starter"
+        ],
+        "vocabulary_level": "intermediate",
+        "slang_used": ["finde"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_farewells_001",
+      "scenario": "farewells",
+      "prompt": "Say goodbye to friends after a night out",
+      "context": "Leaving a bar in Barcelona",
+      "response": {
+        "text": "Vinga, apa! Ha mola't molt. Ens veiem la setmana que ve!",
+        "why_good": [
+          "Uses Catalan farewells 'Vinga, apa'",
+          "Expresses enjoyment naturally",
+          "Makes future plans",
+          "Warm and friendly tone"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["vinga", "apa", "mola't"],
+        "cefr_estimate": "B2"
+      }
+    },
+    {
+      "id": "good_farewells_002",
+      "scenario": "farewells",
+      "prompt": "End a phone call with a family member",
+      "context": "Casual family conversation",
+      "response": {
+        "text": "Bueno, te dejo que tengo que currar. Un beso, ¿vale? Cuídate mucho.",
+        "why_good": [
+          "Natural conversation closer",
+          "Uses 'currar' (work slang)",
+          "Affectionate closing",
+          "Common 'vale' confirmation"
+        ],
+        "vocabulary_level": "intermediate",
+        "slang_used": ["currar", "vale"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_emotions_001",
+      "scenario": "emotions",
+      "prompt": "Express excitement about good news",
+      "context": "Friend tells you they got a new job",
+      "response": {
+        "text": "¡Quina passada! ¡Flipo! Me alegro mogollón por ti, tío.",
+        "why_good": [
+          "Authentic excitement with 'Quina passada'",
+          "Uses 'Flipo' for amazement",
+          "Intensifier 'mogollón'",
+          "Natural address 'tío'"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["quina passada", "flipo", "mogollón", "tío"],
+        "cefr_estimate": "B2"
+      }
+    },
+    {
+      "id": "good_emotions_002",
+      "scenario": "emotions",
+      "prompt": "Express tiredness after a long day",
+      "context": "Coming home from work",
+      "response": {
+        "text": "Estic mort. Ha sido un día muy largo en el curro. Quina mandra de hacer nada.",
+        "why_good": [
+          "Uses Catalan 'Estic mort' (I'm dead/exhausted)",
+          "Natural code-switching",
+          "'Quina mandra' expresses laziness authentically",
+          "Relates to work context"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["estic mort", "curro", "quina mandra"],
+        "cefr_estimate": "B2"
+      }
+    },
+    {
+      "id": "good_plans_001",
+      "scenario": "plans",
+      "prompt": "Suggest going out this weekend",
+      "context": "Texting with friends",
+      "response": {
+        "text": "¿Quedem aquest dissabte? Podríem anar a fer el vermut i després sortir de festa.",
+        "why_good": [
+          "Uses Catalan 'Quedem' for making plans",
+          "'Fer el vermut' is very Barcelona-specific",
+          "'Sortir de festa' for going out",
+          "Clear two-part plan suggestion"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["quedem", "fer el vermut", "sortir de festa"],
+        "cefr_estimate": "B2"
+      }
+    },
+    {
+      "id": "good_plans_002",
+      "scenario": "plans",
+      "prompt": "Accept an invitation to meet",
+      "context": "Friend invites you for coffee",
+      "response": {
+        "text": "¡Vale, guay! ¿A las cinco te va bien? Yo plego a las cuatro del curro.",
+        "why_good": [
+          "Enthusiastic acceptance",
+          "Confirms time works",
+          "Uses 'plego' (Catalan for finish work)",
+          "Natural flow of acceptance + logistics"
+        ],
+        "vocabulary_level": "intermediate",
+        "slang_used": ["vale", "guay", "plego", "curro"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_opinions_001",
+      "scenario": "opinions",
+      "prompt": "Express agreement with someone's idea",
+      "context": "Discussion about restaurant choice",
+      "response": {
+        "text": "Home, és veritat. Tal cual, ese sitio mola mucho. Además no es caro.",
+        "why_good": [
+          "Uses Catalan filler 'Home'",
+          "'És veritat' for agreement",
+          "'Tal cual' for emphasis",
+          "Adds supporting reason"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["home", "és veritat", "tal cual", "mola"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_opinions_002",
+      "scenario": "opinions",
+      "prompt": "Disagree politely with a suggestion",
+      "context": "Friend suggests a movie you don't like",
+      "response": {
+        "text": "No sé, tío... en plan, no me acaba de convencer. ¿Y si vemos otra cosa?",
+        "why_good": [
+          "Softens disagreement with 'No sé'",
+          "Uses 'en plan' as hedging",
+          "Offers alternative",
+          "Maintains friendly tone"
+        ],
+        "vocabulary_level": "intermediate",
+        "slang_used": ["tío", "en plan"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_reactions_001",
+      "scenario": "reactions_exclamations",
+      "prompt": "React to surprising news",
+      "context": "Friend tells you unexpected story",
+      "response": {
+        "text": "¡Hòstia! ¿De debò? Ni de conya, tía. ¡Que fort!",
+        "why_good": [
+          "Authentic surprise with 'Hòstia'",
+          "'De debò' for disbelief",
+          "'Ni de conya' intensifies",
+          "'Que fort' completes reaction"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["hòstia", "de debò", "ni de conya", "tía", "que fort"],
+        "cefr_estimate": "B2"
+      }
+    },
+    {
+      "id": "good_requests_001",
+      "scenario": "requests",
+      "prompt": "Ask a friend for a favor",
+      "context": "Need help moving furniture",
+      "response": {
+        "text": "Escolta, nen, ¿me podrías echar una mano el sábado? Es que me mudo y necesito ayuda.",
+        "why_good": [
+          "Polite opener with 'Escolta'",
+          "Uses 'nen' naturally",
+          "Explains reason for request",
+          "Not demanding"
+        ],
+        "vocabulary_level": "intermediate",
+        "slang_used": ["escolta", "nen", "echar una mano"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_apologies_001",
+      "scenario": "apologies",
+      "prompt": "Apologize for being late",
+      "context": "Arriving late to meet friends",
+      "response": {
+        "text": "Ostras, perdona! L'he cagat con el tiempo. El metro iba fatal.",
+        "why_good": [
+          "Sincere opener with 'Ostras'",
+          "Takes responsibility with 'L'he cagat'",
+          "Provides explanation",
+          "Not over-apologizing"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["ostras", "l'he cagat", "fatal"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_money_001",
+      "scenario": "money_work",
+      "prompt": "Explain you can't afford something",
+      "context": "Friends inviting you to expensive dinner",
+      "response": {
+        "text": "No tinc calés, estic pelat hasta fin de mes. ¿Podemos ir a un sitio más barato?",
+        "why_good": [
+          "Uses Catalan 'calés' for money",
+          "'Pelat' for broke",
+          "Honest without being awkward",
+          "Offers alternative"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["calés", "pelat"],
+        "cefr_estimate": "B1"
+      }
+    },
+    {
+      "id": "good_party_001",
+      "scenario": "party_nightlife",
+      "prompt": "Describe last night's party",
+      "context": "Telling a friend about going out",
+      "response": {
+        "text": "Tío, la festa ho va petar! Vaig anar torrat a casa. Hoy tengo una resaca brutal.",
+        "why_good": [
+          "'Ho va petar' for great party",
+          "'Anar torrat' for being drunk",
+          "Natural mix of languages",
+          "Authentic party vocabulary"
+        ],
+        "vocabulary_level": "advanced",
+        "slang_used": ["tío", "ho va petar", "anar torrat", "resaca", "brutal"],
+        "cefr_estimate": "B2"
+      }
+    }
+  ]
+}

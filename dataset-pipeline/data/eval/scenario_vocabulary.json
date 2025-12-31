@@ -23,7 +23,23 @@
       "apa",
       "home",
       "buenas"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["tío", "tía", "chaval", "colega", "macho"],
+      "examples": [
+        {"phrase": "¡Eh, tío! ¿Qué tal?", "translation": "Hey dude! What's up?"},
+        {"phrase": "¿Qué pasa, colega?", "translation": "What's up, buddy?"},
+        {"phrase": "Hola, chaval, ¿cómo va?", "translation": "Hi kid, how's it going?"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["nen", "nena", "nano", "home", "bonica"],
+      "examples": [
+        {"phrase": "Ei, nen! Què tal?", "translation": "Hey dude! What's up?"},
+        {"phrase": "Hola, nena! Com estàs?", "translation": "Hi girl! How are you?"},
+        {"phrase": "Bon dia, home!", "translation": "Good morning, man!"}
+      ]
+    }
   },
   "farewells": {
     "beginner": [
@@ -45,7 +61,23 @@
       "apa",
       "adéu",
       "a reveure"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["venga", "vale", "nos vemos", "luego"],
+      "examples": [
+        {"phrase": "Venga, tío, nos vemos", "translation": "Alright dude, see you"},
+        {"phrase": "Vale, luego hablamos", "translation": "Okay, talk later"},
+        {"phrase": "Anda, cuídate mucho", "translation": "Go on, take care"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["vinga", "apa", "va", "adéu", "ja ens veiem"],
+      "examples": [
+        {"phrase": "Vinga, apa! Ens veiem!", "translation": "Alright then! See you!"},
+        {"phrase": "Va, adéu! Cuida't!", "translation": "Okay, bye! Take care!"},
+        {"phrase": "Doncs ja està, ens veiem demà", "translation": "Well that's it, see you tomorrow"}
+      ]
+    }
   },
   "family": {
     "beginner": [
@@ -71,7 +103,23 @@
       "nen",
       "avi",
       "iaia"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["viejo", "vieja", "papi", "mami", "peque"],
+      "examples": [
+        {"phrase": "Mi viejo siempre dice eso", "translation": "My old man always says that"},
+        {"phrase": "Voy a casa de mis viejos", "translation": "I'm going to my parents' house"},
+        {"phrase": "El peque está dormido", "translation": "The little one is asleep"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["nen", "nena", "avi", "iaia", "nano"],
+      "examples": [
+        {"phrase": "El meu nen és molt maco", "translation": "My kid is very cute"},
+        {"phrase": "La iaia fa uns pastissos genials", "translation": "Grandma makes amazing cakes"},
+        {"phrase": "El nano ja camina", "translation": "The little one already walks"}
+      ]
+    }
   },
   "emotions": {
     "beginner": [
@@ -96,7 +144,26 @@
       "flipar",
       "molar",
       "estar rallat"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["flipar", "alucinar", "molar", "currar", "rayarse", "agobiarse"],
+      "examples": [
+        {"phrase": "¡Flipo! No me lo creo", "translation": "I'm shook! I can't believe it"},
+        {"phrase": "Estoy rayado con el trabajo", "translation": "I'm stressed about work"},
+        {"phrase": "Me agobia mucho esta situación", "translation": "This situation overwhelms me"},
+        {"phrase": "Estoy fatal hoy", "translation": "I feel terrible today"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["flipar", "al·lucinar", "estar rallat", "estar fatal", "estic mort", "quina mandra"],
+      "examples": [
+        {"phrase": "He flipat molt amb la notícia", "translation": "I'm shook by the news"},
+        {"phrase": "Estic rallat amb tot", "translation": "I'm stressed about everything"},
+        {"phrase": "Estic mort després de la festa", "translation": "I'm dead after the party"},
+        {"phrase": "Quina mandra! No vull fer res", "translation": "I'm so lazy! I don't want to do anything"},
+        {"phrase": "Molt heavy la situació", "translation": "The situation is intense"}
+      ]
+    }
   },
   "opinions": {
     "beginner": [
@@ -119,7 +186,27 @@
       "home",
       "ostras",
       "collons"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["mola", "guay", "genial", "brutal", "qué va", "en serio", "tal cual", "en plan"],
+      "examples": [
+        {"phrase": "¡Mola mucho! Me encanta", "translation": "That's so cool! I love it"},
+        {"phrase": "¡Qué guay! Es genial", "translation": "How cool! It's great"},
+        {"phrase": "Qué va, eso no es verdad", "translation": "No way, that's not true"},
+        {"phrase": "Tal cual, tienes razón", "translation": "Exactly, you're right"},
+        {"phrase": "En plan, no sé qué decir", "translation": "Like, I don't know what to say"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["guai", "genial", "brutal", "de debò", "és veritat", "ni de conya", "que fort", "home"],
+      "examples": [
+        {"phrase": "Guai! M'agrada molt", "translation": "Cool! I like it a lot"},
+        {"phrase": "Ni de conya faré això", "translation": "No way I'm doing that"},
+        {"phrase": "De debò? No m'ho crec!", "translation": "Really? I don't believe it!"},
+        {"phrase": "Que fort! Això és increïble", "translation": "That's crazy! This is incredible"},
+        {"phrase": "Home, és veritat el que dius", "translation": "Man, what you're saying is true"}
+      ]
+    }
   },
   "plans": {
     "beginner": [
@@ -141,7 +228,27 @@
       "apa va",
       "va",
       "fem"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["quedamos", "salir de fiesta", "ir de cañas", "marcha", "movida", "botellón"],
+      "examples": [
+        {"phrase": "¿Quedamos a las ocho?", "translation": "Shall we meet at eight?"},
+        {"phrase": "¿Salimos de fiesta esta noche?", "translation": "Shall we go out partying tonight?"},
+        {"phrase": "Vamos de cañas después del curro", "translation": "Let's grab beers after work"},
+        {"phrase": "Hay movida en el centro", "translation": "There's action in the center"},
+        {"phrase": "¿Hacemos botellón antes?", "translation": "Shall we do pre-drinks first?"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["quedem", "sortir de festa", "fer el vermut", "ens la fotem", "anar de copes"],
+      "examples": [
+        {"phrase": "Quedem avui a la nit?", "translation": "Shall we meet tonight?"},
+        {"phrase": "Sortim de festa al Raval?", "translation": "Shall we go out in Raval?"},
+        {"phrase": "Anem a fer el vermut?", "translation": "Shall we go for aperitif drinks?"},
+        {"phrase": "Ens la fotem avui?", "translation": "Should we party today?"},
+        {"phrase": "Vinga va, anem!", "translation": "Come on, let's go!"}
+      ]
+    }
   },
   "requests": {
     "beginner": [
@@ -163,7 +270,24 @@
       "si us plau",
       "home",
       "escolta"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["venga", "anda", "oye", "mira", "porfa"],
+      "examples": [
+        {"phrase": "Venga, ayúdame con esto", "translation": "Come on, help me with this"},
+        {"phrase": "Anda, no seas borde", "translation": "Come on, don't be rude"},
+        {"phrase": "Oye, ¿me pasas la pasta?", "translation": "Hey, can you pass me the money?"},
+        {"phrase": "Porfa, necesito un favor", "translation": "Please, I need a favor"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["escolta", "vinga", "si us plau", "home", "apa"],
+      "examples": [
+        {"phrase": "Escolta, em pots ajudar?", "translation": "Listen, can you help me?"},
+        {"phrase": "Vinga, home, fes-me aquest favor", "translation": "Come on, man, do me this favor"},
+        {"phrase": "Si us plau, necessito els calés", "translation": "Please, I need the money"}
+      ]
+    }
   },
   "apologies": {
     "beginner": [
@@ -183,7 +307,23 @@
     "catalan_regional": [
       "home, perdona",
       "ostras, perdona"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["la he cagado", "la he liado", "mierda", "joder"],
+      "examples": [
+        {"phrase": "Perdona, la he cagado", "translation": "Sorry, I screwed up"},
+        {"phrase": "Joder, lo siento mucho", "translation": "Damn, I'm really sorry"},
+        {"phrase": "La he liado, ¿verdad?", "translation": "I messed up, didn't I?"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["l'he cagat", "hòstia, perdona", "merda", "ostras"],
+      "examples": [
+        {"phrase": "L'he cagat, ho sento molt", "translation": "I screwed up, I'm really sorry"},
+        {"phrase": "Hòstia, perdona! No ho sabia", "translation": "Damn, sorry! I didn't know"},
+        {"phrase": "Ostras, perdona, ha estat culpa meva", "translation": "Oh wow, sorry, it was my fault"}
+      ]
+    }
   },
   "small_talk": {
     "beginner": [
@@ -203,6 +343,131 @@
       "nen",
       "nena",
       "home"
-    ]
+    ],
+    "spanish_slang": {
+      "terms": ["curro", "finde", "rollo", "movida", "lío"],
+      "examples": [
+        {"phrase": "¿Qué tal el curro?", "translation": "How's work?"},
+        {"phrase": "¿Qué hiciste el finde?", "translation": "What did you do on the weekend?"},
+        {"phrase": "¿Qué rollo tienes hoy?", "translation": "What's your vibe today?"},
+        {"phrase": "Menudo lío tengo en casa", "translation": "What a mess I have at home"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["curro", "rotllo", "nen", "nena", "home", "nano"],
+      "examples": [
+        {"phrase": "Què tal el curro, nen?", "translation": "How's work, dude?"},
+        {"phrase": "Quin rotllo tens avui?", "translation": "What's your vibe today?"},
+        {"phrase": "Home, fa dies que no et veig!", "translation": "Man, haven't seen you in days!"},
+        {"phrase": "Escolta, nena, saps què?", "translation": "Listen, girl, you know what?"}
+      ]
+    }
+  },
+  "money_work": {
+    "beginner": [
+      "dinero",
+      "trabajo",
+      "pagar"
+    ],
+    "intermediate": [
+      "sueldo",
+      "ahorrar",
+      "gastar"
+    ],
+    "advanced": [
+      "presupuesto",
+      "inversión",
+      "deuda"
+    ],
+    "spanish_slang": {
+      "terms": ["pasta", "currar", "curro", "pelado", "forrado"],
+      "examples": [
+        {"phrase": "No tengo pasta", "translation": "I don't have money"},
+        {"phrase": "Estoy pelado hasta fin de mes", "translation": "I'm broke until end of month"},
+        {"phrase": "Tengo que currar mañana", "translation": "I have to work tomorrow"},
+        {"phrase": "Mi jefe está forrado", "translation": "My boss is loaded"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["calés", "pasta", "pelat", "currar", "curro", "plegar", "fer hores"],
+      "examples": [
+        {"phrase": "No tinc calés", "translation": "I don't have money"},
+        {"phrase": "Estic pelat aquest mes", "translation": "I'm broke this month"},
+        {"phrase": "Plego a les sis", "translation": "I finish work at six"},
+        {"phrase": "Estic fent hores extres", "translation": "I'm working overtime"}
+      ]
+    }
+  },
+  "party_nightlife": {
+    "beginner": [
+      "fiesta",
+      "música",
+      "bailar"
+    ],
+    "intermediate": [
+      "discoteca",
+      "copas",
+      "salir"
+    ],
+    "advanced": [
+      "ambiente",
+      "madrugada",
+      "resaca"
+    ],
+    "spanish_slang": {
+      "terms": ["resaca", "marcha", "botellón", "ir de cañas", "petarlo", "movida"],
+      "examples": [
+        {"phrase": "Tengo una resaca brutal", "translation": "I have a brutal hangover"},
+        {"phrase": "Anoche había mucha marcha", "translation": "Last night was wild"},
+        {"phrase": "La fiesta petó", "translation": "The party was lit"},
+        {"phrase": "¿Vamos de cañas?", "translation": "Shall we grab beers?"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["resaca", "anar torrat", "anar molt content", "fer el vermut", "sortir de festa", "ho peta"],
+      "examples": [
+        {"phrase": "Tinc una resaca brutal", "translation": "I have a brutal hangover"},
+        {"phrase": "Ahir vaig anar torrat a casa", "translation": "I went home wasted yesterday"},
+        {"phrase": "Anem a fer el vermut?", "translation": "Shall we do aperitif drinks?"},
+        {"phrase": "Aquesta cançó ho peta!", "translation": "This song is killing it!"},
+        {"phrase": "Vaig anar molt content ahir", "translation": "I was tipsy yesterday"}
+      ]
+    }
+  },
+  "reactions_exclamations": {
+    "beginner": [
+      "increíble",
+      "genial",
+      "fatal"
+    ],
+    "intermediate": [
+      "qué fuerte",
+      "no me digas",
+      "de verdad"
+    ],
+    "advanced": [
+      "no me lo puedo creer",
+      "es impresionante",
+      "estoy alucinando"
+    ],
+    "spanish_slang": {
+      "terms": ["hostia", "joder", "coño", "mierda", "flipar", "alucinar", "qué fuerte", "qué pasada"],
+      "examples": [
+        {"phrase": "¡Hostia! ¿Has visto eso?", "translation": "Damn! Did you see that?"},
+        {"phrase": "¡Flipo! No me lo creo", "translation": "I'm shook! I can't believe it"},
+        {"phrase": "¡Qué pasada! Es increíble", "translation": "That's amazing! It's incredible"},
+        {"phrase": "¡Alucino! No me esperaba esto", "translation": "I'm amazed! I didn't expect this"}
+      ]
+    },
+    "catalan_slang": {
+      "terms": ["hòstia", "collons", "merda", "flipar", "quina passada", "que fort", "ni de conya", "de debò"],
+      "examples": [
+        {"phrase": "Hòstia! Això és genial!", "translation": "Damn! This is great!"},
+        {"phrase": "Quina passada! No m'ho crec!", "translation": "That's amazing! I can't believe it!"},
+        {"phrase": "Collons! Què ha passat?", "translation": "Damn! What happened?"},
+        {"phrase": "He flipat molt amb això", "translation": "I'm shook by this"},
+        {"phrase": "Ni de conya! De debò?", "translation": "No way! Really?"}
+      ]
+    }
   }
 }

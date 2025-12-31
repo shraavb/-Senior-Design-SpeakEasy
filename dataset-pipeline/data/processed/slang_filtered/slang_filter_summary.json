@@ -1,0 +1,61 @@
+{
+  "total_entries": 13565,
+  "entries_with_catalan_slang": 158,
+  "percentage_with_slang": 1.16,
+  "slang_category_counts": {
+    "swears_edgy": 97,
+    "address_terms": 61,
+    "fillers_reactions": 13,
+    "money_work": 3
+  },
+  "top_slang_terms": {
+    "swears_edgy": [
+      [
+        "hostia",
+        95
+      ],
+      [
+        "collons",
+        1
+      ],
+      [
+        "hòstia",
+        1
+      ]
+    ],
+    "address_terms": [
+      [
+        "nena",
+        50
+      ],
+      [
+        "nen",
+        8
+      ],
+      [
+        "tio",
+        3
+      ]
+    ],
+    "fillers_reactions": [
+      [
+        "vinga",
+        9
+      ],
+      [
+        "che",
+        3
+      ],
+      [
+        "ostras",
+        1
+      ]
+    ],
+    "money_work": [
+      [
+        "curro",
+        3
+      ]
+    ]
+  }
+}

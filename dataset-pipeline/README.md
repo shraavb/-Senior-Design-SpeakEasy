@@ -184,6 +184,81 @@ This generates models from both approaches and saves comparison metrics to `mode
 | **1: LoRA Only** | Simple | ~2-4 hours | Quick adaptation |
 | **2: Full Pipeline** | Advanced | ~8-24 hours | Deep dialect specialization |
 
+## A/B Testing Framework
+
+We provide an A/B testing framework to compare different fine-tuning approaches and measure learning outcomes.
+
+### Available Experiments
+
+| Experiment | Approaches Compared | Purpose |
+|------------|---------------------|---------|
+| `pilot_v1` | LoRA Only vs Slang-Augmented | Test if slang augmentation improves authenticity |
+| `pilot_v2` | Baseline vs LoRA | Test if fine-tuning outperforms prompt engineering |
+| `full_comparison` | LoRA vs Tokenizer Expansion | Comprehensive approach comparison |
+
+### Quick Start
+
+```python
+from src.ab_testing import ExperimentConfig, assign_user_to_group, MetricsCollector
+
+# Get experiment configuration
+config = ExperimentConfig()
+experiment = config.get_experiment("pilot_v1")
+
+# Assign user to a group (deterministic)
+group = assign_user_to_group("user_123", "pilot_v1")  # Returns "A" or "B"
+
+# Collect metrics
+collector = MetricsCollector(experiment_id="pilot_v1")
+collector.record_interaction(
+    user_id="user_123",
+    group=group,
+    interaction_type="dialogue_completion",
+    metrics={"vocabulary_score": 12, "slang_usage_rate": 0.15}
+)
+```
+
+See `src/ab_testing/` for full implementation.
+
+## User Evaluation System
+
+We provide a comprehensive evaluation system for measuring user learning outcomes and response quality.
+
+**[Full User Evaluation Documentation](docs/USER_EVALUATION_README.md)**
+
+### Key Features
+
+- **Automatic Response Scoring**: Vocabulary, grammar, slang usage, BLEU score
+- **CEFR Level Assessment**: A1-B2 proficiency determination
+- **Ground Truth Comparison**: Evaluate against movie dialogue references
+- **Good/Bad Response Collection**: For DPO training preparation
+
+### Quick Start
+
+```python
+from src.evaluation import ResponseScorer
+
+scorer = ResponseScorer()
+result = scorer.score_response(
+    user_response="¡Hola, tío! ¿Qué tal todo?",
+    scenario="greetings"
+)
+
+print(f"Vocabulary Score: {result['vocabulary_score']}")
+print(f"Slang Usage: {result['slang_usage_rate']:.1%}")
+print(f"CEFR Level: {result['cefr_level']}")
+```
+
+### Metrics Tracked
+
+| Metric | Type | Description |
+|--------|------|-------------|
+| Vocabulary Score | Automatic | Points based on word difficulty (1-4 pts each) |
+| Slang Usage Rate | Automatic | Spanish/Catalan slang per total words |
+| Regional Authenticity | Human | Catalan markers presence (1-5 scale) |
+| Scenario Appropriateness | Human | Response fits context (1-5 scale) |
+| BLEU Score | Automatic | Similarity to ground truth responses |
+
 ### Loading Data
 
 ```python
