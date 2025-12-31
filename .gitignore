@@ -35,3 +35,17 @@ supabase/.temp/
 *.njsproj
 *.sln
 *.sw?
+
+# Capacitor native projects (build artifacts)
+ios/App/App.xcworkspace/xcuserdata/
+ios/App/Pods/
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+
+# Signing keys (NEVER commit)
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
