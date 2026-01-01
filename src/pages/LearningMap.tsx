@@ -156,17 +156,43 @@ const LearningMap = () => {
             <ChevronLeft className="w-5 h-5 mr-2" />
             Back to Dashboard
           </Button>
-          <div className="flex items-center gap-3">
-            <MapPin className="w-8 h-8 text-primary" />
+          <div className="flex items-center gap-3 ml-3">
+            <MapPin className="w-6 h-6 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold">Learning Journey Map</h1>
-              <p className="text-muted-foreground">Follow your path to fluency</p>
+              <h1 className="text-xl font-bold">Learning Journey Map</h1>
+              <p className="text-sm text-muted-foreground">Follow your path to fluency</p>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {/* Legend - centered on mobile */}
+        <Card className="mb-6 p-3 bg-muted/30">
+          <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-success flex items-center justify-center">
+                  <CheckCircle2 className="w-3 h-3 text-white" />
+                </div>
+                <span>Completed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-white" />
+                </div>
+                <span>Available</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
+                  <Lock className="w-3 h-3 text-muted-foreground" />
+                </div>
+                <span>Locked</span>
+              </div>
+            </div>
+          </div>
+        </Card>
+
         <div className="space-y-12">
           {learningPath.map((module, moduleIndex) => (
             <div key={moduleIndex} className="relative">
@@ -249,30 +275,6 @@ const LearningMap = () => {
           ))}
         </div>
 
-        {/* Legend */}
-        <Card className="mt-12 p-6 bg-muted/30">
-          <h3 className="font-semibold mb-4">Legend</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-success flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-white" />
-              </div>
-              <span>Completed</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-white" />
-              </div>
-              <span>Available Now</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-                <Lock className="w-4 h-4 text-muted-foreground" />
-              </div>
-              <span>Locked</span>
-            </div>
-          </div>
-        </Card>
       </main>
     </div>
   );

@@ -21,6 +21,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import appIcon from "@/assets/icon.png";
 
 const languages = [
   { name: "Spanish", flag: "🇪🇸" },
@@ -137,15 +138,50 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-tourism-light/50 to-background">
       <header className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-social bg-clip-text text-transparent">SpeakEasy</h1>
-            {user && (
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          {/* Top row: SpeakEasy title and user avatar */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img src={appIcon} alt="SpeakEasy" className="w-14 h-14 md:w-16 md:h-16 rounded-xl" />
+              <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-social bg-clip-text text-transparent">SpeakEasy</h1>
+            </div>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 p-2 rounded-full hover:bg-muted transition-colors">
+                    <Avatar className="w-8 h-8">
+                      <AvatarFallback className="bg-primary text-primary-foreground">
+                        {getUserInitials()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium">{user?.email}</p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button onClick={() => navigate("/signup")} size="sm">
+                Sign Up
+              </Button>
+            )}
+          </div>
+
+          {/* Bottom row: Language selector, Map, Leaderboard - aligned */}
+          {user && (
+            <div className="flex items-center gap-4 mt-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                     <span className="text-lg">{selectedLanguage.flag}</span>
-                    <span>Learning {selectedLanguage.name}</span>
+                    <span>{selectedLanguage.name}</span>
                     <ChevronDown className="w-4 h-4" />
                   </button>
                 </DropdownMenuTrigger>
@@ -162,47 +198,18 @@ const Dashboard = () => {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {user ? (
-              <>
-                <Button variant="ghost" onClick={() => navigate("/learning-map")} className="hover:bg-tourism-light">
-                  <Map className="w-5 h-5 mr-2 text-primary" />
-                  Map
-                </Button>
-                <Button variant="ghost" onClick={() => navigate("/leaderboard")} className="hover:bg-tourism-light">
-                  <Trophy className="w-5 h-5 mr-2 text-warning" />
-                  Leaderboard
-                </Button>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="flex items-center gap-2 p-2 rounded-full hover:bg-muted transition-colors">
-                      <Avatar className="w-8 h-8">
-                        <AvatarFallback className="bg-primary text-primary-foreground">
-                          {getUserInitials()}
-                        </AvatarFallback>
-                      </Avatar>
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56">
-                    <div className="px-2 py-1.5">
-                      <p className="text-sm font-medium">{user?.email}</p>
-                    </div>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Sign Out
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </>
-            ) : (
-              <Button onClick={() => navigate("/signup")} className="ml-auto">
-                Sign Up
+
+              <Button variant="ghost" size="sm" onClick={() => navigate("/learning-map")} className="hover:bg-tourism-light">
+                <Map className="w-4 h-4 mr-1 text-primary" />
+                Map
               </Button>
-            )}
-          </div>
+
+              <Button variant="ghost" size="sm" onClick={() => navigate("/leaderboard")} className="hover:bg-tourism-light">
+                <Trophy className="w-4 h-4 mr-1 text-warning" />
+                Leaderboard
+              </Button>
+            </div>
+          )}
         </div>
       </header>
 

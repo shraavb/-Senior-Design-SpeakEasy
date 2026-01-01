@@ -684,30 +684,30 @@ const Conversation = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Button variant="ghost" onClick={() => navigate("/module/tourism")} className="mb-2">
-            <ChevronLeft className="w-5 h-5 mr-2" />
-            Back
-          </Button>
+        <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-xl font-bold">{scenario}</h1>
-              <p className="text-sm text-muted-foreground flex items-center gap-2">
-                <span className="text-base">{languageFlag}</span> Learning {language}
-              </p>
+            <Button variant="ghost" onClick={() => navigate("/module/tourism")} className="" size="sm">
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              Back
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={endSession}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <LogOut className="w-4 h-4 mr-1" />
+              End
+            </Button>
+          </div>
+          <div className="ml-3 mt-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-lg font-bold">{scenario}</h1>
+              <Badge variant="secondary" className="text-xs">Intermediate</Badge>
             </div>
-            <div className="flex items-center gap-3">
-              <Badge variant="secondary">Intermediate</Badge>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={endSession}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                End Session
-              </Button>
-            </div>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <span>{languageFlag}</span> {language}
+            </p>
           </div>
         </div>
       </header>
@@ -759,19 +759,19 @@ const Conversation = () => {
             return (
             <div key={message.id}>
               {message.role === "assistant" ? (
-                <div className="flex gap-4 items-start">
+                <div className="flex gap-2 md:gap-4 items-start">
                   {/* Avatar */}
                   <div className="flex-shrink-0">
                     <img
                       src={getAvatar(message.role)}
                       alt={conversationPartner}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                      className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover border-2 border-primary shadow-lg"
                     />
                   </div>
 
                   {/* Message Card */}
-                  <Card className="p-4 max-w-[70%] bg-card">
-                    <p className="text-xs font-medium mb-2 opacity-70">
+                  <Card className="p-3 md:p-4 max-w-[80%] md:max-w-[70%] bg-card">
+                    <p className="text-xs font-medium mb-1 md:mb-2 opacity-70">
                       {conversationPartner}
                     </p>
                     <TranslatableText text={message.content} sourceLanguage={language} />
@@ -779,19 +779,19 @@ const Conversation = () => {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <div className="flex gap-4 items-start flex-row-reverse">
+                  <div className="flex gap-2 md:gap-4 items-start flex-row-reverse">
                     {/* Avatar */}
                     <div className="flex-shrink-0">
                       <img
                         src={getAvatar(message.role)}
                         alt="You"
-                        className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                        className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover border-2 border-primary shadow-lg"
                       />
                     </div>
 
                     {/* Message Card */}
-                    <Card className="p-4 max-w-[70%] bg-primary text-primary-foreground">
-                      <p className="text-xs font-medium mb-2 opacity-70">You</p>
+                    <Card className="p-3 md:p-4 max-w-[80%] md:max-w-[70%] bg-primary text-primary-foreground">
+                      <p className="text-xs font-medium mb-1 md:mb-2 opacity-70">You</p>
                       <p>{message.content}</p>
                     </Card>
                   </div>
@@ -812,15 +812,15 @@ const Conversation = () => {
             );
           })}
           {isProcessing && (
-            <div className="flex gap-4 items-start">
+            <div className="flex gap-2 md:gap-4 items-start">
               <div className="flex-shrink-0">
                 <img
                   src={getAvatar("assistant")}
                   alt={conversationPartner}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                  className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover border-2 border-primary shadow-lg"
                 />
               </div>
-              <Card className="bg-card max-w-[70%] p-4">
+              <Card className="bg-card max-w-[80%] md:max-w-[70%] p-3 md:p-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span className="text-sm">Thinking...</span>
@@ -841,33 +841,25 @@ const Conversation = () => {
             </Card>
           )}
           
-          <div className="flex items-center justify-center gap-4">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={repeatLastMessage}
-              disabled={messages.length === 0 || isSpeaking}
-            >
-              <Volume2 className="w-5 h-5 mr-2" />
-              Repeat
-            </Button>
-            
+          <div className="flex flex-col items-center gap-4">
+            {/* Mic button centered */}
             <Button
               size="lg"
               onClick={toggleListening}
               disabled={isProcessing || isSpeaking}
-              className={`w-24 h-24 rounded-full ${
+              className={`w-20 h-20 md:w-24 md:h-24 rounded-full ${
                 isListening ? "bg-destructive hover:bg-destructive/90" : ""
               }`}
             >
               {isListening ? (
-                <MicOff className="w-8 h-8" />
+                <MicOff className="w-7 h-7 md:w-8 md:h-8" />
               ) : (
-                <Mic className="w-8 h-8" />
+                <Mic className="w-7 h-7 md:w-8 md:h-8" />
               )}
             </Button>
 
-            <div className="w-32 text-center">
+            {/* Status text */}
+            <div className="h-5 text-center">
               {isListening && (
                 <p className="text-sm text-muted-foreground animate-pulse">Listening...</p>
               )}
@@ -877,12 +869,22 @@ const Conversation = () => {
               {isProcessing && (
                 <p className="text-sm text-muted-foreground">Processing...</p>
               )}
+              {!isListening && !isSpeaking && !isProcessing && (
+                <p className="text-sm text-muted-foreground">Tap to speak in {language}</p>
+              )}
             </div>
-          </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-4">
-            Tap the microphone to speak in {language}
-          </p>
+            {/* Repeat button below */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={repeatLastMessage}
+              disabled={messages.length === 0 || isSpeaking}
+            >
+              <Volume2 className="w-4 h-4 mr-2" />
+              Repeat last message
+            </Button>
+          </div>
         </div>
       </div>
 

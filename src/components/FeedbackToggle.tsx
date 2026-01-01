@@ -11,7 +11,7 @@ interface FeedbackToggleProps {
 export function FeedbackToggle({ feedbackMode, onToggle }: FeedbackToggleProps) {
   return (
     <div className="border-b bg-card px-4 py-3">
-      <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
+      <div className="max-w-4xl mx-auto flex items-center justify-between gap-4 pl-3">
         <div className="flex items-center gap-2">
           <Label htmlFor="feedback-mode" className="text-sm font-medium">
             Direct Feedback
@@ -26,7 +26,7 @@ export function FeedbackToggle({ feedbackMode, onToggle }: FeedbackToggleProps) 
                 <Info className="h-4 w-4" />
               </button>
             </TooltipTrigger>
-            <TooltipContent side="bottom" className="max-w-sm p-4 bg-popover text-popover-foreground">
+            <TooltipContent side="bottom" align="start" className="max-w-sm p-4 bg-popover text-popover-foreground">
               <div className="space-y-3 text-xs">
                 <div>
                   <p className="font-semibold mb-1 text-foreground">Feedback ON:</p>

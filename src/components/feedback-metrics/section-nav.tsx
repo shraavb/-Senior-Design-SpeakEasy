@@ -196,36 +196,13 @@ export function SectionNav({
           transition: isSticky ? 'background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out' : 'none'
         }}
       >
-        <div className="max-w-[1600px] mx-auto px-8 py-4">
-          <div className="flex items-center justify-between gap-4">
-            {/* Section Navigation Buttons */}
-            <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide flex-1">
-              {sections.map((section) => {
-                const Icon = section.icon;
-                const isActive = activeSection === section.id;
-                return (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={cn(
-                      "flex items-center gap-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap",
-                      isActive
-                        ? "bg-indigo-500 text-white shadow-sm"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    )}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm font-medium">{section.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Time Filter Toggle */}
-            <div className="inline-flex bg-white rounded-lg p-1.5 shadow-sm border border-gray-100 flex-shrink-0">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-3 md:py-4">
+          {/* Time Filter Toggle - Centered on mobile, right on desktop */}
+          <div className="flex justify-center md:justify-end mb-3 md:mb-0 md:float-right">
+            <div className="inline-flex bg-white rounded-lg p-1 shadow-sm border border-gray-100">
               <button
                 onClick={() => onTimeFilterChange("today")}
-                className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all ${
+                className={`px-3 md:px-5 py-2 rounded-md text-sm font-medium transition-all ${
                   timeFilter === "today"
                     ? "bg-indigo-500 text-white shadow-sm"
                     : "text-gray-600 hover:text-gray-900"
@@ -235,7 +212,7 @@ export function SectionNav({
               </button>
               <button
                 onClick={() => onTimeFilterChange("weekly")}
-                className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all ${
+                className={`px-3 md:px-5 py-2 rounded-md text-sm font-medium transition-all ${
                   timeFilter === "weekly"
                     ? "bg-indigo-500 text-white shadow-sm"
                     : "text-gray-600 hover:text-gray-900"
@@ -245,7 +222,7 @@ export function SectionNav({
               </button>
               <button
                 onClick={() => onTimeFilterChange("monthly")}
-                className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all ${
+                className={`px-3 md:px-5 py-2 rounded-md text-sm font-medium transition-all ${
                   timeFilter === "monthly"
                     ? "bg-indigo-500 text-white shadow-sm"
                     : "text-gray-600 hover:text-gray-900"
@@ -254,6 +231,29 @@ export function SectionNav({
                 Monthly
               </button>
             </div>
+          </div>
+
+          {/* Section Navigation Buttons - Hidden on mobile, shown on desktop */}
+          <div className="hidden md:flex items-center gap-2 overflow-x-auto scrollbar-hide">
+            {sections.map((section) => {
+              const Icon = section.icon;
+              const isActive = activeSection === section.id;
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap",
+                    isActive
+                      ? "bg-indigo-500 text-white shadow-sm"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  )}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="text-sm font-medium">{section.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </nav>

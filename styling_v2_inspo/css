@@ -1,0 +1,25 @@
+/* CSS */
+.color-1 {
+  color: #032603;
+}
+.color-2 {
+  color: #efd36b;
+}
+.color-3 {
+  color: #f19155;
+}
+.color-4 {
+  color: #2c89c3;
+}
+.color-5 {
+  color: #f9f9dc;
+}
+
+/* CSS Variables */
+:root {
+  --color-1: #032603;
+  --color-2: #efd36b;
+  --color-3: #f19155;
+  --color-4: #2c89c3;
+  --color-5: #f9f9dc;
+}

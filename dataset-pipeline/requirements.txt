@@ -26,6 +26,9 @@ datasets>=2.16.0
 accelerate>=0.25.0
 bitsandbytes>=0.42.0  # For 4-bit quantization (CUDA only)
 
+# LLM API (for CEFR classification)
+anthropic>=0.40.0
+
 # High-Performance Inference (optional)
 # Uncomment based on your hardware:
 # vllm>=0.3.0          # For NVIDIA GPUs - high-throughput inference

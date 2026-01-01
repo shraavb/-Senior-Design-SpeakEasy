@@ -135,6 +135,60 @@ python src/main.py classify
 python src/main.py format
 ```
 
+## CEFR Classification & Extended Dialogues
+
+### CEFR Classification
+
+Dialogues are classified according to the Common European Framework of Reference for Languages (CEFR) using a hybrid approach:
+
+1. **Rule-based analysis**: Detects verb tenses, subjunctive mood, sentence complexity
+2. **LLM classification**: Uses Claude API for nuanced assessment (when available)
+
+```bash
+# Classify dialogues with CEFR levels
+python src/cefr_classifier.py
+```
+
+| CEFR Level | Simplified | Description |
+|------------|------------|-------------|
+| A1-A2 | beginner | Present tense, simple sentences |
+| B1 | intermediate | Multiple tenses, compound sentences |
+| B2 | advanced | Subjunctive, complex clauses |
+| C1-C2 | mastery | Literary constructions, sophisticated discourse |
+
+### Extended Multi-Turn Dialogues
+
+Short 1-2 line dialogues were expanded into 10-14 line conversations (5-7 per speaker):
+
+```bash
+# Generate extended dialogues
+python src/dialogue_expander.py
+```
+
+**Training Set** (`data/eval/dialogues_expanded_training.json`):
+- LLM-expanded dialogues for model fine-tuning
+- 184/204 dialogues expanded successfully
+- **20 dialogues used fallback** (original short format) due to API credit exhaustion
+
+**Evaluation Set** (`data/eval/dialogues_merged_eval.json`):
+- 4,383 conversation segments merged from 98 movie SRT files
+- Authentic movie dialogue for ground truth evaluation
+- CEFR-classified using rule-based analysis
+
+### Audio Recording Prompts
+
+Generated prompts for recording gold-standard audio:
+
+| Version | Purpose | Files |
+|---------|---------|-------|
+| V2 | CEFR-reclassified short dialogues | `audio_recording_prompts_*_v2.md` |
+| V3 Training | LLM-expanded multi-turn | `audio_recording_prompts_*_v3_training.md` |
+| V3 Eval | Merged movie dialogues | `audio_recording_prompts_*_v3_eval.md` |
+
+### Known Issues
+
+- **API Credit Exhaustion**: 20 training dialogues (indices 185-204) were not LLM-expanded due to Anthropic API credit limits. These use the original short format as fallback. Re-run `dialogue_expander.py` with valid API credits to complete expansion.
+
 ## Fine-Tuning with Llama 3
 
 We provide two approaches for fine-tuning Llama models on Catalan-accented Spanish. See the [Fine-Tuning Guide](docs/FINE_TUNING_GUIDE.md) for detailed instructions.
@@ -268,6 +322,44 @@ dataset = load_dataset('json', data_files={
     'train': 'data/processed/train_catalan_spanish.jsonl',
     'eval': 'data/processed/eval_catalan_spanish.jsonl'
 })
+```
+
+## Fluency Evaluation Service
+
+Real-time fluency assessment API for evaluating user speech against ground truth movie dialogues.
+
+**[Full Fluency Service Documentation](src/fluency_service/README.md)**
+
+### Key Features
+
+- **6 Metric Categories**: Pronunciation, Temporal, Lexical, Disfluency, Prosodic, Communicative
+- **Whisper ASR**: Word-level timestamps for precise analysis
+- **CEFR-Aligned**: Level-adjusted scoring thresholds (A1-C2)
+- **Catalan Detection**: Regional expression scoring
+
+### Quick Start
+
+```bash
+# Start the service
+uvicorn src.fluency_service.main:app --host 0.0.0.0 --port 8001
+
+# Evaluate audio
+curl -X POST "http://localhost:8001/api/v1/fluency/evaluate" \
+     -H "Content-Type: application/json" \
+     -d '{"audio_data": "<base64>", "expected_response": "Hola, nen!"}'
+```
+
+### Composite Scoring Formula
+
+```
+FLUENCY_SCORE = (
+    0.25 × Pronunciation +
+    0.20 × Temporal +
+    0.15 × Lexical +
+    0.20 × (100 - Disfluency) +
+    0.10 × Prosodic +
+    0.10 × Communicative
+)
 ```
 
 ## Cloud GPU Deployment
