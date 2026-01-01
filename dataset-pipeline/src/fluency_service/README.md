@@ -14,6 +14,8 @@ Real-time fluency assessment API for the SpeakEasy language learning app. Evalua
 - [Integration Guide](#integration-guide)
 - [Testing](#testing)
 
+> **Note:** See [TODO.md](TODO.md) for outstanding tasks including audio file naming fixes and data needed for calibration.
+
 ---
 
 ## Overview
