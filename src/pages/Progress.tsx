@@ -13,11 +13,12 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { QuickSummary } from "@/components/feedback-metrics/quick-summary";
-import { FluencyMetrics } from "@/components/feedback-metrics/fluency-metrics";
-import { GrammarFeedback } from "@/components/feedback-metrics/grammar-feedback";
-import { ErrorBreakdown } from "@/components/feedback-metrics/error-breakdown";
+import { AccuracyPillar } from "@/components/feedback-metrics/accuracy-pillar";
+import { FlowPillar } from "@/components/feedback-metrics/flow-pillar";
+import { ExpressionPillar } from "@/components/feedback-metrics/expression-pillar";
 import { VocabularyInsights } from "@/components/feedback-metrics/vocabulary-insights";
 import { SectionNav } from "@/components/feedback-metrics/section-nav";
+import { useVocabulary } from "@/hooks/useFluencyMetrics";
 
 const Progress = () => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const Progress = () => {
     return (saved as "today" | "weekly" | "monthly") || "weekly";
   });
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [activeSection, setActiveSection] = useState("fluency");
+  const [activeSection, setActiveSection] = useState("accuracy");
+  const { mostUsedWords, newWords } = useVocabulary();
 
   const handleSignOut = async () => {
     await signOut();
@@ -111,52 +113,52 @@ const Progress = () => {
 
         {/* Main Metrics Sections */}
         <div className="space-y-16">
-          {/* Section 1: Fluency & Pronunciation */}
-          <section id="fluency" className="scroll-mt-32">
-            <div className="mb-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-1 h-8 bg-indigo-500 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-gray-900">Fluency & Pronunciation</h2>
-              </div>
-              <p className="text-gray-600 ml-4">Track your speaking clarity, speed, and natural flow</p>
-            </div>
-            <FluencyMetrics timeFilter={timeFilter} />
-          </section>
-
-          {/* Section 2: Grammar Feedback */}
-          <section id="grammar" className="scroll-mt-32">
-            <div className="mb-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-gray-900">Grammar Feedback</h2>
-              </div>
-              <p className="text-gray-600 ml-4">Monitor your grammatical accuracy and sentence structure</p>
-            </div>
-            <GrammarFeedback timeFilter={timeFilter} />
-          </section>
-
-          {/* Section 3: Error Breakdown */}
-          <section id="errors" className="scroll-mt-32">
-            <div className="mb-6 pb-4 border-b border-gray-200">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-1 h-8 bg-red-500 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-gray-900">Error Breakdown</h2>
-              </div>
-              <p className="text-gray-600 ml-4">Understand the types of errors in your speech</p>
-            </div>
-            <ErrorBreakdown timeFilter={timeFilter} />
-          </section>
-
-          {/* Section 4: Vocabulary Insights */}
-          <section id="vocabulary" className="scroll-mt-32">
+          {/* Section 1: Accuracy */}
+          <section id="accuracy" className="scroll-mt-32">
             <div className="mb-6 pb-4 border-b border-gray-200">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-1 h-8 bg-emerald-500 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-gray-900">Vocabulary Insights</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Accuracy</h2>
               </div>
-              <p className="text-gray-600 ml-4">Explore your word usage and vocabulary growth</p>
+              <p className="text-gray-600 ml-4">Track your pronunciation precision and vocabulary accuracy</p>
             </div>
-          
+            <AccuracyPillar timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 2: Flow */}
+          <section id="flow" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Flow</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Monitor your speaking pace and speech smoothness</p>
+            </div>
+            <FlowPillar timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 3: Expression */}
+          <section id="expression" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-violet-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Expression</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Explore your natural delivery and communication style</p>
+            </div>
+            <ExpressionPillar timeFilter={timeFilter} />
+          </section>
+
+          {/* Section 4: Vocabulary */}
+          <section id="vocabulary" className="scroll-mt-32">
+            <div className="mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900">Vocabulary</h2>
+              </div>
+              <p className="text-gray-600 ml-4">Track your word usage and vocabulary growth</p>
+            </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Most Common Words */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
@@ -165,58 +167,28 @@ const Progress = () => {
                 <p className="text-gray-600 text-sm mt-1">Your frequently used vocabulary</p>
               </div>
 
-              {(() => {
-                const commonWordsData = {
-                  today: [
-                    { word: "hablar", translation: "to speak", count: 8 },
-                    { word: "tener", translation: "to have", count: 6 },
-                    { word: "hacer", translation: "to do/make", count: 5 },
-                    { word: "estar", translation: "to be", count: 4 },
-                    { word: "poder", translation: "to be able", count: 3 },
-                  ],
-                  weekly: [
-                    { word: "hablar", translation: "to speak", count: 24 },
-                    { word: "tener", translation: "to have", count: 19 },
-                    { word: "hacer", translation: "to do/make", count: 16 },
-                    { word: "estar", translation: "to be", count: 15 },
-                    { word: "poder", translation: "to be able", count: 12 },
-                  ],
-                  monthly: [
-                    { word: "hablar", translation: "to speak", count: 98 },
-                    { word: "tener", translation: "to have", count: 76 },
-                    { word: "hacer", translation: "to do/make", count: 64 },
-                    { word: "estar", translation: "to be", count: 58 },
-                    { word: "poder", translation: "to be able", count: 45 },
-                  ],
-                };
-
-                const commonWords = commonWordsData[timeFilter];
-
-                if (commonWords.length === 0) {
-                  return (
-                    <div className="py-8 text-center">
-                      <p className="text-gray-500 text-sm">No words tracked yet</p>
-                      <p className="text-gray-400 text-xs mt-1">Start conversations to see your most used words</p>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div className="space-y-3">
-                    {commonWords.map((item) => (
-                      <div key={item.word} className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <p className="text-gray-900">{item.word}</p>
+              {mostUsedWords.length === 0 ? (
+                <div className="py-8 text-center">
+                  <p className="text-gray-500 text-sm">No words tracked yet</p>
+                  <p className="text-gray-400 text-xs mt-1">Start conversations to see your most used words</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {mostUsedWords.slice(0, 5).map((item) => (
+                    <div key={item.word} className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <p className="text-gray-900">{item.word}</p>
+                        {item.translation && (
                           <p className="text-gray-500 text-sm">{item.translation}</p>
-                        </div>
-                        <div className="w-12 h-8 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-700">
-                          {item.count}
-                        </div>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                );
-              })()}
+                      <div className="w-12 h-8 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-700">
+                        {item.usage_count}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Vocabulary Usage Chart */}
@@ -233,52 +205,23 @@ const Progress = () => {
                 <p className="text-gray-600 text-sm mt-1">Recently learned vocabulary</p>
               </div>
 
-              {(() => {
-                const newWordsData = {
-                  today: [
-                    { word: "imprescindible", translation: "essential" },
-                    { word: "desenvolver", translation: "to develop" },
-                  ],
-                  weekly: [
-                    { word: "imprescindible", translation: "essential" },
-                    { word: "desenvolver", translation: "to develop" },
-                    { word: "cotidiano", translation: "daily" },
-                    { word: "sustancial", translation: "substantial" },
-                  ],
-                  monthly: [
-                    { word: "imprescindible", translation: "essential" },
-                    { word: "desenvolver", translation: "to develop" },
-                    { word: "cotidiano", translation: "daily" },
-                    { word: "sustancial", translation: "substantial" },
-                    { word: "persistente", translation: "persistent" },
-                    { word: "efímero", translation: "ephemeral" },
-                    { word: "próspero", translation: "prosperous" },
-                    { word: "versátil", translation: "versatile" },
-                  ],
-                };
-
-                const newWords = newWordsData[timeFilter];
-                
-                if (newWords.length === 0) {
-                  return (
-                    <div className="py-8 text-center">
-                      <p className="text-gray-500 text-sm">No new words yet</p>
-                      <p className="text-gray-400 text-xs mt-1">Start practicing to see your new vocabulary here</p>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {newWords.map((item) => (
-                      <div key={item.word} className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-                        <p className="text-emerald-900 font-medium">{item.word}</p>
+              {newWords.length === 0 ? (
+                <div className="py-8 text-center">
+                  <p className="text-gray-500 text-sm">No new words yet</p>
+                  <p className="text-gray-400 text-xs mt-1">Start practicing to see your new vocabulary here</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {newWords.slice(0, 8).map((item) => (
+                    <div key={item.word} className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                      <p className="text-emerald-900 font-medium">{item.word}</p>
+                      {item.translation && (
                         <p className="text-emerald-700 text-sm mt-0.5">{item.translation}</p>
-                      </div>
-                    ))}
-                  </div>
-                );
-              })()}
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           </section>

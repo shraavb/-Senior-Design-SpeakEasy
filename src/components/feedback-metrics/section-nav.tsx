@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Mic, BookOpen, AlertCircle, BookMarked } from "lucide-react";
+import { Target, Zap, Sparkles, BookMarked } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Section {
@@ -9,10 +9,10 @@ interface Section {
 }
 
 const sections: Section[] = [
-  { id: "fluency", label: "Fluency & Pronunciation", icon: Mic },
-  { id: "grammar", label: "Grammar Feedback", icon: BookOpen },
-  { id: "errors", label: "Error Breakdown", icon: AlertCircle },
-  { id: "vocabulary", label: "Vocabulary Insights", icon: BookMarked },
+  { id: "accuracy", label: "Accuracy", icon: Target },
+  { id: "flow", label: "Flow", icon: Zap },
+  { id: "expression", label: "Expression", icon: Sparkles },
+  { id: "vocabulary", label: "Vocabulary", icon: BookMarked },
 ];
 
 interface SectionNavProps {

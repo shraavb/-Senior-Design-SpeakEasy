@@ -1,0 +1,29 @@
+# Fluency Evaluation Service Dependencies
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+
+# Data Validation
+pydantic>=2.5.0
+
+# Audio Processing
+numpy>=1.26.0
+librosa>=0.10.0
+soundfile>=0.12.0
+pydub>=0.25.1
+
+# Speech Recognition (choose one)
+# faster-whisper is more efficient for CPU
+faster-whisper>=0.10.0
+# openai-whisper>=20231117  # Alternative: official OpenAI whisper
+
+# Text Processing
+jiwer>=3.0.0  # For Word Error Rate calculation
+
+# HTTP Client (for health checks)
+httpx>=0.26.0
+
+# Configuration
+python-dotenv>=1.0.0

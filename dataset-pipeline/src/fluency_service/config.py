@@ -109,7 +109,10 @@ class ServiceConfig:
             config.whisper.device = os.getenv("WHISPER_DEVICE")
         if os.getenv("API_HOST"):
             config.api_host = os.getenv("API_HOST")
-        if os.getenv("API_PORT"):
+        # Support both API_PORT and PORT (Render uses PORT)
+        if os.getenv("PORT"):
+            config.api_port = int(os.getenv("PORT"))
+        elif os.getenv("API_PORT"):
             config.api_port = int(os.getenv("API_PORT"))
 
         return config

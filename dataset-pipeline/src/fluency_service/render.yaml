@@ -1,0 +1,25 @@
+# Render.com deployment configuration for Fluency Evaluation Service
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: speakeasy-fluency-api
+    runtime: python
+    region: oregon  # or your preferred region
+    plan: free  # free, starter, standard, etc.
+
+    # Build settings
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.fluency_service.main:app --host 0.0.0.0 --port $PORT
+
+    # Health check
+    healthCheckPath: /api/v1/fluency/health
+
+    # Environment variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: WHISPER_MODEL
+        value: "tiny"  # Use tiny for free tier (less memory)
+      - key: WHISPER_DEVICE
+        value: "cpu"

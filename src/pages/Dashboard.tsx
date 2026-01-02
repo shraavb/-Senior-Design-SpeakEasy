@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight, ChevronDown, CheckCircle2, Circle, Map, LogOut, User, Languages } from "lucide-react";
+import { Flame, TrendingUp, Trophy, Plane, Users, Briefcase, ChevronRight, ChevronDown, CheckCircle2, Circle, Map, LogOut, User, Languages, Target, Zap, Sparkles } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +15,7 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useFluencyMetrics } from "@/hooks/useFluencyMetrics";
 import { getTodayCompletedModules, type ModuleType } from "@/utils/dailyGoals";
 import {
   Collapsible,
@@ -64,6 +65,7 @@ const Dashboard = () => {
   const { user, signOut } = useAuth();
   const { toast } = useToast();
   const { profile, loading: profileLoading, updateProfile } = useUserProfile();
+  const { pillarScores, loading: metricsLoading } = useFluencyMetrics("today");
   
   // Get language from profile or fallback to localStorage or default
   const getInitialLanguage = () => {
@@ -237,6 +239,23 @@ const Dashboard = () => {
                 <p className="text-3xl font-bold text-tourism">
                   {profileLoading ? "..." : (profile?.fluency_score || 0)}
                 </p>
+                {/* Pillar Indicators */}
+                {pillarScores && !metricsLoading && (
+                  <div className="flex items-center gap-3 mt-3 pt-3 border-t border-tourism/20">
+                    <div className="flex items-center gap-1" title="Accuracy">
+                      <Target className="w-3.5 h-3.5 text-emerald-500" />
+                      <span className="text-xs font-medium text-muted-foreground">{pillarScores.accuracy}%</span>
+                    </div>
+                    <div className="flex items-center gap-1" title="Flow">
+                      <Zap className="w-3.5 h-3.5 text-blue-500" />
+                      <span className="text-xs font-medium text-muted-foreground">{pillarScores.flow}%</span>
+                    </div>
+                    <div className="flex items-center gap-1" title="Expression">
+                      <Sparkles className="w-3.5 h-3.5 text-violet-500" />
+                      <span className="text-xs font-medium text-muted-foreground">{pillarScores.expression}%</span>
+                    </div>
+                  </div>
+                )}
               </Card>
 
               <Card className="p-6 bg-gradient-to-br from-social-light to-card cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate("/progress")}>
