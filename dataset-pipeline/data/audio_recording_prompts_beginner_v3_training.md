@@ -15,6 +15,8 @@
 
 ## File Naming: `{name}_dialogue_{number}_beginner_v3.wav`
 
+## Please follow this naming!! It will make our life much easier when working with the data.
+
 ---
 
 ## Dialogue 01

@@ -1,8 +1,8 @@
 # Audio Recording Prompts V3 - BEGINNER Level (A1-A2)
 ## Multi-Turn Dialogues (Evaluation Set)
 
-**Project:** SpeakEasy - Catalan Spanish Language Learning App  
-**Purpose:** User evaluation ground truth (authentic movie dialogues)  
+**Project:** SpeakEasy - Catalan Spanish Language Learning App
+**Purpose:** User evaluation ground truth (authentic movie dialogues)
 **Format:** 10-16 lines per dialogue (merged from movie subtitles)
 
 ---
@@ -66,69 +66,11 @@
 | B | "Suena muy seguro." |
 | A | "Piénsenlo bien." |
 
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 36.57142857142857
+**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 36.57
 
 ---
 
 ## Dialogue 03
-**Source:** Vicky Cristina Barcelona
-**Timestamp:** 00:41:26 - 00:42:22
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 16
-
-| Speaker | Line |
-|---------|------|
-| A | "¿Estás bien? - Sí." |
-| B | "¿Cómo está Cristina?" |
-| B | "Bueno, ya sabes se mudo con un tipo." |
-| B | "Eso fue rápido. No me digas que es un torero." |
-| B | "No." |
-| B | "¿Escritor? ¿Compositor? ¿Torturado, pseudo intelectual auto destructivo?" |
-| B | "Sí, lo sé. A veces me pone nerviosa con sus explosivos romances." |
-| B | "Mira, yo la quiero, porque es tu amiga..." |
-| B | "pero te he advertido sobre ella. Ella es una persona infeliz." |
-| A | "No puede cubrir el papel de la imagen que se creó de mujer especial" |
-| A | "artista tratando de encontrarse a sí misma." |
-| A | "Desprecia las pretensiones y valores normales. Es un cliché aburrido." |
-| A | "Bueno, a los hombres les gusta. - Es bonita." |
-| A | "Y no exactamente muy difícil llevarla a la cama." |
-| A | "En cuanto a ti, en cambio, requirió cierto esfuerzo llevarte a la cama." |
-| B | "Pero valió la pena el esfuerzo." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 35.56
-
----
-
-## Dialogue 04
-**Source:** Vicky Cristina Barcelona
-**Timestamp:** 00:49:39 - 00:50:15
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 16
-
-| Speaker | Line |
-|---------|------|
-| A | "Me siento como una tonta." |
-| A | "Aquí tienes que hablar en inglés. Por favor." |
-| A | "Estoy avergonzada." |
-| B | "No. Por favor, no te avergüences." |
-| B | "¿Puedo darte algo?" |
-| A | "Vodka." |
-| A | "¿Vodka?" |
-| A | "¿Te vas a tomar un vodka ahora?" |
-| A | "¿Con todas las pastillas que te has tomado?" |
-| A | "¿Tú estás loca o que te pasa?" |
-| A | "Que me quiero duchar, Juan Antonio, ¿puedo?" |
-| A | "Me quiero quitar esto de una puta vez." |
-| A | "En inglés, en inglés." |
-| A | "Cuando estés aquí, tienes que hablar en inglés." |
-| A | "Si quieres darte una ducha, ve allí, a la habitación de invitados." |
-| B | "¿Que estoy de invitada en mi propia casa?" |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 35.55555555555556
-
----
-
-## Dialogue 05
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 01:09:05 - 01:09:47
 **CEFR:** A2 (confidence: 60%)
@@ -153,7 +95,7 @@
 
 ---
 
-## Dialogue 06
+## Dialogue 04
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 01:29:47 - 01:30:42
 **CEFR:** A2 (confidence: 60%)
@@ -178,11 +120,11 @@
 | A | "¡Dios mío, los dos están locos! ¡Están completamente locos!" |
 | A | "¿Cómo demonios le voy a explicar esto a mi esposo?" |
 
-**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 34.09090909090909
+**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 34.09
 
 ---
 
-## Dialogue 07
+## Dialogue 05
 **Source:** The Spanish Prisoner
 **Timestamp:** 00:23:12 - 00:23:37
 **CEFR:** A2 (confidence: 60%)
@@ -202,11 +144,11 @@
 | B | "Llévate mis cosas." |
 | B | "Claro. - Gracias." |
 
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 32.53846153846154
+**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 32.54
 
 ---
 
-## Dialogue 08
+## Dialogue 06
 **Source:** The Spanish Prisoner
 **Timestamp:** 00:25:43 - 00:26:18
 **CEFR:** A2 (confidence: 60%)
@@ -228,65 +170,11 @@
 | A | "Susan Ricci." |
 | B | "Un momento." |
 
-**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 30.913043478260867
+**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 30.91
 
 ---
 
-## Dialogue 09
-**Source:** The Spanish Prisoner
-**Timestamp:** 00:31:30 - 00:31:59
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 12
-
-| Speaker | Line |
-|---------|------|
-| A | "Aston Martin Lagonda descapotable." |
-| B | "¿De dónde ha salido?" |
-| B | "Herencia del antiguo propietario." |
-| B | "Luego fue devuelto a Aston Martin." |
-| B | "Por supuesto, montado a mediados de los cuarenta." |
-| B | "Comparado con este Bentley... - No es automático." |
-| B | "Suspensión trasera independiente." |
-| B | "El coche más decadente de su época." |
-| B | "¿Por qué?" |
-| B | "Fíjese qué línea. Y qué velocidad." |
-| B | "¿Desea algo?" |
-| B | "Hola." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 31.875
-
----
-
-## Dialogue 10
-**Source:** The Spanish Prisoner
-**Timestamp:** 00:42:30 - 00:43:09
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 16
-
-| Speaker | Line |
-|---------|------|
-| A | "Olvídelo, no pasa nada." |
-| A | "Hay reunión de la junta." |
-| A | "Es una norma vieja. - Los miembros están aquí." |
-| B | "Vamos a otra parte. - ¿A quién hay que conocer aquí?" |
-| B | "¿Me está echando?" |
-| B | "Sr. Dell, si por mi fuese..." |
-| B | "No, no, es sábado." |
-| A | "Sólo para miembros del club." |
-| B | "¿Qué diablos? Tráigame una solicitud de admisión." |
-| B | "Por favor, James." |
-| A | "Oye, Jimmy..." |
-| B | "no tiene ninguna importancia." |
-| B | "¿Qué mejor solución?" |
-| B | "No tienes porqué... - Es mi carácter." |
-| B | "Tengo un corazón de oro." |
-| B | "Gracias, James." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 30.925925925925924
-
----
-
-## Dialogue 11
+## Dialogue 07
 **Source:** The Spanish Prisoner
 **Timestamp:** 00:47:35 - 00:48:05
 **CEFR:** A2 (confidence: 60%)
@@ -308,63 +196,11 @@
 | B | "¿Por qué?" |
 | B | "Para suprimir su culpabilidad." |
 
-**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 31.285714285714285
+**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 31.29
 
 ---
 
-## Dialogue 12
-**Source:** The Spanish Prisoner
-**Timestamp:** 00:50:37 - 00:51:01
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 10
-
-| Speaker | Line |
-|---------|------|
-| A | "de medidas que puedan perjudicar a la empresa." |
-| A | "¿Cómo dice? - Un prematuro..." |
-| A | "¿Algún contacto exterior prematuro?" |
-| A | "¿Cómo se atreve? - Porque si..." |
-| A | "¿Cómo se atreve a escudarse tras esta clase de gente?" |
-| A | "Con lo que he hecho por Uds." |
-| A | "Quiere las próximas previsiones. ¿Las tienes a mano?" |
-| A | "Sí." |
-| B | "¿Dell dejó un número? - Sí." |
-| B | "¿Puede ponerme con él?" |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 31.555555555555557
-
----
-
-## Dialogue 13
-**Source:** Vicky Cristina Barcelona
-**Timestamp:** 00:03:25 - 00:04:02
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 16
-
-| Speaker | Line |
-|---------|------|
-| A | "Hola." |
-| B | "Hola." |
-| B | "Eres Vicky. - Sí, sí." |
-| B | "Has crecido mucho." |
-| B | "Ha pasado un tiempo. Es muy lindo verte." |
-| B | "Bienvenidos a Barcelona. - Hola, soy Cristina." |
-| B | "Cristina, soy Judy." |
-| B | "Éste es su cuarto. - Es perfecto." |
-| B | "Las puse juntas. - Esto es precioso." |
-| B | "Judy, muchas gracias por hospedarme, porque..." |
-| B | "...fue a último momento, y no me conoces." |
-| B | "Incluirme fue muy dulce de tu parte. - Pero, te digo..." |
-| B | "Es agradable tener un poco de acción por aquí." |
-| B | "Esto ha estado muy calmado desde que Arthur se fue a la universidad..." |
-| B | "Luego de desempacar..." |
-| B | "...y que el esposo de Judy, Mark, volvió de jugar golf..." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 30.42105263157895
-
----
-
-## Dialogue 14
+## Dialogue 08
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 00:07:14 - 00:07:51
 **CEFR:** A2 (confidence: 60%)
@@ -389,7 +225,7 @@
 
 ---
 
-## Dialogue 15
+## Dialogue 09
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 00:09:50 - 00:10:35
 **CEFR:** A2 (confidence: 60%)
@@ -418,7 +254,7 @@
 
 ---
 
-## Dialogue 16
+## Dialogue 10
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 00:26:02 - 00:26:39
 **CEFR:** A2 (confidence: 60%)
@@ -443,40 +279,11 @@
 | A | "Dios." |
 | A | "Las líneas son terribles." |
 
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 29.24390243902439
+**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 29.24
 
 ---
 
-## Dialogue 17
-**Source:** Vicky Cristina Barcelona
-**Timestamp:** 00:41:54 - 00:42:33
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 16
-
-| Speaker | Line |
-|---------|------|
-| A | "¿Estás bien? - Sí." |
-| A | "Sí." |
-| A | "¿Cómo está Cristina?" |
-| A | "Ya sabes, ya se ha mudado con un tipo." |
-| A | "Eso fue rápido. No me digas que es un torero." |
-| A | "No." |
-| A | "¿Escritor? ¿Compositor?" |
-| A | "¿Torturado pseudointelectual y autodestructivo?" |
-| A | "Sí, lo sé. Algunas veces me saca de quicio con sus..." |
-| A | "...amoríos descabellados." |
-| A | "Mira, la quiero porque..." |
-| A | "...es tu amiga, pero ya te lo he advertido." |
-| A | "Es una persona infeliz." |
-| A | "No puede despegarse de esa imagen de mujer especial, la artista..." |
-| A | "...que intenta encontrarse a sí misma. La encuentro..." |
-| A | "...despreciable para los valores normales de lo pretencioso." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 29.4390243902439
-
----
-
-## Dialogue 18
+## Dialogue 11
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 00:44:13 - 00:44:55
 **CEFR:** A2 (confidence: 60%)
@@ -501,11 +308,11 @@
 | B | "Cuando te miré." |
 | B | "No, no. Si lo hice, fue un error." |
 
-**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 35.333333333333336
+**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 35.33
 
 ---
 
-## Dialogue 19
+## Dialogue 12
 **Source:** Vicky Cristina Barcelona
 **Timestamp:** 00:50:53 - 00:51:45
 **CEFR:** A2 (confidence: 60%)
@@ -530,30 +337,6 @@
 | A | "...siempre fui su conexión con la realidad y..." |
 | A | "Comprendo, pero..." |
 
-**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 28.836734693877553
-
----
-
-## Dialogue 20
-**Source:** Vicky Cristina Barcelona
-**Timestamp:** 01:02:58 - 01:03:22
-**CEFR:** A2 (confidence: 60%)
-**Lines:** 11
-
-| Speaker | Line |
-|---------|------|
-| A | "Éste es el lugar perfecto. - Aquí, así. Así." |
-| A | "¿Puedes darme-- - Ten." |
-| A | "¿Qué sucede, qué pasa?" |
-| A | "¿Qué, qué, qué?" |
-| A | "¿Qué pasó?" |
-| A | "Espera, no, siéntate. Siéntate, siéntate." |
-| B | "¿Es el superior o el inferior?" |
-| A | "Ahí. Sí. - ¿Aquí?" |
-| A | "Espera." |
-| A | "Déjame--" |
-| A | "Espera, déjame..." |
-
-**CEFR Reasoning:** Rule-based: 1 tenses detected, complexity score 29.823529411764707
+**CEFR Reasoning:** Rule-based: 2 tenses detected, complexity score 28.84
 
 ---
